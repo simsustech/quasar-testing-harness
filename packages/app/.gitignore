@@ -1,0 +1,6 @@
+node_modules
+dist
+*.local
+components.d.ts
+dev-dist
+.env.local

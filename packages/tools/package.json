@@ -1,0 +1,22 @@
+{
+  "name": "@quasar-testing-harness/tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared types and utilities for the Quasar Testing Harness monorepo",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "echo 'tools package - no build needed (TS source only)'",
+    "generate:props": "tsx src/generate-props.ts",
+    "generate:pages": "tsx src/generate-pages.ts",
+    "generate:screenshots": "tsx src/generate-screenshot-manifest.ts",
+    "generate:all": "pnpm generate:props && pnpm generate:pages && pnpm generate:screenshots",
+    "lint": "echo 'no lint configured'",
+    "format:check": "oxfmt --check .",
+    "format:write": "oxfmt --write ."
+  }
+}

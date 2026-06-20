@@ -1,0 +1,27 @@
+{
+  "name": "quasar-testing-harness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Quasar Testing Harness - monorepo for AI-driven per-component visual testing and regression analysis",
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:app": "pnpm --filter @quasar-testing-harness/app build",
+    "build:app:csr": "pnpm --filter @quasar-testing-harness/app build:csr",
+    "build:app:ssr": "pnpm --filter @quasar-testing-harness/app build:ssr",
+    "build:app:ssg": "pnpm --filter @quasar-testing-harness/app build:ssg",
+    "dev": "pnpm --filter @quasar-testing-harness/app dev",
+    "dev:ssr": "pnpm --filter @quasar-testing-harness/app dev:ssr",
+    "lint": "pnpm -r lint",
+    "format:check": "pnpm -r format:check",
+    "format:write": "pnpm -r format:write",
+    "test": "playwright test tests/"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "npm-run-all": "4.1.5",
+    "tsx": "^4.22.4"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

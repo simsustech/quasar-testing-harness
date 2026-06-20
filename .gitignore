@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+.env.local
+.DS_Store
+.context/
+
+# Generated test screenshots — run pnpm generate:screenshots after tests
+packages/app/public/screenshots/

@@ -1,0 +1,22 @@
+{
+  "name": "@quasar-testing-harness/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fastify SSR host for @quasar-testing-harness/app - placeholder for future use",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "echo 'API package is a placeholder; not built yet'",
+    "dev": "echo 'API package is a placeholder; not run yet'",
+    "lint": "echo 'no lint configured'",
+    "format:check": "oxfmt --check .",
+    "format:write": "oxfmt --write ."
+  },
+  "dependencies": {
+    "@quasar-testing-harness/tools": "workspace:*",
+    "fastify": "5.8.5"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.54.0"
+  }
+}

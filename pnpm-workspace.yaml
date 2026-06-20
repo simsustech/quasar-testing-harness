@@ -1,0 +1,23 @@
+injectWorkspacePackages: true
+
+packages:
+  - packages/*
+  - ../unocss-preset-quasar/packages/preset
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+
+minimumReleaseAgeExclude:
+  - '@vitrify/*'
+  - vitrify
+  - unocss-preset-quasar
+  - '@simsustech/*'
+  - '@vue/*'
+  - vue-tsc
+  - unocss
+  - '@unocss/*'
+  - '@quasar/*'
+
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false

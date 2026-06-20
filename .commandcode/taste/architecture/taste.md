@@ -1,0 +1,15 @@
+# Architecture
+- Use the `quasarmd3` template from `create-vitrify` as the base for this project. Confidence: 0.80
+- For component playground pages: use URL as source of truth with two-way sync between route query params and control panel state. Confidence: 0.80
+- For component playground pages: wrap `QPage` in a `QLayout > QPageContainer > router-view` structure (e.g. via a `MainLayout.vue` component) — `QPage` requires a `QLayout` ancestor to render. Confidence: 0.85
+- Use `~/Projects/petboarding/` as the primary reference architecture for Vitrify configuration patterns. Confidence: 0.75
+- Use `~/Projects/petboarding/packages/app` as a READ-ONLY reference for this project's frontend — do NOT modify files in the `petboarding/` directory. Copy/adapt patterns into the new project location instead. Confidence: 0.95
+- For ControlPanel component: use native HTML inputs (`<input>`, `<select>`, `<input type="checkbox">`), never Q-anything — keeps the test target isolated to the component being tested. Confidence: 0.85
+- Add `data-prop="<key>"` attributes to all control inputs for Playwright/AI targeting. Confidence: 0.80
+- For component playground pages: position control panel at the top, component preview below. Confidence: 0.75
+- Load all default Quasar plugins (Dialog, Notify, Loading, Meta, LocalStorage, SessionStorage) in vitrify.config.ts for component playground. Confidence: 0.70
+- For component migration batches: validate build every 5 components plus once at end of each milestone (M1/M2/M3). Confidence: 0.70
+- Build the component playground as a pnpm monorepo in `~/Projects/quasar-dev/packages/app` (matching petboarding's monorepo structure), NOT inside `petboarding/`. `~/Projects/petboarding/` is READ-ONLY reference material — copy/adapt patterns from `petboarding/packages/app` into `quasar-dev/packages/app` instead of modifying files there. Confidence: 0.95
+- `packages/api` exists solely to serve the SSR of `packages/app` (Fastify SSR host) — it is NOT a general-purpose backend, not for business logic, not for separate API endpoints. Anything reusable across apps belongs in `packages/tools` instead. Confidence: 0.80
+- `quasar` is the single source of truth for Quasar Framework prop types — import prop type definitions directly from `'quasar'` (e.g. `QBtnProps` from `'quasar'`), do NOT hand-regenerate, duplicate, or create local subset/intermediary types for Quasar's prop schemas. Use the canonical Quasar type as-is. Confidence: 0.99
+- For QBtn (and Quasar components with paired color/text): `color` sets the **background** (`bg-<color>` class), `textColor` sets the **text color** (`text-<color>` class). They are independent props — when only `color` is set, Quasar auto-pairs a contrasting text color (e.g. `color=primary` → `text-white`). Confidence: 0.75
