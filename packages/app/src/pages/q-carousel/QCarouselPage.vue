@@ -16,8 +16,8 @@ import { useQueryProps } from '../../composables/useQueryProps'
 const pageDefaults = {
   ...qCarouselDefaults,
   modelValue: 1,
-  swipeable: 'true',
-  animated: 'true'
+  swipeable: true,
+  animated: true
 } as const
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -28,7 +28,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -63,7 +63,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-carousel v-bind="boundProps">
+      <q-carousel v-bind="boundProps" style="width: 100%">
         <q-carousel-slide name="1" class="column items-center justify-center" style="background: #F2C037">
           <div class="text-h5 text-white">Sunset</div>
           <p class="text-white">First slide</p>

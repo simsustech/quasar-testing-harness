@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -9,7 +9,7 @@ export const qColorDefaults = {
   defaultValue: '',
   defaultView: 'spectrum',
   formatModel: 'auto',
-  palette: '# hard-coded palette',
+  palette: '',
   square: false,
   flat: false,
   bordered: false,
@@ -27,7 +27,7 @@ export const qColorSchema: PropSchema[] = [
   { key: 'defaultValue', type: 'string', default: '' },
   { key: 'defaultView', type: 'select', default: 'spectrum', options: ['spectrum', 'tune', 'palette'] },
   { key: 'formatModel', type: 'select', default: 'auto', options: ['auto', 'hex', 'rgb', 'hexa', 'rgba'] },
-  { key: 'palette', type: 'string', default: '# hard-coded palette' },
+  { key: 'palette', type: 'string', default: '' },
   { key: 'square', type: 'boolean', default: false },
   { key: 'flat', type: 'boolean', default: false },
   { key: 'bordered', type: 'boolean', default: false },

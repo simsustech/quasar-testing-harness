@@ -20,10 +20,10 @@ export default defineConfig({
   ],
   webServer: {
     command: 'pnpm --filter @quasar-testing-harness/app dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: true,
+    port: 3000,
     timeout: 120_000,
-    stdout: 'ignore',
+    reuseExistingServer: true,
+    stdout: 'pipe',
     stderr: 'pipe'
   }
 })

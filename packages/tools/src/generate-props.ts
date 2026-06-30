@@ -72,7 +72,7 @@ function mapType(prop: QuasarProp): PropType {
 }
 
 /** Clean up Quasar's quoted default like "'button'" → "button" */
-function cleanDefault(raw: unknown): string | number | boolean {
+function cleanDefault(raw: unknown): string | number | boolean | unknown[] | Record<string, unknown> {
   if (raw === null || raw === undefined) return ''
   if (typeof raw === 'boolean' || typeof raw === 'number') return raw
   if (typeof raw === 'string') {
@@ -88,6 +88,29 @@ function cleanDefault(raw: unknown): string | number | boolean {
     if (s === 'true') return true
     if (s === 'false') return false
     if (s === 'null') return ''
+    // Comment-like defaults from Quasar docs ("# hard-coded palette") → empty
+    if (s.startsWith('#')) return ''
+    // Array- or object-like defaults ("[ 5, 7, 10 ]" or "{ min: 0, max: 0 }") → parse
+    if (s.startsWith('[') || s.startsWith('{')) {
+      try {
+        const parsed = JSON.parse(s)
+        if (Array.isArray(parsed) || typeof parsed === 'object') return parsed
+      } catch {
+        // If JSON parse fails, try replacing single-quoted strings with double quotes
+        // to handle JS-style defaults like "[ [ 'a', 'b' ], [ 'c' ] ]"
+        try {
+          const fixed = s.replace(/'/g, '"')
+          const parsed = JSON.parse(fixed)
+          if (Array.isArray(parsed) || typeof parsed === 'object') return parsed
+        } catch { /* fall through */ }
+        // Try wrapping keys in quotes for JS objects like "{ min: null, max: null }"
+        try {
+          const quoted = s.replace(/(\w+):/g, '"$1":')
+          const parsed = JSON.parse(quoted)
+          if (Array.isArray(parsed) || typeof parsed === 'object') return parsed
+        } catch { /* return as string below */ }
+      }
+    }
     return s
   }
   return String(raw)
@@ -158,6 +181,15 @@ function buildEntries(props: Record<string, QuasarProp>): PropEntry[] {
   return entries
 }
 
+/** Serialize a default value to a TypeScript literal expression. */
+function defaultToLiteral(def: unknown): string {
+  if (typeof def === 'string') return `'${def.replace(/'/g, "\\'")}'`
+  if (typeof def === 'boolean' || typeof def === 'number') return String(def)
+  if (Array.isArray(def)) return JSON.stringify(def)
+  if (typeof def === 'object' && def !== null) return JSON.stringify(def)
+  return "''"
+}
+
 /** Generate the TypeScript source for one Q{Name}Props.ts */
 function renderPropsFile(componentName: string, entries: PropEntry[]): string {
   const lines: string[] = []
@@ -169,20 +201,14 @@ function renderPropsFile(componentName: string, entries: PropEntry[]): string {
   lines.push('')
   lines.push(`export const ${varName}Defaults = {`)
   for (const e of entries) {
-    const lit =
-      typeof e.default === 'string'
-        ? `'${e.default.replace(/'/g, "\\'")}'`
-        : String(e.default)
+    const lit = defaultToLiteral(e.default)
     lines.push(`  ${e.key}: ${lit},`)
   }
   lines.push(`} as const`)
   lines.push('')
   lines.push(`export const ${varName}Schema: PropSchema[] = [`)
   for (const e of entries) {
-    const lit =
-      typeof e.default === 'string'
-        ? `'${e.default.replace(/'/g, "\\'")}'`
-        : String(e.default)
+    const lit = defaultToLiteral(e.default)
     if (e.type === 'select' && e.options) {
       lines.push(`  { key: '${e.key}', type: 'select', default: ${lit}, options: [${e.options.map((o) => `'${o}'`).join(', ')}] },`)
     } else {

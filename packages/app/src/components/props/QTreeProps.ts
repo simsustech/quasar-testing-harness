@@ -1,11 +1,11 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
 export const qTreeDefaults = {
-  nodes: [] as unknown[],
-  nodeKey: '',
+  nodes: '',
+  nodeKey: 'label',
   labelKey: 'label',
   childrenKey: 'children',
   noConnectors: false,
@@ -17,9 +17,9 @@ export const qTreeDefaults = {
   dark: '',
   icon: '',
   tickStrategy: 'none',
-  ticked: [] as unknown[],
-  expanded: [] as unknown[],
-  selected: [] as unknown[],
+  ticked: '',
+  expanded: '',
+  selected: '',
   noSelectionUnset: false,
   defaultExpandAll: false,
   accordion: false,
@@ -32,7 +32,7 @@ export const qTreeDefaults = {
 } as const
 
 export const qTreeSchema: PropSchema[] = [
-  { key: 'nodes', type: 'array', default: [] },
+  { key: 'nodes', type: 'string', default: '' },
   { key: 'nodeKey', type: 'string', default: '' },
   { key: 'labelKey', type: 'string', default: 'label' },
   { key: 'childrenKey', type: 'string', default: 'children' },
@@ -45,9 +45,9 @@ export const qTreeSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
   { key: 'icon', type: 'string', default: '' },
   { key: 'tickStrategy', type: 'select', default: 'none', options: ['none', 'strict', 'leaf', 'leaf-filtered'] },
-  { key: 'ticked', type: 'array', default: [] },
-  { key: 'expanded', type: 'array', default: [] },
-  { key: 'selected', type: 'array', default: [] },
+  { key: 'ticked', type: 'string', default: '' },
+  { key: 'expanded', type: 'string', default: '' },
+  { key: 'selected', type: 'string', default: '' },
   { key: 'noSelectionUnset', type: 'boolean', default: false },
   { key: 'defaultExpandAll', type: 'boolean', default: false },
   { key: 'accordion', type: 'boolean', default: false },

@@ -21,7 +21,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -57,10 +57,14 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div class="border-grey-3" style="width: 300px; height: 200px; border: 1px solid #eee">
-        <q-page v-bind="boundProps" class="q-pa-md">
-          <p><strong>Page content</strong></p>
-          <p>This is a q-page component with padding style applied.</p>
-        </q-page>
+        <q-layout container class="bg-white full-height full-width">
+          <q-page-container>
+            <q-page v-bind="boundProps">
+              <p><strong>Page content</strong></p>
+              <p>This is a q-page component with padding style applied.</p>
+            </q-page>
+          </q-page-container>
+        </q-layout>
       </div>
     </div>
 

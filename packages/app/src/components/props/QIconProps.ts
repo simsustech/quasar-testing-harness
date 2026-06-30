@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 

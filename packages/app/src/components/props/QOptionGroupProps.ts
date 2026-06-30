@@ -1,12 +1,12 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
 export const qOptionGroupDefaults = {
   size: '',
   modelValue: '',
-  options: [] as unknown[],
+  options: [],
   optionValue: 'value',
   optionLabel: 'label',
   optionDisable: 'disable',
@@ -24,7 +24,7 @@ export const qOptionGroupDefaults = {
 export const qOptionGroupSchema: PropSchema[] = [
   { key: 'size', type: 'string', default: '' },
   { key: 'modelValue', type: 'string', default: '' },
-  { key: 'options', type: 'array', default: [] },
+  { key: 'options', type: 'string', default: [] },
   { key: 'optionValue', type: 'string', default: 'value' },
   { key: 'optionLabel', type: 'string', default: 'label' },
   { key: 'optionDisable', type: 'string', default: 'disable' },

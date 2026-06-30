@@ -25,7 +25,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -61,9 +61,9 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-breadcrumbs v-bind="boundProps">
-        <q-breadcrumb-el label="Home" icon="i-mdi-home" />
-        <q-breadcrumb-el label="Products" icon="i-mdi-package-variant-closed" />
-        <q-breadcrumb-el label="Shoes" />
+        <q-breadcrumbs-el label="Home" icon="i-mdi-home" />
+        <q-breadcrumbs-el label="Products" icon="i-mdi-package-variant-closed" />
+        <q-breadcrumbs-el label="Shoes" />
       </q-breadcrumbs>
     </div>
 

@@ -17,7 +17,8 @@ const pageDefaults = {
   ...qExpansionItemDefaults,
   label: 'Getting started',
   caption: '5 minutes read',
-  icon: 'i-mdi-rocket-launch-outline'
+  icon: 'i-mdi-rocket-launch-outline',
+  modelValue: true
 } as const
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -28,7 +29,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -63,13 +64,13 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-expansionitem v-bind="boundProps">
+      <q-expansion-item v-bind="boundProps">
         <q-card>
           <q-card-section>
             This is the expanded content of the expansion item. It reveals additional detail when opened.
           </q-card-section>
         </q-card>
-      </q-expansionitem>
+      </q-expansion-item>
     </div>
 
     <ControlPanel

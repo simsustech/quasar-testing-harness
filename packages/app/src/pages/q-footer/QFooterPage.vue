@@ -6,12 +6,29 @@ export default {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qFooterDefaults,
   qFooterSchema
 } from '../../components/props/QFooterProps'
 import { useQueryProps } from '../../composables/useQueryProps'
+
+const route = useRoute()
+const isUnstyled = computed(() => route.query.style === 'unstyled')
+const footerStyle = computed(() => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '48px',
+  ...(isUnstyled.value
+    ? {}
+    : {
+        backgroundColor: 'var(--light-primary)',
+        color: 'var(--light-on-primary)'
+      })
+}))
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: qFooterDefaults as unknown as Record<string, unknown>
@@ -21,7 +38,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -56,7 +73,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-footer v-bind="boundProps" class="bg-primary text-white" style="position: relative; display: flex; align-items: center; justify-content: center; height: 48px">
+      <q-footer v-bind="boundProps" :style="footerStyle">
         <div>Footer — © 2024</div>
       </q-footer>
     </div>

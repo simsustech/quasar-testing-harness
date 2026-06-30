@@ -7,3 +7,9 @@ dist
 
 # Generated test screenshots — run pnpm generate:screenshots after tests
 packages/app/public/screenshots/
+
+# Test output artifacts
+tests/output/
+test-results
+playwright-report
+**/.pnpm-store/

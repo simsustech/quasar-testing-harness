@@ -1,12 +1,12 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
 export const qScrollAreaDefaults = {
   dark: '',
-  verticalOffset: '# [ 0, 0 ]',
-  horizontalOffset: '# [ 0, 0 ]',
+  verticalOffset: '',
+  horizontalOffset: '',
   barStyle: '',
   verticalBarStyle: '',
   horizontalBarStyle: '',
@@ -22,8 +22,8 @@ export const qScrollAreaDefaults = {
 
 export const qScrollAreaSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
-  { key: 'verticalOffset', type: 'string', default: '# [ 0, 0 ]' },
-  { key: 'horizontalOffset', type: 'string', default: '# [ 0, 0 ]' },
+  { key: 'verticalOffset', type: 'string', default: '' },
+  { key: 'horizontalOffset', type: 'string', default: '' },
   { key: 'barStyle', type: 'string', default: '' },
   { key: 'verticalBarStyle', type: 'string', default: '' },
   { key: 'horizontalBarStyle', type: 'string', default: '' },

@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -13,7 +13,7 @@ export const qVirtualScrollDefaults = {
   virtualScrollStickySizeEnd: '0',
   tableColspan: '',
   type: 'list',
-  items: '[]',
+  items: [],
   itemsSize: 0,
   itemsFn: '',
   scrollTarget: '',
@@ -29,7 +29,7 @@ export const qVirtualScrollSchema: PropSchema[] = [
   { key: 'virtualScrollStickySizeEnd', type: 'string', default: '0' },
   { key: 'tableColspan', type: 'string', default: '' },
   { key: 'type', type: 'select', default: 'list', options: ['list', 'table'] },
-  { key: 'items', type: 'string', default: '[]' },
+  { key: 'items', type: 'string', default: [] },
   { key: 'itemsSize', type: 'number', default: 0 },
   { key: 'itemsFn', type: 'string', default: '' },
   { key: 'scrollTarget', type: 'string', default: '' },

@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -29,7 +29,7 @@ export const qCarouselDefaults = {
   prevIcon: '',
   nextIcon: '',
   navigation: false,
-  navigationPosition: '# \'bottom\'/\'right\'',
+  navigationPosition: '',
   navigationIcon: '',
   navigationActiveIcon: '',
   thumbnails: false,
@@ -61,7 +61,7 @@ export const qCarouselSchema: PropSchema[] = [
   { key: 'prevIcon', type: 'string', default: '' },
   { key: 'nextIcon', type: 'string', default: '' },
   { key: 'navigation', type: 'boolean', default: false },
-  { key: 'navigationPosition', type: 'select', default: '# \'bottom\'/\'right\'', options: ['top', 'right', 'bottom', 'left'] },
+  { key: 'navigationPosition', type: 'select', default: '', options: ['top', 'right', 'bottom', 'left'] },
   { key: 'navigationIcon', type: 'string', default: '' },
   { key: 'navigationActiveIcon', type: 'string', default: '' },
   { key: 'thumbnails', type: 'boolean', default: false },

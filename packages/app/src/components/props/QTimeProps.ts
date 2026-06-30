@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -19,7 +19,7 @@ export const qTimeDefaults = {
   disable: false,
   modelValue: '',
   format24h: '',
-  defaultDate: '# current day',
+  defaultDate: '',
   options: '',
   hourOptions: '',
   minuteOptions: '',
@@ -44,7 +44,7 @@ export const qTimeSchema: PropSchema[] = [
   { key: 'disable', type: 'boolean', default: false },
   { key: 'modelValue', type: 'string', default: '' },
   { key: 'format24h', type: 'string', default: '' },
-  { key: 'defaultDate', type: 'string', default: '# current day' },
+  { key: 'defaultDate', type: 'string', default: '' },
   { key: 'options', type: 'string', default: '' },
   { key: 'hourOptions', type: 'string', default: '' },
   { key: 'minuteOptions', type: 'string', default: '' },

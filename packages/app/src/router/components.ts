@@ -23,7 +23,6 @@ export interface ComponentEntry {
 export const components: ComponentEntry[] = [
   // M1 — simple / high-value
   { name: 'QBtn', slug: 'q-btn', milestone: 'M1' },
-  { name: 'QAjaxBar', slug: 'q-ajax-bar', milestone: 'M1' },
   { name: 'QAvatar', slug: 'q-avatar', milestone: 'M1' },
   { name: 'QBadge', slug: 'q-badge', milestone: 'M1' },
   { name: 'QBanner', slug: 'q-banner', milestone: 'M1' },
@@ -69,7 +68,6 @@ export const components: ComponentEntry[] = [
   { name: 'QMenu', slug: 'q-menu', milestone: 'M2' },
   { name: 'QOptionGroup', slug: 'q-option-group', milestone: 'M2' },
   { name: 'QPagination', slug: 'q-pagination', milestone: 'M2' },
-  { name: 'QParallax', slug: 'q-parallax', milestone: 'M2' },
   { name: 'QRange', slug: 'q-range', milestone: 'M2' },
   { name: 'QScrollArea', slug: 'q-scroll-area', milestone: 'M2' },
   { name: 'QSlider', slug: 'q-slider', milestone: 'M2' },
@@ -88,7 +86,6 @@ export const components: ComponentEntry[] = [
   { name: 'QLayout', slug: 'q-layout', milestone: 'M3' },
   { name: 'QNoSsr', slug: 'q-no-ssr', milestone: 'M3' },
   { name: 'QPage', slug: 'q-page', milestone: 'M3' },
-  { name: 'QPageScroller', slug: 'q-page-scroller', milestone: 'M3' },
   { name: 'QPageSticky', slug: 'q-page-sticky', milestone: 'M3' },
   { name: 'QPopupEdit', slug: 'q-popup-edit', milestone: 'M3' },
   { name: 'QPullToRefresh', slug: 'q-pull-to-refresh', milestone: 'M3' },

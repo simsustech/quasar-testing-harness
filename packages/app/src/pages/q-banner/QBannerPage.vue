@@ -6,6 +6,7 @@ export default {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qBannerDefaults,
@@ -13,10 +14,17 @@ import {
 } from '../../components/props/QBannerProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
+const route = useRoute()
+const isUnstyled = computed(() => route.query.style === 'unstyled')
+const bannerStyle = computed(() =>
+  isUnstyled.value
+    ? {}
+    : { background: 'var(--light-primary-container)', color: 'var(--light-on-primary-container)' }
+)
+
 const pageDefaults = {
   ...qBannerDefaults,
-  modelValue: 'true',
-  rounded: 'true'
+  rounded: true
 } as const
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -27,7 +35,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -62,7 +70,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-banner v-bind="boundProps" class="bg-primary text-white">
+      <q-banner v-bind="boundProps" :style="bannerStyle">
         <template v-slot:avatar>
           <q-icon name="i-mdi-alert-circle-outline" color="white" size="24px" />
         </template>

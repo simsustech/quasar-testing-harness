@@ -6,12 +6,21 @@ export default {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qLayoutDefaults,
   qLayoutSchema
 } from '../../components/props/QLayoutProps'
 import { useQueryProps } from '../../composables/useQueryProps'
+
+const route = useRoute()
+const isUnstyled = computed(() => route.query.style === 'unstyled')
+const headerStyle = computed(() =>
+  isUnstyled.value
+    ? {}
+    : { background: 'var(--light-primary)', color: 'white' }
+)
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: qLayoutDefaults as unknown as Record<string, unknown>
@@ -21,7 +30,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -57,7 +66,7 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-layout v-bind="boundProps" style="width: 600px; height: 200px">
-        <q-header style="background: #1976d2">
+        <q-header :style="headerStyle">
           <q-toolbar>
             <q-toolbar-title>Header</q-toolbar-title>
           </q-toolbar>

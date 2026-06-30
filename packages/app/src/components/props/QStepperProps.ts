@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -13,8 +13,8 @@ export const qStepperDefaults = {
   infinite: false,
   swipeable: false,
   vertical: false,
-  transitionPrev: '# slide-right/slide-down',
-  transitionNext: '# slide-left/slide-up',
+  transitionPrev: '',
+  transitionNext: '',
   transitionDuration: '300',
   dark: '',
   flat: false,
@@ -43,8 +43,8 @@ export const qStepperSchema: PropSchema[] = [
   { key: 'infinite', type: 'boolean', default: false },
   { key: 'swipeable', type: 'boolean', default: false },
   { key: 'vertical', type: 'boolean', default: false },
-  { key: 'transitionPrev', type: 'string', default: '# slide-right/slide-down' },
-  { key: 'transitionNext', type: 'string', default: '# slide-left/slide-up' },
+  { key: 'transitionPrev', type: 'string', default: '' },
+  { key: 'transitionNext', type: 'string', default: '' },
   { key: 'transitionDuration', type: 'string', default: '300' },
   { key: 'dark', type: 'string', default: '' },
   { key: 'flat', type: 'boolean', default: false },

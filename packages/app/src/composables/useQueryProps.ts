@@ -43,15 +43,6 @@ export interface QueryPropsOptions<T extends Record<string, unknown>> {
   defaults: T
 }
 
-function getRouteSnapshot(route: unknown): {
-  query: Record<string, string | string[] | null | undefined>
-} {
-  if (route && typeof route === 'object' && 'value' in route) {
-    return (route as { value: { query: typeof route.query } }).value
-  }
-  return route as { query: typeof route.query }
-}
-
 /**
  * Bind component props to URL query string.
  *
@@ -106,13 +97,11 @@ export function useQueryProps<T extends Record<string, unknown>>(
     }
   }
 
-  const readQuery = () => getRouteSnapshot(route).query as Record<
-    string,
-    string | string[] | null | undefined
-  >
-
-  syncFromUrl(readQuery())
-  watch(readQuery, syncFromUrl)
+  syncFromUrl(route.query)
+  watch(
+    () => route.query,
+    (q) => syncFromUrl(q as Record<string, string | string[] | null | undefined>)
+  )
 
   const setProp = <K extends keyof T>(key: K, value: T[K]) => {
     ;(props as Record<keyof T, unknown>)[key] = value

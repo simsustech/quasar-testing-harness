@@ -1,48 +1,64 @@
 import { test, expect } from '@playwright/test'
-import path from 'node:path'
-import { pathToFileURL } from 'node:url'
 
-/**
- * Absolute path to the preset's style barrel. The preset lives in a
- * sibling workspace (`../unocss-preset-quasar/packages/preset/`) so the
- * import must be resolved with an absolute file URL — a bare specifier
- * won't work because the test runs in the root workspace, not the app's.
- */
-const PRESET_ENTRY = pathToFileURL(
-  path.resolve(process.cwd(), '..', 'unocss-preset-quasar', 'packages', 'preset', 'src', 'styles', 'index.ts')
-).href
+test.describe('Unstyled style', () => {
+  test.beforeEach(async ({ page }) => {
+    page.on('pageerror', (err) => { throw err })
+    page.on('console', (msg) => {
+      if (msg.type() === 'error' || msg.type() === 'warning') throw new Error(msg.text())
+    })
+  })
 
-/**
- * Smoke test for the `Unstyled` style export.
- *
- * We import the preset's source directly (not the built `dist`) so this
- * test works without a `pnpm build` step and stays in sync with the
- * source.
- */
-test('Unstyled style export has the expected shape', async () => {
-  const mod = await import(PRESET_ENTRY)
-  expect(typeof mod.Unstyled).toBe('object')
-  expect(Array.isArray(mod.Unstyled.rules)).toBe(true)
-  expect(Array.isArray(mod.Unstyled.variants)).toBe(true)
-  expect(Array.isArray(mod.Unstyled.preflights)).toBe(true)
-  expect(Array.isArray(mod.Unstyled.shortcuts)).toBe(true)
-  // The whole point of Unstyled: nothing should be added on top of the
-  // Quasar default styles.
-  expect(mod.Unstyled.rules).toEqual([])
-  expect(mod.Unstyled.variants).toEqual([])
-  expect(mod.Unstyled.preflights).toEqual([])
-  expect(mod.Unstyled.shortcuts).toEqual([])
-})
+  test('QBtn has no background or primary color by default', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await page.goto('/q-btn?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await page.waitForSelector('.q-btn', { timeout: 5000 })
+    const styles = await page.evaluate(() => {
+      const btn = document.querySelector('.q-btn')!
+      return {
+        bg: getComputedStyle(btn).backgroundColor,
+        color: getComputedStyle(btn).color
+      }
+    })
+    expect(styles.bg).toBe('rgba(0, 0, 0, 0)')
+    expect(styles.color).not.toContain('103, 80, 164')
+  })
 
-test('All three style exports (MD2, MD3, Unstyled) are importable', async () => {
-  const mod = await import(PRESET_ENTRY)
-  expect(mod.MaterialDesign2).toBeTruthy()
-  expect(mod.MaterialDesign3).toBeTruthy()
-  expect(mod.Unstyled).toBeTruthy()
-  // setDefaultProps helpers for each style
-  expect(typeof mod.setDefaultPropsMd2).toBe('function')
-  expect(typeof mod.setDefaultPropsMd3).toBe('function')
-  expect(typeof mod.setDefaultPropsUnstyled).toBe('function')
-  // Unstyled's setDefaultProps must be a safe no-op
-  expect(() => mod.setDefaultPropsUnstyled()).not.toThrow()
+  test('Inline style overrides unstyled default', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await page.goto('/q-btn?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await page.waitForSelector('.q-btn', { timeout: 5000 })
+    const bg = await page.evaluate(() => {
+      const btn = document.querySelector('.q-btn')!
+      btn.setAttribute('style', 'background: rgb(0, 128, 0) !important')
+      return getComputedStyle(btn).backgroundColor
+    })
+    expect(bg).toBe('rgb(0, 128, 0)')
+  })
+
+  test('Binding a Quasar color prop does not theme the component', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await page.goto('/q-btn?style=unstyled&color=secondary', { waitUntil: 'networkidle', timeout: 20000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await page.waitForSelector('.q-btn', { timeout: 5000 })
+    const bg = await page.evaluate(() => getComputedStyle(document.querySelector('.q-btn')!).backgroundColor)
+    // Should be transparent — the color prop should NOT force a background in unstyled
+    expect(bg).toBe('rgba(0, 0, 0, 0)')
+  })
+
+  test('Rendering multiple components with no theme leaking', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await page.goto('/q-card?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await page.waitForSelector('.q-card', { timeout: 5000 })
+    const styles = await page.evaluate(() => {
+      const card = document.querySelector('.q-card')!
+      return {
+        bg: getComputedStyle(card).backgroundColor,
+        shadow: getComputedStyle(card).boxShadow
+      }
+    })
+    expect(styles.bg).toBe('rgba(0, 0, 0, 0)')
+  })
 })

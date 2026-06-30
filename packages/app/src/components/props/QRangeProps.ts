@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -25,8 +25,8 @@ export const qRangeDefaults = {
   labelTextColor: '',
   switchLabelSide: false,
   labelAlways: false,
-  markers: false as boolean | number,
-  markerLabels: false,
+  markers: '',
+  markerLabels: '',
   markerLabelsClass: '',
   switchMarkerLabelsSide: false,
   trackSize: '4px',
@@ -38,7 +38,7 @@ export const qRangeDefaults = {
   disable: false,
   readonly: false,
   tabindex: '',
-  modelValue: '{ min: null, max: null }',
+  modelValue: {"min":null,"max":null},
   dragRange: false,
   dragOnlyRange: false,
   leftLabelColor: '',
@@ -73,8 +73,8 @@ export const qRangeSchema: PropSchema[] = [
   { key: 'labelTextColor', type: 'string', default: '' },
   { key: 'switchLabelSide', type: 'boolean', default: false },
   { key: 'labelAlways', type: 'boolean', default: false },
-  { key: 'markers', type: 'boolean', default: false },
-  { key: 'markerLabels', type: 'boolean', default: false },
+  { key: 'markers', type: 'string', default: '' },
+  { key: 'markerLabels', type: 'string', default: '' },
   { key: 'markerLabelsClass', type: 'string', default: '' },
   { key: 'switchMarkerLabelsSide', type: 'boolean', default: false },
   { key: 'trackSize', type: 'string', default: '4px' },
@@ -86,7 +86,7 @@ export const qRangeSchema: PropSchema[] = [
   { key: 'disable', type: 'boolean', default: false },
   { key: 'readonly', type: 'boolean', default: false },
   { key: 'tabindex', type: 'string', default: '' },
-  { key: 'modelValue', type: 'string', default: '{ min: null, max: null }' },
+  { key: 'modelValue', type: 'string', default: {"min":null,"max":null} },
   { key: 'dragRange', type: 'boolean', default: false },
   { key: 'dragOnlyRange', type: 'boolean', default: false },
   { key: 'leftLabelColor', type: 'string', default: '' },

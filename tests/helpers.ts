@@ -1,8 +1,14 @@
-import { type Page } from '@playwright/test'
+import { type Page, type PageScreenshotOptions } from '@playwright/test'
 import path from 'node:path'
 import fs from 'node:fs'
 
 const SHOTS = path.join(process.cwd(), 'packages', 'app', 'public', 'screenshots')
+
+export const DEVICES = [
+  { slug: 'sm', width: 375, height: 667 },
+  { slug: 'md', width: 768, height: 1024 },
+  { slug: 'lg', width: 1440, height: 900 },
+] as const
 
 export const styleFromPage = async (page: Page): Promise<string> => {
   try {
@@ -15,9 +21,10 @@ export const styleFromPage = async (page: Page): Promise<string> => {
 export const shotPath = (
   component: string,
   label: string | Record<string, string> = 'default',
-  styleSlug = 'md3'
+  styleSlug = 'md3',
+  deviceSlug = 'desktop'
 ) => {
-  const dir = path.join(SHOTS, styleSlug, component)
+  const dir = path.join(SHOTS, styleSlug, deviceSlug, component)
   fs.mkdirSync(dir, { recursive: true })
   const tag =
     typeof label === 'string'
@@ -36,9 +43,10 @@ export const shot = async (
   page: Page,
   component: string,
   label: string | Record<string, string>,
-  styleSlug?: string
+  styleSlug?: string,
+  deviceSlug = 'desktop'
 ) => {
-  const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)))
+  const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)), deviceSlug)
   await page.getByTestId('component-preview').screenshot({ path: file })
   return file
 }
@@ -47,10 +55,11 @@ export const dumpDiagnostics = async (
   page: Page,
   component: string,
   label: string | Record<string, string>,
-  styleSlug?: string
+  styleSlug?: string,
+  deviceSlug = 'desktop'
 ) => {
   const slug = styleSlug ?? (await styleFromPage(page))
-  const file = shotPath(component, label, slug).replace(/\.png$/, '.json')
+  const file = shotPath(component, label, slug, deviceSlug).replace(/\.png$/, '.json')
   const data = await page.evaluate(() => {
     const root = document.querySelector(
       '[data-testid="component-preview"]'

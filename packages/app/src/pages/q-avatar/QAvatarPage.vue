@@ -29,7 +29,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -64,7 +64,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-avatar v-bind="boundProps">JD</q-avatar>
+      <q-avatar v-bind="boundProps"><span style="line-height: 1">JD</span></q-avatar>
     </div>
 
     <ControlPanel

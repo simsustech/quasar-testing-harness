@@ -11,14 +11,18 @@
     "build:app:ssg": "pnpm --filter @quasar-testing-harness/app build:ssg",
     "dev": "pnpm --filter @quasar-testing-harness/app dev",
     "dev:ssr": "pnpm --filter @quasar-testing-harness/app dev:ssr",
+    "dev:api": "pnpm build:app:ssr && pnpm --filter @quasar-testing-harness/api dev",
     "lint": "pnpm -r lint",
     "format:check": "pnpm -r format:check",
     "format:write": "pnpm -r format:write",
-    "test": "playwright test tests/"
+    "test": "playwright test tests/",
+    "test:build": "pnpm build:app:csr",
+    "test:ssr": "pnpm build:app:ssr && playwright test tests/ssr.spec.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
     "npm-run-all": "4.1.5",
+    "serve": "^14.2.6",
     "tsx": "^4.22.4"
   },
   "engines": {

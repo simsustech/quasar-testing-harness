@@ -13,15 +13,20 @@ import {
 } from '../../components/props/QSkeletonProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
+const pageDefaults = {
+  ...qSkeletonDefaults,
+  animation: 'none'
+} as const
+
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
-  defaults: qSkeletonDefaults as unknown as Record<string, unknown>
+  defaults: pageDefaults as unknown as Record<string, unknown>
 })
 
 // Coerce empty strings to undefined so Quasar falls back to its canonical defaults
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -57,9 +62,9 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div style="width: 300px">
-        <q-skeleton v-bind="boundProps" type="rect" width="300px" height="48px" />
-        <q-skeleton v-bind="boundProps" type="text" width="200px" class="q-mt-sm" />
-        <q-skeleton v-bind="boundProps" type="circle" size="48px" class="q-mt-sm" />
+        <q-skeleton v-bind="boundProps" type="rect" width="300px" height="48px" style="background: #e0e0e0;" />
+        <q-skeleton v-bind="boundProps" type="text" width="200px" height="16px" style="margin-top: 8px; background: #e0e0e0;" />
+        <q-skeleton v-bind="boundProps" type="circle" size="48px" style="margin-top: 8px; background: #e0e0e0;" />
       </div>
     </div>
 

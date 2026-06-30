@@ -38,10 +38,23 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
+
+const isDark = computed(() => Boolean(props.dark))
+
+const previewStyle = computed(() => ({
+  padding: '32px',
+  background: isDark.value ? '#333' : '#fff',
+  border: '1px solid #e0e0e0',
+  borderRadius: '8px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '120px'
+}))
 
 const onUpdate = (next: Record<string, unknown>) => {
   for (const k of Object.keys(next)) {
@@ -62,16 +75,7 @@ const onUpdate = (next: Record<string, unknown>) => {
     <div
       class="preview q-mb-md"
       data-testid="component-preview"
-      style="
-        padding: 32px;
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 120px;
-      "
+      :style="previewStyle"
     >
       <q-select v-bind="boundProps" />
     </div>

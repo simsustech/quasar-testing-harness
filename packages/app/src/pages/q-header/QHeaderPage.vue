@@ -6,12 +6,29 @@ export default {
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qHeaderDefaults,
   qHeaderSchema
 } from '../../components/props/QHeaderProps'
 import { useQueryProps } from '../../composables/useQueryProps'
+
+const route = useRoute()
+const isUnstyled = computed(() => route.query.style === 'unstyled')
+const headerStyle = computed(() => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  height: '56px',
+  padding: '0 16px',
+  ...(isUnstyled.value
+    ? {}
+    : {
+        backgroundColor: 'var(--light-primary)',
+        color: 'var(--light-on-primary)'
+      })
+}))
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: qHeaderDefaults as unknown as Record<string, unknown>
@@ -21,7 +38,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -56,7 +73,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-header v-bind="boundProps" class="bg-primary text-white" style="position: relative; display: flex; align-items: center; height: 56px; padding: 0 16px">
+      <q-header v-bind="boundProps" :style="headerStyle">
         <q-btn flat dense icon="i-mdi-menu" color="white" />
         <q-toolbar-title>Header</q-toolbar-title>
       </q-header>

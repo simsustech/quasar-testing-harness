@@ -17,7 +17,7 @@ const pageDefaults = {
   ...qSpinnerDefaults,
   size: '64px',
   color: 'primary',
-  thickness: '4'
+  thickness: 4
 } as const
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -28,7 +28,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })

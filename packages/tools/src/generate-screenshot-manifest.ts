@@ -2,9 +2,9 @@
 /**
  * Generate a manifest.json of all screenshots in the review directory.
  *
- * Scans packages/app/public/screenshots/{style}/{component}/*.png and reads
- * companion .json sidecars for the page URL. Outputs a grouped list that the
- * ReviewPage consumes to render the carousel.
+ * Scans packages/app/public/screenshots/{style}/{device}/{component}/*.png
+ * and reads companion .json sidecars for the page URL. Outputs a grouped
+ * list that the ReviewPage consumes to render the carousel.
  *
  * Usage:
  *   pnpm --filter @quasar-testing-harness/tools generate:screenshots
@@ -20,11 +20,13 @@ const SCREENSHOTS_DIR =
   join(__dirname, '..', '..', 'app', 'public', 'screenshots')
 
 const STYLES = ['md3', 'md2', 'unstyled']
+const DEVICES = ['desktop', 'sm', 'md', 'lg']
 
 interface ScreenshotEntry {
   image: string
   label: string
   style: string
+  device: string
   url: string | null
 }
 
@@ -47,44 +49,52 @@ function generateManifest(): void {
     const styleDir = join(SCREENSHOTS_DIR, style)
     if (!existsSync(styleDir)) continue
 
-    const componentDirs = readdirSync(styleDir, { withFileTypes: true })
+    const deviceDirs = readdirSync(styleDir, { withFileTypes: true })
       .filter((d) => d.isDirectory())
 
-    for (const dir of componentDirs) {
-      const componentDir = join(styleDir, dir.name)
-      const files = readdirSync(componentDir).filter((f) => f.endsWith('.png'))
+    for (const deviceDir of deviceDirs) {
+      const device = deviceDir.name
+      const devicePath = join(styleDir, device)
+      const componentDirs = readdirSync(devicePath, { withFileTypes: true })
+        .filter((d) => d.isDirectory())
 
-      let group = groups.find((g) => g.component === dir.name)
-      if (!group) {
-        group = { component: dir.name, screenshots: [] }
-        groups.push(group)
-      }
+      for (const comp of componentDirs) {
+        const componentDir = join(devicePath, comp.name)
+        const files = readdirSync(componentDir).filter((f) => f.endsWith('.png'))
 
-      for (const file of files) {
-        const label = file.slice(file.indexOf('__') + 2).replace(/\.png$/, '')
-        const jsonPath = join(componentDir, file.replace(/\.png$/, '.json'))
-        let url: string | null = null
-
-        if (existsSync(jsonPath)) {
-          try {
-            const data = JSON.parse(readFileSync(jsonPath, 'utf-8'))
-            if (data && typeof data.url === 'string') {
-              try {
-                const parsed = new URL(data.url)
-                url = parsed.pathname + parsed.search
-              } catch {
-                url = data.url
-              }
-            }
-          } catch { /* skip invalid JSON */ }
+        let group = groups.find((g) => g.component === comp.name)
+        if (!group) {
+          group = { component: comp.name, screenshots: [] }
+          groups.push(group)
         }
 
-        group.screenshots.push({
-          image: `/screenshots/${style}/${dir.name}/${file}`,
-          label,
-          style,
-          url,
-        })
+        for (const file of files) {
+          const label = file.slice(file.indexOf('__') + 2).replace(/\.png$/, '')
+          const jsonPath = join(componentDir, file.replace(/\.png$/, '.json'))
+          let url: string | null = null
+
+          if (existsSync(jsonPath)) {
+            try {
+              const data = JSON.parse(readFileSync(jsonPath, 'utf-8'))
+              if (data && typeof data.url === 'string') {
+                try {
+                  const parsed = new URL(data.url)
+                  url = parsed.pathname + parsed.search
+                } catch {
+                  url = data.url
+                }
+              }
+            } catch { /* skip invalid JSON */ }
+          }
+
+          group.screenshots.push({
+            image: `/screenshots/${style}/${device}/${comp.name}/${file}`,
+            label,
+            style,
+            device,
+            url,
+          })
+        }
       }
     }
   }

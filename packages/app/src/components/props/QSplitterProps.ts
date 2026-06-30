@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -9,7 +9,7 @@ export const qSplitterDefaults = {
   unit: '%',
   emitImmediately: false,
   horizontal: false,
-  limits: '# [10, 90]/[50, Infinity]',
+  limits: '',
   disable: false,
   beforeClass: '',
   afterClass: '',
@@ -24,7 +24,7 @@ export const qSplitterSchema: PropSchema[] = [
   { key: 'unit', type: 'select', default: '%', options: ['%', 'px'] },
   { key: 'emitImmediately', type: 'boolean', default: false },
   { key: 'horizontal', type: 'boolean', default: false },
-  { key: 'limits', type: 'string', default: '# [10, 90]/[50, Infinity]' },
+  { key: 'limits', type: 'string', default: '' },
   { key: 'disable', type: 'boolean', default: false },
   { key: 'beforeClass', type: 'string', default: '' },
   { key: 'afterClass', type: 'string', default: '' },

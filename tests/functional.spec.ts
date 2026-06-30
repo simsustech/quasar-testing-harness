@@ -95,9 +95,10 @@ test.describe('QSelect — functional', () => {
 
 test.describe('QMenu — functional', () => {
   test('menu opens on button click', async ({ page }) => {
-    await page.goto('/q-menu', { waitUntil: 'networkidle' })
+    await page.goto('/q-menu?modelValue=false', { waitUntil: 'networkidle' })
     await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
 
+    // Menu starts closed; click the button to open it.
     const btn = page.locator('[data-testid="component-preview"]').getByRole('button')
     await btn.click()
 

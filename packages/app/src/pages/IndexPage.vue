@@ -42,14 +42,14 @@ const labels: Record<Milestone, string> = {
         <q-btn
           unelevated
           color="secondary"
-          icon="photo_library"
+          icon="i-mdi-image-multiple"
           label="Screenshot Review"
           to="/review"
         />
         <q-btn
           outline
           color="primary"
-          icon="layers"
+          icon="i-mdi-layers"
           label="Composite Patterns"
           to="/composites"
         />

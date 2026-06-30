@@ -17,10 +17,12 @@ const pageDefaults = {
   ...qFabDefaults,
   icon: 'i-mdi-plus',
   color: 'primary',
-  direction: 'right'
+  direction: 'right',
+  label: 'Actions',
+  modelValue: true
 } as const
 
-const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 
@@ -28,10 +30,12 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (k === 'modelValue') continue
+    if (v !== '') out[k] = v
   }
   return out
 })
+const vmodel = bindModel('modelValue')
 
 const onUpdate = (next: Record<string, unknown>) => {
   for (const k of Object.keys(next)) {
@@ -63,7 +67,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-fab v-bind="boundProps">
+      <q-fab v-model="vmodel" v-bind="boundProps">
         <q-fab-action icon="i-mdi-pencil" label="Compose" color="secondary" />
         <q-fab-action icon="i-mdi-image-outline" label="Photo" color="accent" />
         <q-fab-action icon="i-mdi-account-plus-outline" label="Invite" color="info" />

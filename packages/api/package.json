@@ -2,21 +2,25 @@
   "name": "@quasar-testing-harness/api",
   "version": "0.1.0",
   "private": true,
-  "description": "Fastify SSR host for @quasar-testing-harness/app - placeholder for future use",
+  "description": "Fastify SSR host for @quasar-testing-harness/app",
   "type": "module",
-  "main": "dist/main.js",
   "scripts": {
-    "build": "echo 'API package is a placeholder; not built yet'",
-    "dev": "echo 'API package is a placeholder; not run yet'",
+    "dev": "vitrify dev -m fastify --port 3001",
+    "build": "vitrify build -m fastify",
+    "start": "node dist/server/server.mjs",
     "lint": "echo 'no lint configured'",
     "format:check": "oxfmt --check .",
     "format:write": "oxfmt --write ."
   },
   "dependencies": {
+    "@fastify/middie": "9.3.2",
+    "@fastify/static": "9.1.3",
+    "@quasar-testing-harness/app": "workspace:*",
     "@quasar-testing-harness/tools": "workspace:*",
     "fastify": "5.8.5"
   },
   "devDependencies": {
-    "oxfmt": "^0.54.0"
+    "oxfmt": "^0.54.0",
+    "vitrify": "0.26.10"
   }
 }

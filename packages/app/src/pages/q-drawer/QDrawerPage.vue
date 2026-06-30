@@ -6,12 +6,21 @@ export default {
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qDrawerDefaults,
   qDrawerSchema
 } from '../../components/props/QDrawerProps'
 import { useQueryProps } from '../../composables/useQueryProps'
+
+const route = useRoute()
+const isUnstyled = computed(() => route.query.style === 'unstyled')
+const layoutStyle = computed(() => ({
+  width: '600px',
+  height: '200px',
+  background: isUnstyled.value ? undefined : 'var(--light-surface-container)'
+}))
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: qDrawerDefaults as unknown as Record<string, unknown>
@@ -22,7 +31,7 @@ const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
     if (k === 'modelValue') continue
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -59,11 +68,7 @@ const isOpen = ref(true)
         min-height: 280px;
       "
     >
-      <q-layout
-        :style="{ width: '600px', height: '200px' }"
-        container
-        style="background: #f5f5f5"
-      >
+      <q-layout :style="layoutStyle" container>
         <q-drawer v-bind="boundProps" v-model="isOpen">
           <q-scroll-area class="fit">
             <q-list>

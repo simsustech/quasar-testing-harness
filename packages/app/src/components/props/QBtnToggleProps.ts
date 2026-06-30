@@ -1,12 +1,12 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
 export const qBtnToggleDefaults = {
   name: '',
   modelValue: '',
-  options: [] as unknown[],
+  options: '',
   color: '',
   textColor: '',
   toggleColor: 'primary',
@@ -34,7 +34,7 @@ export const qBtnToggleDefaults = {
 export const qBtnToggleSchema: PropSchema[] = [
   { key: 'name', type: 'string', default: '' },
   { key: 'modelValue', type: 'string', default: '' },
-  { key: 'options', type: 'array', default: [] },
+  { key: 'options', type: 'string', default: '' },
   { key: 'color', type: 'string', default: '' },
   { key: 'textColor', type: 'string', default: '' },
   { key: 'toggleColor', type: 'string', default: 'primary' },

@@ -16,7 +16,7 @@ import { useQueryProps } from '../../composables/useQueryProps'
 const pageDefaults = {
   ...qCircularProgressDefaults,
   value: 65,
-  showValue: 'true',
+  showValue: true,
   size: '120px',
   color: 'primary'
 } as const
@@ -29,7 +29,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -64,7 +64,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-circularprogress v-bind="boundProps" />
+      <q-circular-progress v-bind="boundProps" />
     </div>
 
     <ControlPanel

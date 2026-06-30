@@ -169,6 +169,12 @@ const quasarConf: QuasarPluginOptions = {
 export default async function ({ mode }): Promise<VitrifyConfig> {
   const env = loadEnv(mode, process.cwd(), '')
   const config: VitrifyConfig = {
+    build: {
+      cssMinify: false
+    },
+    define: {
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false'
+    },
     server: {
        allowedHosts: ['stefan-framework.simsustech.netbird']
     },
@@ -195,18 +201,21 @@ export default async function ({ mode }): Promise<VitrifyConfig> {
           // of the body classes are set.
           QuasarPreset({
             style: MaterialDesign3,
+            scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],
             iconSet: quasarConf['framework']['iconSet']
           }),
           QuasarPreset({
             style: MaterialDesign2,
+            scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],
             iconSet: quasarConf['framework']['iconSet']
           }),
           QuasarPreset({
             style: Unstyled,
+            scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],
             iconSet: quasarConf['framework']['iconSet']

@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -16,9 +16,9 @@ export const qEditorDefaults = {
   minHeight: '10rem',
   maxHeight: '',
   height: '',
-  definitions: [] as unknown[],
-  fonts: [] as unknown[],
-  toolbar: [['left', 'center', 'right', 'justify'], ['bold', 'italic', 'underline', 'strike'], ['undo', 'redo']] as unknown as unknown[][],
+  definitions: '',
+  fonts: '',
+  toolbar: [["left","center","right","justify"],["bold","italic","underline","strike"],["undo","redo"]],
   toolbarColor: '',
   toolbarTextColor: '',
   toolbarToggleColor: 'primary',
@@ -47,7 +47,7 @@ export const qEditorSchema: PropSchema[] = [
   { key: 'height', type: 'string', default: '' },
   { key: 'definitions', type: 'string', default: '' },
   { key: 'fonts', type: 'string', default: '' },
-  { key: 'toolbar', type: 'string', default: '[ [ \'left\', \'center\', \'right\', \'justify\' ], [ \'bold\', \'italic\', \'underline\', \'strike\' ], [ \'undo\', \'redo\' ] ]' },
+  { key: 'toolbar', type: 'string', default: [["left","center","right","justify"],["bold","italic","underline","strike"],["undo","redo"]] },
   { key: 'toolbarColor', type: 'string', default: '' },
   { key: 'toolbarTextColor', type: 'string', default: '' },
   { key: 'toolbarToggleColor', type: 'string', default: 'primary' },

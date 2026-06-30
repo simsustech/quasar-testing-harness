@@ -1,19 +1,19 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
 export const qTableDefaults = {
   fullscreen: false,
   noRouteFullscreenExit: false,
-  rows: [] as unknown[],
+  rows: '',
   rowKey: 'id',
   virtualScroll: false,
   virtualScrollTarget: '',
   virtualScrollSliceSize: '10',
   virtualScrollSliceRatioBefore: '1',
   virtualScrollSliceRatioAfter: '1',
-  virtualScrollItemSize: '# 48/24',
+  virtualScrollItemSize: '',
   virtualScrollStickySizeStart: '0',
   virtualScrollStickySizeEnd: '0',
   tableColspan: '',
@@ -25,8 +25,8 @@ export const qTableDefaults = {
   grid: false,
   gridHeader: false,
   dense: false,
-  columns: [] as unknown[],
-  visibleColumns: [] as unknown[],
+  columns: '',
+  visibleColumns: '',
   loading: false,
   title: '',
   hideHeader: false,
@@ -64,9 +64,9 @@ export const qTableDefaults = {
   filter: '',
   filterMethod: '',
   pagination: '',
-  rowsPerPageOptions: '[ 5, 7, 10, 15, 20, 25, 50, 0 ]',
+  rowsPerPageOptions: [5,7,10,15,20,25,50,0],
   selection: 'none',
-  selected: '[]',
+  selected: [],
   expanded: '',
   sortMethod: '',
 } as const
@@ -81,7 +81,7 @@ export const qTableSchema: PropSchema[] = [
   { key: 'virtualScrollSliceSize', type: 'string', default: '10' },
   { key: 'virtualScrollSliceRatioBefore', type: 'string', default: '1' },
   { key: 'virtualScrollSliceRatioAfter', type: 'string', default: '1' },
-  { key: 'virtualScrollItemSize', type: 'string', default: '# 48/24' },
+  { key: 'virtualScrollItemSize', type: 'string', default: '' },
   { key: 'virtualScrollStickySizeStart', type: 'string', default: '0' },
   { key: 'virtualScrollStickySizeEnd', type: 'string', default: '0' },
   { key: 'tableColspan', type: 'string', default: '' },
@@ -93,8 +93,8 @@ export const qTableSchema: PropSchema[] = [
   { key: 'grid', type: 'boolean', default: false },
   { key: 'gridHeader', type: 'boolean', default: false },
   { key: 'dense', type: 'boolean', default: false },
-  { key: 'columns', type: 'array', default: [] },
-  { key: 'visibleColumns', type: 'array', default: [] },
+  { key: 'columns', type: 'string', default: '' },
+  { key: 'visibleColumns', type: 'string', default: '' },
   { key: 'loading', type: 'boolean', default: false },
   { key: 'title', type: 'string', default: '' },
   { key: 'hideHeader', type: 'boolean', default: false },
@@ -132,9 +132,9 @@ export const qTableSchema: PropSchema[] = [
   { key: 'filter', type: 'string', default: '' },
   { key: 'filterMethod', type: 'string', default: '' },
   { key: 'pagination', type: 'string', default: '' },
-  { key: 'rowsPerPageOptions', type: 'string', default: '[ 5, 7, 10, 15, 20, 25, 50, 0 ]' },
+  { key: 'rowsPerPageOptions', type: 'string', default: [5,7,10,15,20,25,50,0] },
   { key: 'selection', type: 'select', default: 'none', options: ['single', 'multiple', 'none'] },
-  { key: 'selected', type: 'string', default: '[]' },
+  { key: 'selected', type: 'string', default: [] },
   { key: 'expanded', type: 'string', default: '' },
   { key: 'sortMethod', type: 'string', default: '' },
 ]

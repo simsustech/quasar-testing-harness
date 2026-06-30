@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -29,7 +29,7 @@ export const qDateDefaults = {
   navigationMinYearMonth: '',
   navigationMaxYearMonth: '',
   noUnset: false,
-  firstDayOfWeek: '# based on configured Quasar lang language',
+  firstDayOfWeek: '',
   todayBtn: false,
   minimal: false,
   multiple: false,
@@ -63,7 +63,7 @@ export const qDateSchema: PropSchema[] = [
   { key: 'navigationMinYearMonth', type: 'string', default: '' },
   { key: 'navigationMaxYearMonth', type: 'string', default: '' },
   { key: 'noUnset', type: 'boolean', default: false },
-  { key: 'firstDayOfWeek', type: 'string', default: '# based on configured Quasar lang language' },
+  { key: 'firstDayOfWeek', type: 'string', default: '' },
   { key: 'todayBtn', type: 'boolean', default: false },
   { key: 'minimal', type: 'boolean', default: false },
   { key: 'multiple', type: 'boolean', default: false },

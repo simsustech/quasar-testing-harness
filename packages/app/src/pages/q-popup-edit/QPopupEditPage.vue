@@ -13,15 +13,21 @@ import {
 } from '../../components/props/QPopupEditProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
+const pageDefaults = {
+  ...qPopupEditDefaults,
+  modelValue: 'Click to edit',
+  validate: ''
+} as const
+
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
-  defaults: qPopupEditDefaults as unknown as Record<string, unknown>
+  defaults: pageDefaults as unknown as Record<string, unknown>
 })
 
 // Coerce empty strings to undefined so Quasar falls back to its canonical defaults
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -56,9 +62,14 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-popupedit v-bind="boundProps" title="Edit note" default-value="Click to edit" label-set="Save">
-        <div class="text-body1 q-pa-xs">Click to edit</div>
-      </q-popupedit>
+      <div style="width: 100%; max-width: 400px">
+        <q-popup-edit v-bind="boundProps" title="Edit note" label-set="Save" auto-save>
+          <div style="padding: 8px 12px; border: 1px solid #c0c0c0; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: space-between">
+            <span>{{ props.modelValue || 'Click to edit' }}</span>
+            <q-icon name="i-mdi-pencil" size="16px" color="grey" />
+          </div>
+        </q-popup-edit>
+      </div>
     </div>
 
     <ControlPanel

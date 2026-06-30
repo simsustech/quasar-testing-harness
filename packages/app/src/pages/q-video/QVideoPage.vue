@@ -15,7 +15,7 @@ import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
   ...qVideoDefaults,
-  src: '',
+  src: 'https://www.youtube.com/embed/jNQXAC9IVRw',
   ratio: '16/9'
 } as const
 
@@ -27,7 +27,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -62,7 +62,9 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-video v-bind="boundProps" />
+      <div style="width: 100%; max-width: 560px; margin: 0 auto;">
+        <q-video v-bind="boundProps" style="padding-bottom: 56.25%;" />
+      </div>
     </div>
 
     <ControlPanel

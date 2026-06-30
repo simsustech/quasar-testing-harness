@@ -34,7 +34,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -44,6 +44,14 @@ const messages = [
   { name: 'You', text: ['I\'m good, thanks!', 'Working on the project.'], stamp: '10:32', sent: true, bgColor: 'primary', textColor: 'white' },
   { name: 'Alice', text: ['Great! Let me know if you need help.'], stamp: '10:33', sent: false }
 ]
+
+const onUpdate = (next: Record<string, unknown>) => {
+  for (const k of Object.keys(next)) {
+    if (next[k] !== props[k]) {
+      setProp(k as never, next[k] as never)
+    }
+  }
+}
 </script>
 
 <template>
@@ -67,11 +75,13 @@ const messages = [
         min-height: 120px;
       "
     >
-      <q-chat-message
-        v-for="(msg, idx) in messages"
-        :key="idx"
-        v-bind="{ ...boundProps, ...msg }"
-      />
+      <div style="display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 400px">
+        <q-chat-message
+          v-for="(msg, idx) in messages"
+          :key="idx"
+          v-bind="{ ...boundProps, ...msg }"
+        />
+      </div>
     </div>
 
     <ControlPanel

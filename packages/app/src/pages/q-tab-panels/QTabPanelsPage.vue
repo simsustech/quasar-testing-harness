@@ -26,7 +26,7 @@ const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
@@ -61,11 +61,11 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-tabpanels v-bind="boundProps">
+      <q-tab-panels v-bind="boundProps">
         <q-tab-panel name="overview">High-level summary of the product.</q-tab-panel>
         <q-tab-panel name="details">Detailed specifications and metadata.</q-tab-panel>
         <q-tab-panel name="reviews">What customers are saying.</q-tab-panel>
-      </q-tabpanels>
+      </q-tab-panels>
     </div>
 
     <ControlPanel

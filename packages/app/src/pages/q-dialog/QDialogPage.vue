@@ -28,11 +28,13 @@ const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(props)) {
     if (k === 'modelValue') continue
-    out[k] = v === '' ? undefined : v
+    if (v !== '') out[k] = v
   }
   return out
 })
 const vmodel = bindModel('modelValue')
+
+const open = () => setProp('modelValue', true as never)
 
 const onUpdate = (next: Record<string, unknown>) => {
   for (const k of Object.keys(next)) {
@@ -64,18 +66,17 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-btn label="Open dialog" color="primary">
-        <q-dialog v-model="vmodel" v-bind="boundProps">
-          <q-card>
-            <q-card-section class="text-h6">Dialog title</q-card-section>
-            <q-card-section>This is the dialog content.</q-card-section>
-            <q-card-actions align="right">
-              <q-btn flat label="Cancel" color="primary" v-close-popup />
-              <q-btn flat label="OK" color="primary" v-close-popup />
-            </q-card-actions>
-          </q-card>
-        </q-dialog>
-      </q-btn>
+      <q-btn label="Open dialog" color="primary" @click="open" />
+      <q-dialog v-model="vmodel" v-bind="boundProps">
+        <q-card>
+          <q-card-section class="text-h6">Dialog title</q-card-section>
+          <q-card-section>This is the dialog content.</q-card-section>
+          <q-card-actions align="right">
+            <q-btn flat label="Cancel" color="primary" v-close-popup />
+            <q-btn flat label="OK" color="primary" v-close-popup />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
     </div>
 
     <ControlPanel

@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.
-// Regenerate with: pnpm --filter @quasar-dev/tools generate:props
+// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props
 
 import type { PropSchema } from '../../types/props'
 
@@ -25,8 +25,8 @@ export const qSliderDefaults = {
   labelTextColor: '',
   switchLabelSide: false,
   labelAlways: false,
-  markers: false as boolean | number,
-  markerLabels: false,
+  markers: '',
+  markerLabels: '',
   markerLabelsClass: '',
   switchMarkerLabelsSide: false,
   trackSize: '4px',
