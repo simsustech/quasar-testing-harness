@@ -2,7 +2,6 @@ injectWorkspacePackages: true
 
 packages:
   - packages/*
-  - ../unocss-preset-quasar/packages/preset
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
