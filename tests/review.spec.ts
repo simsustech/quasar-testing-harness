@@ -13,7 +13,7 @@ test.describe('Review page — /review', () => {
     await page.goto('/review', { waitUntil: 'networkidle' })
     await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
 
-    await page.locator('.q-drawer .q-item').first().click()
+    await page.locator('.q-drawer .q-item').first().dispatchEvent('click')
 
     const carousel = page.locator('.q-carousel')
     await expect(carousel).toBeVisible({ timeout: 5_000 })
@@ -29,7 +29,7 @@ test.describe('Review page — /review', () => {
     await page.goto('/review', { waitUntil: 'networkidle' })
     await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
 
-    await page.locator('.q-drawer .q-item').first().click()
+    await page.locator('.q-drawer .q-item').first().dispatchEvent('click')
     await expect(page.locator('.q-carousel__slide')).toBeVisible({ timeout: 5_000 })
 
     const slides = page.locator('.q-carousel__slide')

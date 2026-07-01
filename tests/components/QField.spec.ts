@@ -78,13 +78,13 @@ test.describe('QField — MD3 spec conformance', () => {
     await page.goto(`/${SLUG}?style=md3&dense=true&label=Email&modelValue=test`, { waitUntil: 'networkidle' })
     await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
     const s = await computedStyles(page, {
-      '.q-field--dense.q-field--float .q-field__label': ['top', 'font-size', 'transform']
+      '.q-field--dense.q-field--float .q-field__label': ['top', 'font-size', 'scale']
     })
     const label = s['.q-field--dense.q-field--float .q-field__label']
     expect(label?.['top']).toBe('10px')
     expect(label?.['font-size']).toBe('14px')
-    // transform should be a matrix (not 'none'), indicating translate + scale is applied
-    expect(label?.['transform']).not.toBe('none')
+    // UnoCSS outputs individual scale/translate properties, not the transform shorthand
+    expect(label?.['scale']).toBe('0.75')
   })
 })
 
