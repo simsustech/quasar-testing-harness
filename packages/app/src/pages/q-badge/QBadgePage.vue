@@ -17,7 +17,7 @@ const pageDefaults = {
   ...qBadgeDefaults,
   label: '3',
   color: 'primary',
-  floating: true
+  floating: false
 } as const
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -58,6 +58,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         display: flex;
+        position: relative;
         align-items: center;
         justify-content: center;
         min-height: 120px;
