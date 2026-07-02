@@ -4,7 +4,23 @@ import { ref } from 'vue'
 export default {
   name: 'CompositesPage',
   setup() {
+    const cols = [
+      { name: 'name', label: 'Name', field: 'name', sortable: true },
+      { name: 'cal', label: 'Calories', field: 'cal', sortable: true }
+    ]
+    const rows = [
+      { name: 'Frozen Yogurt', cal: 159 },
+      { name: 'Ice cream', cal: 237 },
+      { name: 'Eclair', cal: 262 },
+      { name: 'Cupcake', cal: 305 },
+      { name: 'Gingerbread', cal: 356 }
+    ]
     return {
+      cols,
+      rows,
+      pagination: ref({ rowsPerPage: 3 }),
+      search: ref(''),
+      slide: ref('style'),
       showDialog: ref(false),
       d2: ref(false)
     }
@@ -24,7 +40,7 @@ export default {
     <!-- 2. QBtn + QBadge -->
     <section data-testid="composite-btn-badge">
       <div class="text-subtitle1 q-mb-sm">QBtn + QBadge</div>
-      <q-btn color="white" text-color="primary" icon="email">
+      <q-btn color="white" text-color="primary" icon="i-mdi-email">
         <q-badge color="red" floating>9</q-badge>
       </q-btn>
     </section>
@@ -45,7 +61,7 @@ export default {
       <div class="text-subtitle1 q-mb-sm">QCard + QItem + QAvatar</div>
       <q-card style="max-width:300px">
         <q-card-section><q-item>
-          <q-item-section avatar><q-avatar color="primary" icon="person"/></q-item-section>
+          <q-item-section avatar><q-avatar color="primary" icon="i-mdi-person"/></q-item-section>
           <q-item-section><q-item-label>John</q-item-label></q-item-section>
         </q-item></q-card-section>
       </q-card>
@@ -56,9 +72,9 @@ export default {
     <section data-testid="composite-toolbar-btns">
       <div class="text-subtitle1 q-mb-sm">QToolbar + QBtn</div>
       <q-toolbar class="bg-primary text-white rounded-borders">
-        <q-btn flat round dense icon="menu"/>
+        <q-btn flat round dense icon="i-mdi-menu"/>
         <q-toolbar-title>Title</q-toolbar-title>
-        <q-btn flat round dense icon="search"/>
+        <q-btn flat round dense icon="i-mdi-magnify"/>
       </q-toolbar>
     </section>
     <q-separator/>
@@ -76,7 +92,7 @@ export default {
     <section data-testid="composite-item-avatar">
       <div class="text-subtitle1 q-mb-sm">QItem + QAvatar</div>
       <q-list><q-item>
-        <q-item-section avatar><q-avatar color="primary" icon="person"/></q-item-section>
+        <q-item-section avatar><q-avatar color="primary" icon="i-mdi-person"/></q-item-section>
         <q-item-section><q-item-label>John</q-item-label></q-item-section>
       </q-item></q-list>
     </section>
@@ -126,7 +142,7 @@ export default {
     <!-- 12. QExpansionItem + QCard -->
     <section data-testid="composite-expansion-card">
       <div class="text-subtitle1 q-mb-sm">QExpansionItem + QCard</div>
-      <q-expansion-item icon="explore" label="Details" default-opened>
+      <q-expansion-item icon="i-mdi-compass" label="Details" default-opened>
         <q-card><q-card-section>Content</q-card-section></q-card>
       </q-expansion-item>
     </section>
@@ -150,9 +166,9 @@ export default {
       <div class="text-subtitle1 q-mb-sm">QHeader + QToolbar + QBtn</div>
       <q-layout container style="height:100px" class="rounded-borders overflow-hidden">
         <q-header class="bg-primary text-white">
-          <q-toolbar><q-btn flat round dense icon="menu"/>
+          <q-toolbar><q-btn flat round dense icon="i-mdi-menu"/>
             <q-toolbar-title>App</q-toolbar-title>
-            <q-btn flat round dense icon="search"/></q-toolbar>
+            <q-btn flat round dense icon="i-mdi-magnify"/></q-toolbar>
         </q-header>
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
@@ -192,9 +208,9 @@ export default {
     <!-- 17. QFab + QFabAction -->
     <section data-testid="composite-fab-actions">
       <div class="text-subtitle1 q-mb-sm">QFab + QFabAction</div>
-      <q-fab icon="add" color="primary" direction="right">
-        <q-fab-action color="secondary" icon="star"/>
-        <q-fab-action color="orange" icon="share"/>
+      <q-fab icon="i-mdi-plus" color="primary" direction="right">
+        <q-fab-action color="secondary" icon="i-mdi-star"/>
+        <q-fab-action color="orange" icon="i-mdi-share-variant"/>
       </q-fab>
     </section>
     <q-separator/>
@@ -299,7 +315,7 @@ export default {
       <div class="text-subtitle1 q-mb-sm">QBar + QIcon + QBtn</div>
       <q-bar class="bg-grey-9 text-white rounded-borders">
         <q-icon name="laptop"/><div>Title</div><q-space/>
-        <q-btn dense flat icon="minimize"/><q-btn dense flat icon="close"/>
+        <q-btn dense flat icon="i-mdi-minus"/><q-btn dense flat icon="i-mdi-close"/>
       </q-bar>
     </section>
     <q-separator/>
@@ -345,6 +361,42 @@ export default {
       <q-btn-dropdown label="Menu" color="primary">
         <q-list><q-item clickable v-close-popup><q-item-section>A</q-item-section></q-item></q-list>
       </q-btn-dropdown>
+    </section>
+    <q-separator/>
+
+    <!-- 34. QTable + QPagination + QInput -->
+    <section data-testid="composite-table-pagination">
+      <div class="text-subtitle1 q-mb-sm">QTable + QPagination + QInput</div>
+      <q-input v-model="search" label="Search" dense style="max-width:300px"/>
+      <q-table :rows="rows" :columns="cols" :filter="search" hide-bottom
+        :pagination="{ rowsPerPage: 3 }" style="max-width:400px"/>
+      <q-pagination v-model="pagination.page" :max="2" :max-pages="3" direction-links/>
+    </section>
+    <q-separator/>
+
+    <!-- 35. QCarousel with slides -->
+    <section data-testid="composite-carousel">
+      <div class="text-subtitle1 q-mb-sm">QCarousel</div>
+      <q-carousel v-model="slide" style="max-width:400px;height:150px" animated arrows>
+        <q-carousel-slide name="style" class="bg-primary text-white column flex-center">
+          <div class="text-h4">Slide 1</div>
+        </q-carousel-slide>
+        <q-carousel-slide name="tv" class="bg-secondary text-white column flex-center">
+          <div class="text-h4">Slide 2</div>
+        </q-carousel-slide>
+      </q-carousel>
+    </section>
+    <q-separator/>
+
+    <!-- 36. QFooter + QToolbar -->
+    <section data-testid="composite-footer-toolbar">
+      <div class="text-subtitle1 q-mb-sm">QFooter + QToolbar</div>
+      <q-layout container style="height:120px" class="rounded-borders overflow-hidden">
+        <q-page-container><q-page padding>Body</q-page></q-page-container>
+        <q-footer class="bg-grey-8 text-white">
+          <q-toolbar><q-toolbar-title>Footer</q-toolbar-title></q-toolbar>
+        </q-footer>
+      </q-layout>
     </section>
   </q-page>
 </template>
