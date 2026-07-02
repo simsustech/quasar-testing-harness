@@ -70,10 +70,6 @@ const onUpdate = (next: Record<string, unknown>) => {
       <q-badge outline color="primary" label="NEW" />
     </div>
 
-    <div style="position: relative; display: inline-flex;">
-      <q-icon name="i-mdi-email-outline" size="32px" />
-      <q-badge floating color="red" rounded label="5" />
-    </div>
     </div>
 
     <ControlPanel

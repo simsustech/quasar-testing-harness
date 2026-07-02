@@ -170,6 +170,15 @@ export default {
             <q-toolbar-title>App</q-toolbar-title>
             <q-btn flat round dense icon="i-mdi-magnify"/></q-toolbar>
         </q-header>
+    <!-- QIcon + QBadge floating -->
+    <section data-testid="composite-icon-badge">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
+      <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
+        <q-badge floating color="red" rounded label="5" />
+      </div>
+    </section>
+    <q-separator/>
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -183,6 +192,15 @@ export default {
           <q-toolbar><q-toolbar-title>App</q-toolbar-title></q-toolbar>
           <q-tabs><q-tab name="t1" label="Tab 1"/><q-tab name="t2" label="Tab 2"/></q-tabs>
         </q-header>
+    <!-- QIcon + QBadge floating -->
+    <section data-testid="composite-icon-badge">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
+      <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
+        <q-badge floating color="red" rounded label="5" />
+      </div>
+    </section>
+    <q-separator/>
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -200,6 +218,15 @@ export default {
             </q-list>
           </q-scroll-area>
         </q-drawer>
+    <!-- QIcon + QBadge floating -->
+    <section data-testid="composite-icon-badge">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
+      <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
+        <q-badge floating color="red" rounded label="5" />
+      </div>
+    </section>
+    <q-separator/>
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -392,11 +419,29 @@ export default {
     <section data-testid="composite-footer-toolbar">
       <div class="text-subtitle1 q-mb-sm">QFooter + QToolbar</div>
       <q-layout container style="height:120px" class="rounded-borders overflow-hidden">
+    <!-- QIcon + QBadge floating -->
+    <section data-testid="composite-icon-badge">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
+      <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
+        <q-badge floating color="red" rounded label="5" />
+      </div>
+    </section>
+    <q-separator/>
         <q-page-container><q-page padding>Body</q-page></q-page-container>
         <q-footer class="bg-grey-8 text-white">
           <q-toolbar><q-toolbar-title>Footer</q-toolbar-title></q-toolbar>
         </q-footer>
       </q-layout>
     </section>
+    <!-- QIcon + QBadge floating -->
+    <section data-testid="composite-icon-badge">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
+      <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
+        <q-badge floating color="red" rounded label="5" />
+      </div>
+    </section>
+    <q-separator/>
   </q-page>
 </template>
