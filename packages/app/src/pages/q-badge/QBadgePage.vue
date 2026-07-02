@@ -63,9 +63,10 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-icon name="i-mdi-email-outline" size="32px">
+            <div style="position: relative; display: inline-flex;">
+        <q-icon name="i-mdi-email-outline" size="32px" />
         <q-badge v-bind="boundProps" />
-      </q-icon>
+            </div>
     </div>
 
     <ControlPanel
