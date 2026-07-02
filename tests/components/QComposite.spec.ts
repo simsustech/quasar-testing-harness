@@ -43,6 +43,7 @@ const sections = [
   'composite-table-pagination',
   'composite-carousel',
   'composite-footer-toolbar',
+  'composite-icon-badge',
 ]
 
 // Split into batches of 6 sections to stay within timeouts
