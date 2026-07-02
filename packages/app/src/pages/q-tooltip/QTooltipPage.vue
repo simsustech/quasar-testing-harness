@@ -15,13 +15,15 @@ import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
   ...qTooltipDefaults,
+  modelValue: true,
   anchor: '',
   self: '',
   offset: ''
 } as const
-const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
+const vmodel = bindModel('modelValue')
 
 const boundProps = computed(() => {
   const out: Record<string, unknown> = {}
@@ -62,7 +64,7 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-btn label="Hover me" color="primary">
-        <q-tooltip v-bind="boundProps" anchor="top middle" self="bottom middle">
+        <q-tooltip v-model="vmodel" v-bind="boundProps" anchor="top middle" self="bottom middle">
           This is a tooltip with useful information.
         </q-tooltip>
       </q-btn>
