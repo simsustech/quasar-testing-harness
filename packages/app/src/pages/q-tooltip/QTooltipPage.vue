@@ -19,7 +19,7 @@ const pageDefaults = {
   self: '',
   offset: ''
 } as const
-
+const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 
