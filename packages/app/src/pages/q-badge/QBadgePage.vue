@@ -61,7 +61,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         align-items: center;
         justify-content: center;
         min-height: 120px;
-      "
+      ">
     <div class="q-gutter-sm q-mb-md">
       <q-badge color="blue"> #4D96F2 </q-badge>
       <q-badge color="orange" text-color="black" label="2" />
@@ -72,6 +72,7 @@ const onUpdate = (next: Record<string, unknown>) => {
     <div style="position: relative; display: inline-flex;">
       <q-icon name="i-mdi-email-outline" size="32px" />
       <q-badge floating color="red" rounded label="5" />
+    </div>
     </div>
 
     <ControlPanel
