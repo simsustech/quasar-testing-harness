@@ -63,6 +63,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       ">
     <div class="q-gutter-sm q-mb-md">
+      <q-badge v-bind="boundProps" />
       <q-badge color="blue"> #4D96F2 </q-badge>
       <q-badge color="orange" text-color="black" label="2" />
       <q-badge color="red" rounded label="99+" />
