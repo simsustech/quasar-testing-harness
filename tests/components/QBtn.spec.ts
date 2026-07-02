@@ -55,3 +55,31 @@ test.describe('QBtn — prop variations', () => {
     }
   })
 })
+
+test.describe('QBtn — border-radius', () => {
+  test('standard button is rounded at md3', async ({ page }) => {
+    await page.goto('/q-btn?style=md3', { waitUntil: 'networkidle' })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+    const btn = page.locator('.q-btn--standard').first()
+    await expect(btn).toBeVisible()
+    const radius = await btn.evaluate(el => getComputedStyle(el).borderRadius)
+    expect(radius).toBe('28px')
+  })
+})
+
+test.describe('QBtn — md3 border-radius', () => {
+  const cases = [
+    { name: 'standard (filled)', query: '' },
+    { name: 'standard with icon', query: 'icon=i-mdi-search' },
+  ]
+  for (const c of cases) {
+    test(c.name, async ({ page }) => {
+      await page.goto(`/q-btn?style=md3&${c.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+      const btn = page.locator('.q-btn--standard').or(page.locator('.q-btn')).first()
+      await expect(btn).toBeVisible()
+      const radius = await btn.evaluate(el => getComputedStyle(el).borderRadius)
+      expect(radius).toBe('28px')
+    })
+  }
+})

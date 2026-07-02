@@ -197,10 +197,10 @@ export default async function ({ mode }): Promise<VitrifyConfig> {
         presets: [
           // Register all three styles so the playground can switch
           // between them at runtime via a body class. The default
-          // (`MaterialDesign3`) goes first so it wins ties when none
-          // of the body classes are set.
+          // (`MaterialDesign3`) goes LAST so its shortcuts win
+          // when multiple presets register the same class.
           QuasarPreset({
-            style: MaterialDesign3,
+            style: Unstyled,
             scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],
@@ -214,7 +214,7 @@ export default async function ({ mode }): Promise<VitrifyConfig> {
             iconSet: quasarConf['framework']['iconSet']
           }),
           QuasarPreset({
-            style: Unstyled,
+            style: MaterialDesign3,
             scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],

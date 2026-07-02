@@ -52,7 +52,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
       '.q-toggle__inner': ['font-size'],
       '.q-toggle__thumb': ['left', 'width', 'height']
     })
-    expect(s['.q-toggle__inner']?.['font-size']).toBe('40px')
+    expect(s['.q-toggle__inner']?.['font-size']).toBe('34px')
     expect(parseFloat(s['.q-toggle__thumb']?.['left'] ?? '0')).toBeGreaterThan(0)
     expect(parseFloat(s['.q-toggle__thumb']?.['width'] ?? '0')).toBeGreaterThan(0)
     expect(parseFloat(s['.q-toggle__thumb']?.['height'] ?? '0')).toBeGreaterThan(0)
@@ -65,7 +65,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
       '.q-toggle__inner': ['font-size'],
       '.q-toggle__thumb': ['left', 'width', 'height']
     })
-    expect(s['.q-toggle__inner']?.['font-size']).toBe('40px')
+    expect(s['.q-toggle__inner']?.['font-size']).toBe('34px')
     expect(parseFloat(s['.q-toggle__thumb']?.['left'] ?? '0')).toBeGreaterThan(5)
     expect(parseFloat(s['.q-toggle__thumb']?.['width'] ?? '0')).toBeGreaterThan(0)
     expect(parseFloat(s['.q-toggle__thumb']?.['height'] ?? '0')).toBeGreaterThan(0)
