@@ -49,10 +49,12 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { watch } from "vue"
-import { useRoute } from "vue-router"
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { "vue"
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()
-watch(() => useRoute().query.dark, (v) => $q.dark.set(v === "true"))
+const route = useRoute()
+watch(() => route.query.dark, (v) => $q.dark.set(v === "true"))
 </script>
