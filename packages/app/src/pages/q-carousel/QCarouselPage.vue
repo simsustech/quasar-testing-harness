@@ -18,6 +18,7 @@ const pageDefaults = {
   modelValue: '1',
   swipeable: true,
   animated: true
+  thumbnails: false,
 } as const
 
 const slide = ref('1')
