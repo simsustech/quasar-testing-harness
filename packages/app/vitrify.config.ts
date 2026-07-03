@@ -154,6 +154,7 @@ const iconifyJsonIconSet = {
 const quasarConf: QuasarPluginOptions = {
   framework: {
     plugins: [
+      'Dark',
       'Dialog',
       'Notify',
       'Loading',

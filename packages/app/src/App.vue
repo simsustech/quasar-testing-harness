@@ -2,36 +2,24 @@
   <router-view />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { useQuasar } from 'quasar'
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-/**
- * Read the active style from the URL at module load time.
- */
-function readInitialStyle(): 'md2' | 'md3' | 'unstyled' {
-  if (typeof window === 'undefined') return 'md3'
-  const params = new URLSearchParams(window.location.search)
-  const s = params.get('style')
-  if (s === 'md2' || s === 'md3' || s === 'unstyled') return s
-  return 'md3'
+const $q = useQuasar()
+const route = useRoute()
+
+function readInitialDark(): boolean {
+  if (typeof window === 'undefined') return false
+  return new URLSearchParams(window.location.search).get('dark') === 'true'
 }
 
-const initialStyle = readInitialStyle()
+onMounted(() => {
+  if (readInitialDark()) $q.dark.set(true)
+})
 
-// Set the body class on <body> so the preset's per-style CSS scoping activates.
-// The preset wraps every component rule in e.g. body.quasar-style-md3 .q-btn,
-// so without the matching body class no component styles match.
-if (typeof document !== 'undefined') {
-  document.body.classList.add(
-    initialStyle === 'md2'
-      ? 'quasar-style-md2'
-      : initialStyle === 'unstyled'
-      ? 'quasar-style-unstyled'
-      : 'quasar-style-md3'
-  )
-}
-
-
-export default {
-  name: 'App'
-}
+watch(() => route.query.dark, (val) => {
+  $q.dark.set(val === 'true')
+})
 </script>
