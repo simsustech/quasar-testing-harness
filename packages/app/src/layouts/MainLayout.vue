@@ -14,6 +14,13 @@
           </router-link>
         </q-toolbar-title>
 
+        <q-toggle
+          v-model="isDark"
+          dense
+          icon="i-mdi-weather-night"
+          color="amber"
+          @update:model-value="toggleDark"
+        />
         <StyleSwitcher />
       </q-toolbar>
     </q-header>
@@ -36,5 +43,23 @@ export default {
       () => import('../components/StyleSwitcher.vue')
     )
   }
+</script>
+
+<script lang="ts" setup>
+import { ref, watch } from 'vue'
+import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router'
+
+const $q = useQuasar()
+const route = useRoute()
+const isDark = ref($q.dark.isActive)
+
+function toggleDark(val: boolean) {
+  $q.dark.set(val)
 }
+
+// Sync with URL
+watch(() => route.query.dark, (val) => {
+  isDark.value = val === 'true'
+})
 </script>
