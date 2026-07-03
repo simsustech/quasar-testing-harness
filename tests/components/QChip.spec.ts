@@ -49,3 +49,17 @@ test.describe('QChip — prop variations', () => {
     }
   })
 })
+
+test.describe('QChip — dark mode', () => {
+  const darkVariants = [
+    { label: 'dark-default', query: 'dark=true' },
+  ]
+  test('dark mode screenshots at md3', async ({ page }) => {
+    for (const v of darkVariants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})

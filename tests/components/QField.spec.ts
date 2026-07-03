@@ -120,3 +120,11 @@ test.describe('QField — prop variations', () => {
     }
   })
 })
+test.describe('QField — dark mode', () => {
+  test('dark mode at md3', async ({ page }) => {
+    await page.goto(`/${SLUG}?style=md3&dark=true&label=Name&modelValue=John`, { waitUntil: 'networkidle' })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await shot(page, SLUG, 'dark-default', 'md3')
+    await dumpDiagnostics(page, SLUG, 'dark-default', 'md3')
+  })
+})

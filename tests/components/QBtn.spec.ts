@@ -83,3 +83,19 @@ test.describe('QBtn — md3 border-radius', () => {
     })
   }
 })
+
+test.describe('QBtn — dark mode', () => {
+  const darkVariants = [
+    { label: 'dark-filled', query: 'label=Hello&color=primary&dark=true' },
+    { label: 'dark-outline', query: 'label=Outline&outline=true&color=primary&dark=true' },
+    { label: 'dark-flat', query: 'label=Flat&flat=true&color=primary&dark=true' },
+  ]
+  test('dark mode variants at md3', async ({ page }) => {
+    for (const v of darkVariants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})
