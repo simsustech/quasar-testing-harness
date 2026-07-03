@@ -15,7 +15,7 @@ import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
   ...qCarouselDefaults,
-  modelValue: 1,
+  modelValue: '1',
   swipeable: true,
   animated: true
 } as const
