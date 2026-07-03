@@ -17,7 +17,7 @@ const pageDefaults = {
   ...qCarouselDefaults,
   modelValue: '1',
   swipeable: true,
-  animated: true
+  animated: true,
   thumbnails: true,
 } as const
 
