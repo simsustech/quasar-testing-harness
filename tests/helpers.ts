@@ -22,9 +22,10 @@ export const shotPath = (
   component: string,
   label: string | Record<string, string> = 'default',
   styleSlug = 'md3',
-  deviceSlug = 'desktop'
+  deviceSlug = 'desktop',
+  mode: 'light' | 'dark' = 'light'
 ) => {
-  const dir = path.join(SHOTS, styleSlug, deviceSlug, component)
+  const dir = path.join(SHOTS, styleSlug, mode, deviceSlug, component)
   fs.mkdirSync(dir, { recursive: true })
   const tag =
     typeof label === 'string'
@@ -46,7 +47,8 @@ export const shot = async (
   styleSlug?: string,
   deviceSlug = 'desktop'
 ) => {
-  const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)), deviceSlug)
+  const isDark = page.url().includes('dark=true')
+  const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)), deviceSlug, isDark ? 'dark' : 'light')
   await page.getByTestId('component-preview').screenshot({ path: file })
   return file
 }
@@ -59,7 +61,8 @@ export const dumpDiagnostics = async (
   deviceSlug = 'desktop'
 ) => {
   const slug = styleSlug ?? (await styleFromPage(page))
-  const file = shotPath(component, label, slug, deviceSlug).replace(/\.png$/, '.json')
+  const isDark = page.url().includes('dark=true')
+  const file = shotPath(component, label, slug, deviceSlug, isDark ? 'dark' : 'light').replace(/\.png$/, '.json')
   const data = await page.evaluate(() => {
     const root = document.querySelector(
       '[data-testid="component-preview"]'
@@ -111,20 +114,6 @@ export const dumpDiagnostics = async (
   return file
 }
 
-/**
- * Query computed CSS styles for one or more DOM elements inside the
- * component preview container.  Returns a map of selector → prop → value.
- *
- * Selectors are resolved relative to `[data-testid="component-preview"]`.
- * Use `:root` for the preview container itself.
- *
- * Example:
- *   const s = await computedStyles(page, {
- *     '.q-toggle__inner': ['font-size'],
- *     '.q-toggle__thumb': ['left', 'width', 'height']
- *   })
- *   expect(s['.q-toggle__inner']?.['font-size']).toBe('34px')
- */
 export const computedStyles = async (
   page: Page,
   map: Record<string, string[]>
@@ -154,14 +143,6 @@ export const computedStyles = async (
   }, map)
 }
 
-/**
- * Get computed styles from pseudo-elements (::before, ::after).
- *
- * Example:
- *   const s = await pseudoStyles(page, {
- *     '.q-toggle__thumb': { pseudo: '::before', props: ['opacity', 'transform'] }
- *   })
- */
 export const pseudoStyles = async (
   page: Page,
   map: Record<string, { pseudo: string; props: string[] }>

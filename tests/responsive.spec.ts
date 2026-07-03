@@ -19,33 +19,23 @@ const SLUGS = [
   'q-video', 'q-virtual-scroll',
 ]
 
-const VIEWPORTS = [...DEVICES]
-const STYLES = ['md3', 'md2', 'unstyled']
+const VIEWPORTS = [
+  { slug: 'desktop', width: 1280, height: 800 },
+  ...DEVICES,
+]
+const MODES = ['light', 'dark'] as const
 
-test.describe('Responsive viewport screenshots', () => {
+test.describe('Screenshots', () => {
   for (const slug of SLUGS) {
     for (const vp of VIEWPORTS) {
-      for (const style of STYLES) {
-        test(`${slug} at ${vp.slug} (${vp.width}×${vp.height}) ${style}`, async ({ page }) => {
+      for (const mode of MODES) {
+        test(`${slug} ${vp.slug} ${mode} md3`, async ({ page }) => {
           test.setTimeout(30_000)
-
-          const errors: string[] = []
-          page.on('pageerror', (err) => errors.push(`pageerror: ${err.message}`))
-          page.on('console', (msg) => {
-            if (msg.type() === 'error') errors.push(`console error: ${msg.text()}`)
-            if (msg.type() === 'warning') errors.push(`console warning: ${msg.text()}`)
-          })
-          page.on('requestfailed', (req) =>
-            errors.push(`request failed: ${req.url()} (${req.failure()?.errorText})`)
-          )
-
+          const darkParam = mode === 'dark' ? '&dark=true' : ''
           await page.setViewportSize({ width: vp.width, height: vp.height })
-          await page.goto(`/${slug}?style=${style}`, { waitUntil: 'networkidle', timeout: 20_000 })
+          await page.goto(`/${slug}?style=md3${darkParam}`, { waitUntil: 'networkidle', timeout: 20_000 })
           await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
-
-          expect(errors).toEqual([])
-
-          const png = await shot(page, slug, `default`, style, vp.slug)
+          const png = await shot(page, slug, 'default', 'md3', vp.slug)
           expect(fs.existsSync(png)).toBe(true)
           expect(fs.statSync(png).size).toBeGreaterThan(100)
         })

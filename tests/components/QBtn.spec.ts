@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import fs from 'node:fs'
-import { shot, dumpDiagnostics } from '../helpers.js'
+import { shot, dumpDiagnostics, DEVICES } from '../helpers.js'
 
 const SLUG = 'q-btn'
 const STYLES = ['md3', 'md2', 'unstyled'] as const
