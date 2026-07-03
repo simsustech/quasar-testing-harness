@@ -14,12 +14,14 @@
           </router-link>
         </q-toolbar-title>
 
+        <span style="font-size: 12px; opacity: 0.7; margin: 0 4px">Dark</span>
         <q-toggle
-          v-model="isDark"
+          :model-value="$q.dark.isActive"
+          checked-icon="i-mdi-moon-and-stars"
+          unchecked-icon="i-mdi-brightness-7"
           dense
-          left-icon="i-mdi-weather-night" icon-color="amber"
           color="amber"
-          @update:model-value="toggleDark"
+          @update:model-value="$q.dark.set"
         />
         <StyleSwitcher />
       </q-toolbar>
@@ -47,20 +49,10 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-import { useQuasar } from 'quasar'
-import { useRoute } from 'vue-router'
+import { watch } from "vue"
+import { useRoute } from "vue-router"
+import { useQuasar } from "quasar"
 
 const $q = useQuasar()
-const route = useRoute()
-const isDark = ref($q.dark.isActive)
-
-function toggleDark(val: boolean) {
-  $q.dark.set(val)
-}
-
-// Sync with URL
-watch(() => route.query.dark, (val) => {
-  isDark.value = val === 'true'
-})
+watch(() => useRoute().query.dark, (v) => $q.dark.set(v === "true"))
 </script>
