@@ -52,7 +52,6 @@ export default {
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
-import { useQuasar } from "quasar"
 
 const $q = useQuasar()
 const route = useRoute()
