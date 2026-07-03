@@ -59,3 +59,12 @@ test.describe('QRadio — MD3 spec conformance', () => {
     expect(s['.q-radio__inner']?.['font-size']).not.toBe('')
   })
 })
+
+test.describe('q-radio — dark mode', () => {
+  test('renders cleanly with ?style=md3&dark=true', async ({ page }) => {
+    await page.goto(`/${SLUG}?style=md3&dark=true`, { waitUntil: 'networkidle' })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await shot(page, SLUG, 'dark', 'md3')
+    await dumpDiagnostics(page, SLUG, 'dark', 'md3')
+  })
+})

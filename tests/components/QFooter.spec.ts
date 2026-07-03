@@ -36,3 +36,12 @@ test.describe('QFooter — prop variations', () => {
     }
   })
 })
+
+test.describe('q-footer — dark mode', () => {
+  test('renders cleanly with ?style=md3&dark=true', async ({ page }) => {
+    await page.goto(`/${SLUG}?style=md3&dark=true`, { waitUntil: 'networkidle' })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await shot(page, SLUG, 'dark', 'md3')
+    await dumpDiagnostics(page, SLUG, 'dark', 'md3')
+  })
+})
