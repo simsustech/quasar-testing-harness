@@ -67,15 +67,15 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-carousel v-model="slide" v-bind="boundProps" animated arrows navigation style="width: 100%; height: 300px">
-        <q-carousel-slide name="1" :img-src="'https://cdn.quasar.dev/img/mountains.jpg' class="column items-center justify-center" style="background: #F2C037">
+        <q-carousel-slide name="1" :img-src="'https://cdn.quasar.dev/img/mountains.jpg'" class="column items-center justify-center" style="background: #F2C037">
           <div class="text-h5 text-white">Sunset</div>
           <p class="text-white">First slide</p>
         </q-carousel-slide>
-        <q-carousel-slide name="2" :img-src="'https://cdn.quasar.dev/img/quasar.jpg' class="column items-center justify-center" style="background: #21BA45">
+        <q-carousel-slide name="2" :img-src="'https://cdn.quasar.dev/img/quasar.jpg'" class="column items-center justify-center" style="background: #21BA45">
           <div class="text-h5 text-white">Forest</div>
           <p class="text-white">Second slide</p>
         </q-carousel-slide>
-        <q-carousel-slide name="3" :img-src="'https://cdn.quasar.dev/img/cat.jpg' class="column items-center justify-center" style="background: #31CCEC">
+        <q-carousel-slide name="3" :img-src="'https://cdn.quasar.dev/img/cat.jpg'" class="column items-center justify-center" style="background: #31CCEC">
           <div class="text-h5 text-white">Ocean</div>
           <p class="text-white">Third slide</p>
         </q-carousel-slide>
