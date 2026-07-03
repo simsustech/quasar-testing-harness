@@ -19,3 +19,20 @@ test.describe('QHeader', () => {
     })
   }
 })
+
+test.describe('QHeader — prop variations', () => {
+  const variants = [
+    { label: 'default', query: '' },
+    { label: 'bordered', query: 'bordered=true' },
+    { label: 'elevated', query: 'elevated=true' },
+    { label: 'reveal', query: 'reveal=true' },
+  ]
+  test('all visual variants at md3', async ({ page }) => {
+    for (const v of variants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})

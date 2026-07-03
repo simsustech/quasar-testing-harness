@@ -100,3 +100,23 @@ test.describe('QField — MD2 spec conformance', () => {
     expect(s['.q-field__label']?.['color']).not.toBe('rgb(0, 0, 0)')
   })
 })
+
+test.describe('QField — prop variations', () => {
+  const variants = [
+    { label: 'default', query: 'label=Name&modelValue=John' },
+    { label: 'filled', query: 'label=Name&modelValue=John&filled=true' },
+    { label: 'outlined', query: 'label=Name&modelValue=John&outlined=true' },
+    { label: 'stack-label', query: 'label=Name&modelValue=John&stackLabel=true' },
+    { label: 'borderless', query: 'label=Name&modelValue=John&borderless=true' },
+    { label: 'clearable', query: 'label=Name&modelValue=John&clearable=true' },
+    { label: 'loading', query: 'label=Name&modelValue=John&loading=true' },
+  ]
+  test('all visual variants at md3', async ({ page }) => {
+    for (const v of variants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})

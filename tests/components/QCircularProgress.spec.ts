@@ -19,3 +19,22 @@ test.describe('QCircularProgress', () => {
     })
   }
 })
+
+
+test.describe('QCircularProgress — prop variations', () => {
+  const variants = [
+    { label: 'default-50', query: 'modelValue=50' },
+    { label: 'indeterminate', query: 'indeterminate=true' },
+    { label: 'show-value', query: 'modelValue=50&showValue=true' },
+    { label: 'rounded', query: 'modelValue=50&rounded=true' },
+    { label: 'size-80', query: 'modelValue=50&size=80px' },
+  ]
+  test('all visual variants at md3', async ({ page }) => {
+    for (const v of variants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})

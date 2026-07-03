@@ -19,3 +19,21 @@ test.describe('QEditor', () => {
     })
   }
 })
+test.describe('QEditor — prop variations', () => {
+  const variants = [
+    { label: 'default', query: 'modelValue=Hello' },
+    { label: 'readonly', query: 'modelValue=Hello&readonly=true' },
+    { label: 'dense', query: 'modelValue=Hello&dense=true' },
+    { label: 'square', query: 'modelValue=Hello&square=true' },
+    { label: 'flat', query: 'modelValue=Hello&flat=true' },
+    { label: 'disable', query: 'modelValue=Hello&disable=true' },
+  ]
+  test('all visual variants at md3', async ({ page }) => {
+    for (const v of variants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})

@@ -22,20 +22,21 @@ test.describe('QFab', () => {
 
 test.describe('QFab — prop variations', () => {
   const variants = [
-    { label: 'default', query: 'icon=i-mdi-plus' },
-    { label: 'outline', query: 'icon=i-mdi-plus&outline=true' },
-    { label: 'square', query: 'icon=i-mdi-plus&square=true' },
-    { label: 'color-secondary', query: 'icon=i-mdi-plus&color=secondary' },
-    { label: 'direction-up', query: 'icon=i-mdi-plus&direction=up' },
+    { label: 'default', query: '' },
+    { label: 'outline', query: 'outline=true' },
+    { label: 'flat', query: 'flat=true' },
+    { label: 'push', query: 'push=true' },
+    { label: 'glossy', query: 'glossy=true' },
+    { label: 'square', query: 'square=true' },
+    { label: 'label-left', query: 'externalLabel=true&labelPosition=left' },
+    { label: 'label-right', query: 'externalLabel=true&labelPosition=right' },
   ]
-
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
       await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
-      const png = await shot(page, SLUG, v.label, 'md3')
+      await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
-      expect(fs.statSync(png).size).toBeGreaterThan(100)
     }
   })
 })

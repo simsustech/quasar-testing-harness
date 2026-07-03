@@ -19,3 +19,18 @@ test.describe('QTabPanels', () => {
     })
   }
 })
+test.describe('QTabPanels — prop variations', () => {
+  const variants = [
+    { label: 'default-1', query: 'modelValue=tab1' },
+    { label: 'animated', query: 'modelValue=tab1&animated=true' },
+    { label: 'keep-alive', query: 'modelValue=tab1&keepAlive=true' },
+  ]
+  test('all visual variants at md3', async ({ page }) => {
+    for (const v of variants) {
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await shot(page, SLUG, v.label, 'md3')
+      await dumpDiagnostics(page, SLUG, v.label, 'md3')
+    }
+  })
+})
