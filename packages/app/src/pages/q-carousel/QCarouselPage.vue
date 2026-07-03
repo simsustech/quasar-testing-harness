@@ -68,10 +68,10 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-carousel v-model="slide" v-bind="boundProps" style="width: 100%; height: 400px">
-        <q-carousel-slide name="1" :img-src="'https://cdn.quasar.dev/img/mountains.jpg'" />
-        <q-carousel-slide name="2" :img-src="'https://cdn.quasar.dev/img/quasar.jpg'" />
-        <q-carousel-slide name="3" :img-src="'https://cdn.quasar.dev/img/cat.jpg'" />
+      <q-carousel v-model="slide" v-bind="boundProps" style="width: 100%; height: auto">
+        <q-carousel-slide name="1" ratio="1" :img-src="'https://cdn.quasar.dev/img/mountains.jpg'" />
+        <q-carousel-slide name="2" ratio="1" :img-src="'https://cdn.quasar.dev/img/quasar.jpg'" />
+        <q-carousel-slide name="3" ratio="1" :img-src="'https://cdn.quasar.dev/img/cat.jpg'" />
       </q-carousel>
     </div>
 
