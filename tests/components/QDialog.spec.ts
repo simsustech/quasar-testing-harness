@@ -12,7 +12,12 @@ test.describe('QDialog', () => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
       await expect(page.getByTestId('component-preview')).toBeVisible()
+      // Dialog is portaled — use full page screenshot
       const png = await shot(page, SLUG, { style }, style)
+      // Override to capture full page
+      const fp = png.replace('.png', '-full.png')
+      await page.screenshot({ path: fp, fullPage: true })
+      expect(fs.existsSync(fp)).toBe(true)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
       expect(fs.statSync(png).size).toBeGreaterThan(100)
