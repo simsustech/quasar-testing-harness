@@ -43,6 +43,7 @@ export default {
       () => import('../components/StyleSwitcher.vue')
     )
   }
+}
 </script>
 
 <script lang="ts" setup>
