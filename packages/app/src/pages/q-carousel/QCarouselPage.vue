@@ -66,7 +66,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-carousel v-model="slide" v-bind="boundProps" animated arrows navigation style="width: 100%; height: 200px">
+      <q-carousel v-model="slide" v-bind="boundProps" animated arrows navigation style="width: 100%; height: 300px">
         <q-carousel-slide name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="column items-center justify-center" style="background: #F2C037">
           <div class="text-h5 text-white">Sunset</div>
           <p class="text-white">First slide</p>
