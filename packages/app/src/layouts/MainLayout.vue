@@ -51,7 +51,7 @@ export default {
 <script lang="ts" setup>
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { "vue"
+import { useQuasar } from 'quasar'
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()
