@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
 import {
   qCarouselDefaults,
@@ -19,6 +19,8 @@ const pageDefaults = {
   swipeable: true,
   animated: true
 } as const
+
+const slide = ref('1')
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
   defaults: pageDefaults as unknown as Record<string, unknown>
@@ -63,7 +65,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-carousel v-bind="boundProps" animated arrows navigation style="width: 100%; height: 200px">
+      <q-carousel v-model="slide" v-bind="boundProps" animated arrows navigation style="width: 100%; height: 200px">
         <q-carousel-slide name="1" class="column items-center justify-center" style="background: #F2C037">
           <div class="text-h5 text-white">Sunset</div>
           <p class="text-white">First slide</p>
