@@ -64,7 +64,6 @@ const onUpdate = (next: Record<string, unknown>) => {
       data-testid="component-preview"
       style="
         padding: 32px;
-        background: var(--q-dark-page, #fff);
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         display: flex;
