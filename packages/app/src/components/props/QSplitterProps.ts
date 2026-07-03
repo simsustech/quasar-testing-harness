@@ -4,7 +4,7 @@
 import type { PropSchema } from '../../types/props'
 
 export const qSplitterDefaults = {
-  modelValue: 0,
+  modelValue: 50,
   reverse: false,
   unit: '%',
   emitImmediately: false,
