@@ -17,7 +17,7 @@
         <q-toggle
           v-model="isDark"
           dense
-          icon="i-mdi-weather-night"
+          left-icon="i-mdi-weather-night" icon-color="amber"
           color="amber"
           @update:model-value="toggleDark"
         />
