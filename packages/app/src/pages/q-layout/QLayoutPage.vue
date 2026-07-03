@@ -64,7 +64,7 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 280px;
       "
     >
-      <q-layout v-bind="boundProps" style="width: 600px; height: 200px">
+      <q-layout v-bind="boundProps" style="width: 100%; height: 200px; border-radius: 4px; overflow: hidden">
         <q-header :style="headerStyle">
           <q-toolbar>
             <q-toolbar-title>Header</q-toolbar-title>
