@@ -196,37 +196,14 @@ export default async function ({ mode }): Promise<VitrifyConfig> {
       },
       unocss: {
         presets: [
-          // Register all three styles so the playground can switch
-          // between them at runtime via a body class. The default
-          // (`MaterialDesign3`) goes LAST so its shortcuts win
-          // when multiple presets register the same class.
+          // One preset, all components. Body class switches token values at runtime —
+          // no shortcut collision, no duplicate CSS. Defaults to MD3 if tokens omitted.
           QuasarPreset({
-            style: Unstyled,
-            scoped: true,
-            sourceColor: env.VITE_SOURCE_COLOR,
-            plugins: quasarConf['framework']['plugins'],
-            iconSet: quasarConf['framework']['iconSet']
-          }),
-          QuasarPreset({
-            style: MaterialDesign2,
-            scoped: true,
-            sourceColor: env.VITE_SOURCE_COLOR,
-            plugins: quasarConf['framework']['plugins'],
-            iconSet: quasarConf['framework']['iconSet']
-          }),
-          QuasarPreset({
-            style: MaterialDesign3,
-            scoped: true,
             sourceColor: env.VITE_SOURCE_COLOR,
             plugins: quasarConf['framework']['plugins'],
             iconSet: quasarConf['framework']['iconSet']
           })
-        ],
-        content: {
-          pipeline: {
-            include: [/@simsustech\/quasar-components/, 'src/**/*']
-          }
-        }
+        ]
       }
     }
   }
