@@ -37,7 +37,7 @@ test.describe('Comprehensive CSS verification', () => {
     expect(result.vRadiusXl).toBe('28px')
   })
 
-  test('QBtn md2 light — correct radius differs from md3', async ({ page }) => {
+  test('QBtn md2 light — Quasar SASS $button-rounded-border-radius: 28px', async ({ page }) => {
     await page.goto('/q-btn?style=md2', { waitUntil: 'networkidle' })
     await expect(page.locator('[data-testid="component-preview"] .q-btn')).toBeVisible()
 
@@ -52,8 +52,8 @@ test.describe('Comprehensive CSS verification', () => {
     })
 
     expect(result.bg).toBe('rgb(103, 80, 164)')
-    expect(result.radius).toBe('4px')       // MD2
-    expect(result.vRadiusXl).toBe('4px')
+    expect(result.radius).toBe('28px')       // MD2 matches Quasar $button-rounded-border-radius: 28px
+    expect(result.vRadiusXl).toBe('28px')
   })
 
   test('QBtn unstyled — transparent bg, no theme colors', async ({ page }) => {
@@ -101,7 +101,7 @@ test.describe('Comprehensive CSS verification', () => {
     expect(result.color).not.toBe('rgb(0, 0, 0)')
   })
 
-  test('QBtn md2 dark — radius stays 4px', async ({ page }) => {
+  test('QBtn md2 dark — radius stays 28px', async ({ page }) => {
     await page.goto('/q-btn?style=md2&dark=true', { waitUntil: 'networkidle' })
     await expect(page.locator('[data-testid="component-preview"] .q-btn')).toBeVisible()
 
@@ -115,7 +115,7 @@ test.describe('Comprehensive CSS verification', () => {
     })
 
     expect(result.isDark).toBe(true)
-    expect(result.radius).toBe('4px')
+    expect(result.radius).toBe('28px')
   })
 
   test('dark mode emits many color tokens (not just primary)', async ({ page }) => {

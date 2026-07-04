@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.TEST_BASE_URL || 'http://localhost:3000',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure'
   },
@@ -19,8 +19,8 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'pnpm --filter @quasar-testing-harness/app dev',
-    port: 3000,
+    command: process.env.TEST_SERVER_CMD || 'pnpm --filter @quasar-testing-harness/app dev',
+    port: parseInt(process.env.TEST_SERVER_PORT || '3000'),
     timeout: 120_000,
     reuseExistingServer: true,
     stdout: 'pipe',

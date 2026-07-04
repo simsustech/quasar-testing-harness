@@ -192,7 +192,7 @@ export default async function ({ mode }): Promise<VitrifyConfig> {
         serverModules: []
       },
       dev: {
-        alias: QuasarPresetAliases.quasarPresetAliases()
+        // alias disabled for testing
       },
       unocss: {
         presets: [
