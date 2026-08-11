@@ -13,8 +13,8 @@ const styles = ['md3', 'md2', 'unstyled']
 for (const comp of components) {
   for (const style of styles) {
     test(`${comp.name} @ ${style}`, async ({ page }) => {
-      await page.goto(`/${comp.name.toLowerCase()}?style=${style}`, {
-        waitUntil: 'networkidle',
+const slug = `q-${comp.name.slice(1).toLowerCase()}`
+      await page.goto(`/${slug}?style=${style}`, {
         timeout: 15000,
       })
       const el = page.locator(comp.selector).first()

@@ -173,7 +173,7 @@ export default {
     <!-- QIcon + QBadge floating -->
     <q-separator/>
     <!-- QIcon + QBadge floating -->
-    <section data-testid="composite-icon-badge">
+<section data-testid="composite-header-toolbar-icon-badge">
       <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
       <div style="position: relative; display: inline-flex;">
         <q-icon name="i-mdi-email-outline" size="32px" />
@@ -197,7 +197,7 @@ export default {
     <!-- QIcon + QBadge floating -->
     <q-separator/>
     <!-- QIcon + QBadge floating -->
-    <section data-testid="composite-icon-badge">
+<section data-testid="composite-header-tabs-icon-badge">
       <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
       <div style="position: relative; display: inline-flex;">
         <q-icon name="i-mdi-email-outline" size="32px" />
@@ -225,7 +225,7 @@ export default {
     <!-- QIcon + QBadge floating -->
     <q-separator/>
     <!-- QIcon + QBadge floating -->
-    <section data-testid="composite-icon-badge">
+<section data-testid="composite-drawer-items-icon-badge">
       <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
       <div style="position: relative; display: inline-flex;">
         <q-icon name="i-mdi-email-outline" size="32px" />
@@ -428,7 +428,7 @@ export default {
     <!-- QIcon + QBadge floating -->
     <q-separator/>
     <!-- QIcon + QBadge floating -->
-    <section data-testid="composite-icon-badge">
+<section data-testid="composite-footer-toolbar-icon-badge">
       <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
       <div style="position: relative; display: inline-flex;">
         <q-icon name="i-mdi-email-outline" size="32px" />

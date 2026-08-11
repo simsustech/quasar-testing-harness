@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { shot, dumpDiagnostics } from './helpers.js'
+import { computedRgba } from './helpers.js'
 
 /**
  * Comprehensive CSS verification.
@@ -12,12 +12,12 @@ test.describe('Comprehensive CSS verification', () => {
     await page.goto('/q-btn?style=md3', { waitUntil: 'networkidle' })
     await expect(page.locator('[data-testid="component-preview"] .q-btn')).toBeVisible()
 
-    const result = await page.evaluate(() => {
+const result = await page.evaluate(() => {
       const el = document.querySelector('[data-testid="component-preview"] .q-btn')!
       const s = getComputedStyle(el)
       const bodyStyle = getComputedStyle(document.body)
-      return {
-        bg: s.backgroundColor, color: s.color, radius: s.borderRadius,
+return {
+        radius: s.borderRadius,
         height: s.height, fontSize: s.fontSize,
         bodyClass: document.body.className,
         vPrimary: bodyStyle.getPropertyValue('--q-primary').trim(),
@@ -26,9 +26,15 @@ test.describe('Comprehensive CSS verification', () => {
       }
     })
 
+const SEL = '[data-testid="component-preview"] .q-btn'
+    const bg = await computedRgba(page, SEL, 'background-color')
+    const color = await computedRgba(page, SEL, 'color')
+
     expect(result.bodyClass).toContain('quasar-style-md3')
-    expect(result.bg).toBe('rgb(103, 80, 164)')
-    expect(result.color).toBe('rgb(255, 255, 255)')
+    // 0.5.x emits QBtn backgrounds via color-mix(in oklab, …), so computed
+    // colors come back in oklab() — compare through the canvas round-trip.
+    expect(bg).toEqual([103, 80, 164, 255])
+    expect(color).toEqual([255, 255, 255, 255])
     expect(result.radius).toBe('28px')
     expect(result.height).toBe('36px')
     expect(result.fontSize).toBe('14px')
@@ -37,7 +43,7 @@ test.describe('Comprehensive CSS verification', () => {
     expect(result.vRadiusXl).toBe('28px')
   })
 
-  test('QBtn md2 light — Quasar SASS $button-rounded-border-radius: 28px', async ({ page }) => {
+test('QBtn md2 light - md2 radius = --q-radius-sm (4px), same fill color', async ({ page }) => {
     await page.goto('/q-btn?style=md2', { waitUntil: 'networkidle' })
     await expect(page.locator('[data-testid="component-preview"] .q-btn')).toBeVisible()
 
@@ -45,14 +51,17 @@ test.describe('Comprehensive CSS verification', () => {
       const el = document.querySelector('[data-testid="component-preview"] .q-btn')!
       const s = getComputedStyle(el)
       const bodyStyle = getComputedStyle(document.body)
-      return {
-        bg: s.backgroundColor, color: s.color, radius: s.borderRadius,
+return {
+        radius: s.borderRadius,
         vRadiusXl: bodyStyle.getPropertyValue('--q-radius-xl').trim(),
       }
     })
 
-    expect(result.bg).toBe('rgb(103, 80, 164)')
-    expect(result.radius).toBe('28px')       // MD2 matches Quasar $button-rounded-border-radius: 28px
+const bg = await computedRgba(page, '[data-testid="component-preview"] .q-btn', 'background-color')
+
+    expect(bg).toEqual([103, 80, 164, 255])
+    // 0.5.x preset: md2 btnRadius = var(--q-radius-sm) = 4px (md3 = --q-radius-xl = 28px)
+    expect(result.radius).toBe('4px')
     expect(result.vRadiusXl).toBe('28px')
   })
 
@@ -101,7 +110,7 @@ test.describe('Comprehensive CSS verification', () => {
     expect(result.color).not.toBe('rgb(0, 0, 0)')
   })
 
-  test('QBtn md2 dark — radius stays 28px', async ({ page }) => {
+test('QBtn md2 dark - radius stays 4px', async ({ page }) => {
     await page.goto('/q-btn?style=md2&dark=true', { waitUntil: 'networkidle' })
     await expect(page.locator('[data-testid="component-preview"] .q-btn')).toBeVisible()
 
@@ -115,7 +124,7 @@ test.describe('Comprehensive CSS verification', () => {
     })
 
     expect(result.isDark).toBe(true)
-    expect(result.radius).toBe('28px')
+expect(result.radius).toBe('4px')      // md2 btnRadius = --q-radius-sm in dark too
   })
 
   test('dark mode emits many color tokens (not just primary)', async ({ page }) => {
@@ -164,7 +173,7 @@ test.describe('Comprehensive CSS verification', () => {
   test('no legacy --q-color-primary-bg or --q-color-primary-text in any stylesheet', async ({ page }) => {
     await page.goto('/q-btn?style=md3', { waitUntil: 'networkidle' })
 
-    const hasOld = await page.evaluate(() => {
+const hasOld = await page.evaluate(() => {
       for (const sheet of document.styleSheets) {
         try {
           for (const rule of Array.from(sheet.cssRules || [])) {
@@ -172,11 +181,13 @@ test.describe('Comprehensive CSS verification', () => {
             if (t.includes('--q-color-primary-bg') || t.includes('--q-color-primary-text'))
               return true
           }
-        } catch (e) {}
+        } catch {
+          /* cross-origin stylesheets throw on cssRules access */
+        }
       }
       return false
     })
 
-    expect(hasOld).toBe(false)
+expect(hasOld).toBe(false)
   })
 })

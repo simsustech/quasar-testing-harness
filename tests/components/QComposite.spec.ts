@@ -61,7 +61,7 @@ for (let i = 0; i < sections.length; i += BATCH_SIZE) {
           await page.getByTestId(section).scrollIntoViewIfNeeded()
           await expect(page.getByTestId(section)).toBeVisible()
           await page.waitForTimeout(200)
-          const png = await shot(page, SLUG, section, style)
+const png = await shot(page, SLUG, section, style, 'desktop', section)
           expect(fs.existsSync(png)).toBe(true)
           expect(fs.statSync(png).size).toBeGreaterThan(100)
         }

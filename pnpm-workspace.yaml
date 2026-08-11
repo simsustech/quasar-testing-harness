@@ -21,5 +21,3 @@ allowBuilds:
   '@parcel/watcher': false
   esbuild: false
 
-overrides:
-  unocss-preset-quasar: link:../unocss-preset-quasar/packages/preset

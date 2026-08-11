@@ -1,4 +1,4 @@
-import { type Page, type PageScreenshotOptions } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import path from 'node:path'
 import fs from 'node:fs'
 
@@ -45,12 +45,36 @@ export const shot = async (
   component: string,
   label: string | Record<string, string>,
   styleSlug?: string,
-  deviceSlug = 'desktop'
+  deviceSlug = 'desktop',
+  targetTestId = 'component-preview'
 ) => {
   const isDark = page.url().includes('dark=true')
   const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)), deviceSlug, isDark ? 'dark' : 'light')
-  await page.getByTestId('component-preview').screenshot({ path: file })
+await page.getByTestId(targetTestId).screenshot({ path: file })
   return file
+}
+export const computedRgba = async (
+  page: Page,
+  selector: string,
+  prop: string
+): Promise<number[] | null> => {
+  return page.evaluate(
+    ([sel, p]) => {
+      const el = document.querySelector(sel) as HTMLElement | null
+      if (!el) return null
+      const color = getComputedStyle(el).getPropertyValue(p).trim()
+      if (!color || color === 'transparent') return null
+      const canvas = document.createElement('canvas')
+      canvas.width = 1
+      canvas.height = 1
+      const ctx = canvas.getContext('2d')!
+      ctx.fillStyle = '#000'
+      ctx.fillStyle = color
+      ctx.fillRect(0, 0, 1, 1)
+      return [...ctx.getImageData(0, 0, 1, 1).data]
+    },
+    [selector, prop] as const
+  )
 }
 
 export const dumpDiagnostics = async (

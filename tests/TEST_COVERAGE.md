@@ -1,22 +1,28 @@
 # Test Coverage Overview
 
-**377 tests** across **74 component spec files** + **7 support files**.
+**1280 tests** across **73 per-component spec files**, **12 top-level spec files**, and `tests/helpers.ts`.
 
 ## Test Structure
 
 ```
 tests/
-├── helpers.ts                          # shot(), dumpDiagnostics(), computedStyles(), pseudoStyles()
+├── helpers.ts                          # shot(), computedRgba(), dumpDiagnostics(), computedStyles(), pseudoStyles()
 ├── functional.spec.ts                  # Interaction tests (click, toggle, dialog, menu, select)
 ├── style-switcher.spec.ts              # Body-class scoping for md3/md2/unstyled
-├── unstyled.spec.ts                    # Unocss-preset-quasar style exports
+├── unstyled.spec.ts                    # Unstyled style — no preset theming leaks
+├── review.spec.ts                       # /review gallery page
+├── ssr.spec.ts                          # SSR dev server smoke tests
+├── investigate.spec.ts                 # Core component routes render across styles
+├── comprehensive-tokens.spec.ts        # Computed CSS vars + colors across styles
+├── missing-css-classes.spec.ts         # Quasar runtime classes missing from the preset
+├── debug-css-check.spec.ts             # Debug CSS helper
 ├── composites.spec.ts                  # Composite component pattern tests
 ├── components/
-│   ├── QAjaxBar.spec.ts
 │   ├── QAvatar.spec.ts
 │   ├── QBadge.spec.ts
 │   ├── QBanner.spec.ts
 │   ...
+│   ├── QComposite.spec.ts               # Per-section screenshots of the composites page
 │   └── QVirtualScroll.spec.ts
 └── screenshots/
     ├── md3/{component}/{label}.png     # MD3 screenshots
@@ -32,7 +38,7 @@ Every component has a `renders cleanly with ?style={md3|md2|unstyled}` baseline.
 Components with **prop variation** screenshots (MD3 only):
 
 | Component | Variants | Covers |
-|-----------|----------|--------|
+| ----------- | ---------- | -------- |
 | QAvatar | 10 | default, rounded, square, text-color, secondary, sizes (xs/sm/lg/xl), font-size |
 | QBadge | 11 | default, outline, rounded, transparent, colors (primary/secondary/blue/teal), align (top/middle/bottom), multi-line, no-floating |
 | QBanner | 4 | default, dense, inline-actions, no-rounded |
@@ -86,14 +92,14 @@ Components with **prop variation** screenshots (MD3 only):
 | QToolbar | 2 | default, inset |
 | QTooltip | 3 | default, no-parent-event, delay |
 
-**Baseline-only**: QAjaxBar, QCircularProgress, QSpace (minimal visual styling).
+**Baseline-only**: QCircularProgress, QSpace (minimal visual styling).
 
 ## Composite Pattern Tests
 
 29 composite patterns across all 3 styles (md3, md2, unstyled). Generated via `tests/bin/generate-composites.mjs`.
 
 | Pattern | Components |
-|---------|-----------|
+| --------- | ----------- |
 | QBtn + QTooltip | [.q-btn, .q-tooltip] |
 | QBtn + QBadge | [.q-btn, .q-badge] |
 | QCard + QCardActions + QBtn | [.q-card, .q-card-actions, .q-btn] |
@@ -129,6 +135,7 @@ Components with **prop variation** screenshots (MD3 only):
 Four scripts in `tests/bin/` help find gaps, generate tests, and verify output:
 
 ### `scan-composites.mjs`
+
 Scans ALL 257+ composite patterns from Quasar docs examples and reports which ones lack test coverage. Each pattern is a Quasar component that nests other Quasar components inside it.
 
 ```bash
@@ -137,7 +144,9 @@ node tests/bin/scan-composites.mjs
 ```
 
 ### `scan-variants.mjs`
+
 Cross-references three data sources:
+
 1. Test spec files — what prop variations are tested
 2. Quasar docs examples — what prop combos are documented  
 3. Quasar UI source (`quasar/ui/src/components/*.json`) — all available component props
@@ -151,6 +160,7 @@ node tests/bin/scan-variants.mjs
 ```
 
 ### `generate-composites.mjs`
+
 Regenerates the CompositesPage.vue and composites.spec.ts from a curated set of self-contained, working composite snippets. Run after adding new patterns:
 
 ```bash
@@ -160,7 +170,9 @@ node tests/bin/generate-composites.mjs
 ```
 
 ### `verify-visuals.mjs`
+
 Validates every generated screenshot's computed CSS against MD3 spec values — no browser needed, just reads the `.json` diagnostic files. Checks:
+
 - MD3 theme tokens present (`--light-primary`, `--dark-on-surface`, etc.)
 - Interactive element colors match spec where applicable
 - Border-radius values conform to MD3 shape tokens
@@ -171,12 +183,15 @@ node tests/bin/verify-visuals.mjs --style=md2
 node tests/bin/verify-visuals.mjs --style=unstyled
 ```
 
-Runs in ~2s and covers all 276+ screenshots. Unlike `toHaveScreenshot()` (flaky across rendering environments), this checks deterministic computed values.
+Reads the diagnostic `.json` files written next to every screenshot and validates
+computed CSS (border-radius, colors, dimensions) against the MD3 spec values.
+Runs in ~2s with no browser — unlike `toHaveScreenshot()` (flaky across
+rendering environments), it checks deterministic computed values.
 
 ## Computed CSS (Spec Conformance) Tests
 
 | Component | What's asserted |
-|-----------|----------------|
+| ----------- | ---------------- |
 | QToggle (MD3) | inner font-size (34px), thumb position (5.1px / 24.65px), label padding (7px), hover glow opacity (0.12), dense font-size (28px) |
 | QToggle (MD2) | thumb position > baseline, dense font-size (28px), hover glow visible |
 | QField (MD3) | control height (56px), dark mode colors, dense class presence |
@@ -191,10 +206,13 @@ Runs in ~2s and covers all 276+ screenshots. Unlike `toHaveScreenshot()` (flaky 
 ## Screenshot Protocol
 
 Each prop variation test captures:
+
 1. `{component}__{label}.png` — screenshot of `[data-testid="component-preview"]`
 2. `{component}__{label}.json` — computed CSS variables and interactive element styles
 
-Screenshots live in `tests/screenshots/{style}/{component}/`. Composites screenshots go in `tests/screenshots/composites/`.
+Screenshots live in `packages/app/public/screenshots/{style}/{mode}/{device}/{component}/`
+(with a `.json` diagnostics file next to each PNG). Composites screenshots go in
+the same tree under the `composites` component folder.
 
 ## Running Tests
 
