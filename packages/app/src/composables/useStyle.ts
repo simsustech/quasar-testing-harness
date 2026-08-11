@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 /**
  * The three Quasar styles exposed by `unocss-preset-quasar/styles`,
@@ -8,11 +8,12 @@ import { useRoute, useRouter } from 'vue-router'
  * The body class is added/removed on `<body>` whenever the active style
  * changes, so the matching scoped rules apply and the others don't.
  *
- * Switching styles triggers a `location.reload()` because some
- * per-component default props (e.g. `QBtn.props.rounded.default`) are
- * mutated at module-load time and aren't trivially reversible. A
- * reload re-runs `App.vue`'s `setDefaultPropsMd3` (or its absence) for
- * the freshly selected style.
+ * Switching styles triggers a `location.reload()` so the page boots
+ * cleanly for the freshly selected style (per-page component props are
+ * configured statically and not re-derived without a fresh mount).
+ * `packages/app/index.html` ships a tiny inline script that applies the
+ * `?style=` body class before first paint, so the reloaded page never
+ * flashes the preset's unscoped `:root` defaults (md3) before hydration.
  */
 export type StyleSlug = 'md2' | 'md3' | 'unstyled'
 
@@ -66,7 +67,6 @@ function parseStyleSlug(raw: unknown): StyleSlug {
  */
 export function useStyle() {
   const route = useRoute()
-  const router = useRouter()
 
   const currentSlug = ref<StyleSlug>(parseStyleSlug(route.query.style))
 
@@ -111,9 +111,15 @@ export function useStyle() {
     // new module load ends up reading the old URL.
     applyBodyClass(slug)
     if (typeof window !== 'undefined') {
-      const url = new URL(window.location.href)
-      url.searchParams.set('style', slug)
-      window.history.replaceState({}, '', url.toString())
+      try {
+        const url = new URL(window.location.href)
+        url.searchParams.set('style', slug)
+        window.history.replaceState({}, '', url.toString())
+      } catch {
+        // URL construction cannot fail for location.href, but keep the
+        // switch working even if it ever does — the reload below reads
+        // the current URL regardless.
+      }
       window.location.reload()
     }
   }

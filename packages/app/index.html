@@ -8,6 +8,26 @@
   </head>
 
   <body>
+    <script>
+      // Apply the ?style= body class before first paint. useStyle.setStyle()
+      // switches styles by writing ?style= to the URL and reloading; without
+      // this, the reloaded page would first paint with the preset's unscoped
+      // :root defaults (md3) and then flip to the chosen style on hydration
+      // (the md3 -> md2 -> md3 -> md2 flash). Only toggles the quasar-style-*
+      // classes so Quasar's own body classes (desktop, body--dark, ...) survive.
+      ;(function () {
+        var m = /(?:[?&])style=(md2|md3|unstyled)(?:&|$)/.exec(
+          window.location.search
+        )
+        var cls = 'quasar-style-' + (m ? m[1] : 'md3')
+        document.body.classList.remove(
+          'quasar-style-md2',
+          'quasar-style-md3',
+          'quasar-style-unstyled'
+        )
+        document.body.classList.add(cls)
+      })()
+    </script>
     <div id="app"></div>
   </body>
 </html>
