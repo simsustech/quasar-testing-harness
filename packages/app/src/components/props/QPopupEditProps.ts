@@ -23,7 +23,7 @@ export const qPopupEditDefaults = {
   separateClosePopup: false,
   square: false,
   maxHeight: '',
-  maxWidth: '',
+  maxWidth: ''
 } as const
 
 export const qPopupEditSchema: PropSchema[] = [
@@ -38,13 +38,55 @@ export const qPopupEditSchema: PropSchema[] = [
   { key: 'disable', type: 'boolean', default: false },
   { key: 'fit', type: 'boolean', default: false },
   { key: 'cover', type: 'boolean', default: true },
-  { key: 'anchor', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'self', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
+  {
+    key: 'anchor',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  {
+    key: 'self',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
   { key: 'offset', type: 'string', default: '' },
   { key: 'touchPosition', type: 'boolean', default: false },
   { key: 'persistent', type: 'boolean', default: false },
   { key: 'separateClosePopup', type: 'boolean', default: false },
   { key: 'square', type: 'boolean', default: false },
   { key: 'maxHeight', type: 'string', default: '' },
-  { key: 'maxWidth', type: 'string', default: '' },
+  { key: 'maxWidth', type: 'string', default: '' }
 ]

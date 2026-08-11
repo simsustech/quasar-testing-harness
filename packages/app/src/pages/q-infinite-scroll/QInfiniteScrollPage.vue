@@ -55,7 +55,14 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div style="width: 300px; height: 150px; border: 1px solid #eee; overflow: auto">
+      <div
+        style="
+          width: 300px;
+          height: 150px;
+          border: 1px solid #eee;
+          overflow: auto;
+        "
+      >
         <q-infinite-scroll v-bind="boundProps">
           <div v-for="i in 5" :key="i" class="q-pa-xs">
             <q-item>{{ 'Item ' + i }}</q-item>

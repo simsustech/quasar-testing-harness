@@ -37,7 +37,7 @@ export const qPaginationDefaults = {
   padding: '3px 2px',
   inputStyle: '',
   inputClass: '',
-  ripple: true,
+  ripple: true
 } as const
 
 export const qPaginationSchema: PropSchema[] = [
@@ -64,7 +64,12 @@ export const qPaginationSchema: PropSchema[] = [
   { key: 'push', type: 'boolean', default: false },
   { key: 'color', type: 'string', default: 'primary' },
   { key: 'textColor', type: 'string', default: '' },
-  { key: 'activeDesign', type: 'select', default: '', options: ['flat', 'outline', 'push', 'unelevated', ''] },
+  {
+    key: 'activeDesign',
+    type: 'select',
+    default: '',
+    options: ['flat', 'outline', 'push', 'unelevated', '']
+  },
   { key: 'activeColor', type: 'string', default: 'primary' },
   { key: 'activeTextColor', type: 'string', default: '' },
   { key: 'round', type: 'boolean', default: false },
@@ -74,5 +79,5 @@ export const qPaginationSchema: PropSchema[] = [
   { key: 'padding', type: 'string', default: '3px 2px' },
   { key: 'inputStyle', type: 'string', default: '' },
   { key: 'inputClass', type: 'string', default: '' },
-  { key: 'ripple', type: 'string', default: true },
+  { key: 'ripple', type: 'string', default: true }
 ]

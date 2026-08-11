@@ -56,11 +56,23 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div style="height: 300px; overflow: auto; border: 1px solid #eee">
-        <div style="height: 200px" class="flex items-center justify-center bg-grey-3">Scroll down</div>
+        <div
+          style="height: 200px"
+          class="flex items-center justify-center bg-grey-3"
+        >
+          Scroll down
+        </div>
         <q-intersection v-bind="boundProps" once>
-          <div class="bg-green-1 q-pa-md text-center">This appeared when visible</div>
+          <div class="bg-green-1 q-pa-md text-center">
+            This appeared when visible
+          </div>
         </q-intersection>
-        <div style="height: 100px" class="flex items-center justify-center bg-grey-3">More content</div>
+        <div
+          style="height: 100px"
+          class="flex items-center justify-center bg-grey-3"
+        >
+          More content
+        </div>
       </div>
     </div>
 

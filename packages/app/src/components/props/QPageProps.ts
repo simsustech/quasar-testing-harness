@@ -5,10 +5,10 @@ import type { PropSchema } from '../../types/props'
 
 export const qPageDefaults = {
   padding: false,
-  styleFn: '',
+  styleFn: ''
 } as const
 
 export const qPageSchema: PropSchema[] = [
   { key: 'padding', type: 'boolean', default: false },
-  { key: 'styleFn', type: 'string', default: '' },
+  { key: 'styleFn', type: 'string', default: '' }
 ]

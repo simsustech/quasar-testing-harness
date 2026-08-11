@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qKnobDefaults,
-  qKnobSchema
-} from '../../components/props/QKnobProps'
+import { qKnobDefaults, qKnobSchema } from '../../components/props/QKnobProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {

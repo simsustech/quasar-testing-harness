@@ -13,7 +13,7 @@ export const qInnerLoadingDefaults = {
   label: '',
   labelClass: '',
   labelStyle: '',
-  dark: '',
+  dark: ''
 } as const
 
 export const qInnerLoadingSchema: PropSchema[] = [
@@ -26,5 +26,5 @@ export const qInnerLoadingSchema: PropSchema[] = [
   { key: 'label', type: 'string', default: '' },
   { key: 'labelClass', type: 'string', default: '' },
   { key: 'labelStyle', type: 'string', default: '' },
-  { key: 'dark', type: 'string', default: '' },
+  { key: 'dark', type: 'string', default: '' }
 ]

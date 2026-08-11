@@ -57,13 +57,11 @@ const labels: Record<Milestone, string> = {
     </q-card>
 
     <div
-      v-for="milestone in (['M1', 'M2', 'M3'] as Milestone[])"
+      v-for="milestone in ['M1', 'M2', 'M3'] as Milestone[]"
       :key="milestone"
       class="q-mb-lg"
     >
-      <div
-        class="text-overline text-grey-6 q-mb-sm"
-      >
+      <div class="text-overline text-grey-6 q-mb-sm">
         {{ labels[milestone] }} ({{ groups[milestone].length }})
       </div>
 

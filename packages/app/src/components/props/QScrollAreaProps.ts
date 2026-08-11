@@ -17,7 +17,7 @@ export const qScrollAreaDefaults = {
   contentActiveStyle: '',
   visible: '',
   delay: '1000',
-  tabindex: '',
+  tabindex: ''
 } as const
 
 export const qScrollAreaSchema: PropSchema[] = [
@@ -34,5 +34,5 @@ export const qScrollAreaSchema: PropSchema[] = [
   { key: 'contentActiveStyle', type: 'string', default: '' },
   { key: 'visible', type: 'string', default: '' },
   { key: 'delay', type: 'string', default: '1000' },
-  { key: 'tabindex', type: 'string', default: '' },
+  { key: 'tabindex', type: 'string', default: '' }
 ]

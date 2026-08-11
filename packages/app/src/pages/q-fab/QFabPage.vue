@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qFabDefaults,
-  qFabSchema
-} from '../../components/props/QFabProps'
+import { qFabDefaults, qFabSchema } from '../../components/props/QFabProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
@@ -22,7 +19,9 @@ const pageDefaults = {
   modelValue: true
 } as const
 
-const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<
+  Record<string, unknown>
+>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 
@@ -69,7 +68,11 @@ const onUpdate = (next: Record<string, unknown>) => {
       <q-fab v-model="vmodel" v-bind="boundProps">
         <q-fab-action icon="i-mdi-pencil" label="Compose" color="secondary" />
         <q-fab-action icon="i-mdi-image-outline" label="Photo" color="accent" />
-        <q-fab-action icon="i-mdi-account-plus-outline" label="Invite" color="info" />
+        <q-fab-action
+          icon="i-mdi-account-plus-outline"
+          label="Invite"
+          color="info"
+        />
       </q-fab>
     </div>
 

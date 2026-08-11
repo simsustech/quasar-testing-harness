@@ -16,7 +16,7 @@ export const qLinearProgressDefaults = {
   query: false,
   rounded: false,
   instantFeedback: false,
-  animationSpeed: '2100',
+  animationSpeed: '2100'
 } as const
 
 export const qLinearProgressSchema: PropSchema[] = [
@@ -32,5 +32,5 @@ export const qLinearProgressSchema: PropSchema[] = [
   { key: 'query', type: 'boolean', default: false },
   { key: 'rounded', type: 'boolean', default: false },
   { key: 'instantFeedback', type: 'boolean', default: false },
-  { key: 'animationSpeed', type: 'string', default: '2100' },
+  { key: 'animationSpeed', type: 'string', default: '2100' }
 ]

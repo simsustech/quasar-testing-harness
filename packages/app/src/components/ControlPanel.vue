@@ -34,7 +34,14 @@ const onReset = () => emit('reset')
 <template>
   <q-card flat bordered class="control-panel">
     <q-card-section>
-      <div class="q-mb-md" style="display: flex; align-items: center; justify-content: space-between">
+      <div
+        class="q-mb-md"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
         <div class="text-subtitle2">
           Control Panel
           <span v-if="title" class="text-grey-6 text-weight-regular">
@@ -63,9 +70,7 @@ const onReset = () => emit('reset')
           dense
           outlined
           :data-prop-input="entry.key"
-          @update:model-value="
-            onUpdate(entry.key, ($event as string) || '')
-          "
+          @update:model-value="onUpdate(entry.key, ($event as string) || '')"
         />
 
         <q-input
@@ -76,9 +81,7 @@ const onReset = () => emit('reset')
           dense
           outlined
           :data-prop-input="entry.key"
-          @update:model-value="
-            onUpdate(entry.key, Number($event))
-          "
+          @update:model-value="onUpdate(entry.key, Number($event))"
         />
 
         <div v-else-if="entry.type === 'boolean'" style="padding: 8px 0">
@@ -88,9 +91,7 @@ const onReset = () => emit('reset')
             left-label
             color="primary"
             :data-prop-input="entry.key"
-            @update:model-value="
-              onUpdate(entry.key, $event)
-            "
+            @update:model-value="onUpdate(entry.key, $event)"
           />
         </div>
 
@@ -102,9 +103,7 @@ const onReset = () => emit('reset')
           dense
           outlined
           :data-prop-input="entry.key"
-          @update:model-value="
-            onUpdate(entry.key, ($event as string) || '')
-          "
+          @update:model-value="onUpdate(entry.key, ($event as string) || '')"
         />
       </div>
     </q-card-section>

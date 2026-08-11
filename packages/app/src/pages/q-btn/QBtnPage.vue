@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qBtnDefaults,
-  qBtnSchema
-} from '../../components/props/QBtnProps'
+import { qBtnDefaults, qBtnSchema } from '../../components/props/QBtnProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 /**

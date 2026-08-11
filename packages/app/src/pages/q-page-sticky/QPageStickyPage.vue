@@ -55,10 +55,22 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div class="relative-position" style="width: 300px; height: 150px; border: 1px solid #eee; overflow: auto">
+      <div
+        class="relative-position"
+        style="
+          width: 300px;
+          height: 150px;
+          border: 1px solid #eee;
+          overflow: auto;
+        "
+      >
         <div class="q-pa-sm">Scroll this container</div>
         <div v-for="i in 8" :key="i" class="q-px-sm q-pb-xs">Line {{ i }}</div>
-        <q-page-sticky v-bind="boundProps" position="bottom-right" :offset="[8, 8]">
+        <q-page-sticky
+          v-bind="boundProps"
+          position="bottom-right"
+          :offset="[8, 8]"
+        >
           <q-btn round color="primary" icon="i-mdi-chevron-up" />
         </q-page-sticky>
       </div>

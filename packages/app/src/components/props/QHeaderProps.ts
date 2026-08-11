@@ -9,7 +9,7 @@ export const qHeaderDefaults = {
   revealOffset: 250,
   bordered: false,
   elevated: false,
-  heightHint: '50',
+  heightHint: '50'
 } as const
 
 export const qHeaderSchema: PropSchema[] = [
@@ -18,5 +18,5 @@ export const qHeaderSchema: PropSchema[] = [
   { key: 'revealOffset', type: 'number', default: 250 },
   { key: 'bordered', type: 'boolean', default: false },
   { key: 'elevated', type: 'boolean', default: false },
-  { key: 'heightHint', type: 'string', default: '50' },
+  { key: 'heightHint', type: 'string', default: '50' }
 ]

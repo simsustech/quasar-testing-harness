@@ -41,8 +41,20 @@ const boundProps = computed(() => {
 
 const messages = [
   { name: 'Alice', text: ['Hey, how are you?'], stamp: '10:30', sent: false },
-  { name: 'You', text: ['I\'m good, thanks!', 'Working on the project.'], stamp: '10:32', sent: true, bgColor: 'primary', textColor: 'white' },
-  { name: 'Alice', text: ['Great! Let me know if you need help.'], stamp: '10:33', sent: false }
+  {
+    name: 'You',
+    text: ["I'm good, thanks!", 'Working on the project.'],
+    stamp: '10:32',
+    sent: true,
+    bgColor: 'primary',
+    textColor: 'white'
+  },
+  {
+    name: 'Alice',
+    text: ['Great! Let me know if you need help.'],
+    stamp: '10:33',
+    sent: false
+  }
 ]
 
 const onUpdate = (next: Record<string, unknown>) => {
@@ -74,7 +86,15 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div style="display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 400px">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          width: 100%;
+          max-width: 400px;
+        "
+      >
         <q-chat-message
           v-for="(msg, idx) in messages"
           :key="idx"

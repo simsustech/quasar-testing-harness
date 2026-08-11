@@ -5,10 +5,10 @@ import type { PropSchema } from '../../types/props'
 
 export const qBarDefaults = {
   dense: false,
-  dark: '',
+  dark: ''
 } as const
 
 export const qBarSchema: PropSchema[] = [
   { key: 'dense', type: 'boolean', default: false },
-  { key: 'dark', type: 'string', default: '' },
+  { key: 'dark', type: 'string', default: '' }
 ]

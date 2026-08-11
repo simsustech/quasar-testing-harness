@@ -47,7 +47,8 @@ const onUpdate = (next: Record<string, unknown>) => {
   <q-page padding>
     <div class="text-h6 q-mb-xs">QCircularProgress</div>
     <p class="text-grey-7 q-mb-md">
-      Route <code>/q-circular-progress</code> — props driven by URL query string.
+      Route <code>/q-circular-progress</code> — props driven by URL query
+      string.
     </p>
 
     <div

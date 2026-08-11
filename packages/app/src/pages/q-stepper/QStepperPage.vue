@@ -61,10 +61,30 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-stepper v-bind="boundProps">
-        <q-step name="cart" title="Cart" icon="i-mdi-cart-outline" :done="true" />
-        <q-step name="shipping" title="Shipping" icon="i-mdi-truck-fast-outline" :done="false" />
-        <q-step name="payment" title="Payment" icon="i-mdi-credit-card-outline" :done="false" />
-        <q-step name="review" title="Review" icon="i-mdi-check-circle-outline" :done="false" />
+        <q-step
+          name="cart"
+          title="Cart"
+          icon="i-mdi-cart-outline"
+          :done="true"
+        />
+        <q-step
+          name="shipping"
+          title="Shipping"
+          icon="i-mdi-truck-fast-outline"
+          :done="false"
+        />
+        <q-step
+          name="payment"
+          title="Payment"
+          icon="i-mdi-credit-card-outline"
+          :done="false"
+        />
+        <q-step
+          name="review"
+          title="Review"
+          icon="i-mdi-check-circle-outline"
+          :done="false"
+        />
       </q-stepper>
     </div>
 

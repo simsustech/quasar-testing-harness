@@ -9,14 +9,19 @@ export const qSeparatorDefaults = {
   inset: '',
   vertical: false,
   size: '',
-  color: '',
+  color: ''
 } as const
 
 export const qSeparatorSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
   { key: 'spaced', type: 'string', default: '' },
-  { key: 'inset', type: 'select', default: '', options: ['true', 'false', 'item', 'item-thumbnail'] },
+  {
+    key: 'inset',
+    type: 'select',
+    default: '',
+    options: ['true', 'false', 'item', 'item-thumbnail']
+  },
   { key: 'vertical', type: 'boolean', default: false },
   { key: 'size', type: 'string', default: '' },
-  { key: 'color', type: 'string', default: '' },
+  { key: 'color', type: 'string', default: '' }
 ]

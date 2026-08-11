@@ -57,12 +57,28 @@ const onUpdate = (next: Record<string, unknown>) => {
     >
       <q-markup-table v-bind="boundProps">
         <thead>
-          <tr><th>Dessert</th><th>Calories</th><th>Fat (g)</th></tr>
+          <tr>
+            <th>Dessert</th>
+            <th>Calories</th>
+            <th>Fat (g)</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Frozen yoghurt</td><td>159</td><td>6.0</td></tr>
-          <tr><td>Ice cream sandwich</td><td>237</td><td>9.0</td></tr>
-          <tr><td>Eclair</td><td>262</td><td>16.0</td></tr>
+          <tr>
+            <td>Frozen yoghurt</td>
+            <td>159</td>
+            <td>6.0</td>
+          </tr>
+          <tr>
+            <td>Ice cream sandwich</td>
+            <td>237</td>
+            <td>9.0</td>
+          </tr>
+          <tr>
+            <td>Eclair</td>
+            <td>262</td>
+            <td>16.0</td>
+          </tr>
         </tbody>
       </q-markup-table>
     </div>

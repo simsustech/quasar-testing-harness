@@ -55,7 +55,11 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-editor v-bind="boundProps" model-value="Start typing..." style="min-height: 100px" />
+      <q-editor
+        v-bind="boundProps"
+        model-value="Start typing..."
+        style="min-height: 100px"
+      />
     </div>
 
     <ControlPanel

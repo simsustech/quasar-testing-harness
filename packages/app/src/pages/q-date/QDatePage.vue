@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qDateDefaults,
-  qDateSchema
-} from '../../components/props/QDateProps'
+import { qDateDefaults, qDateSchema } from '../../components/props/QDateProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {

@@ -56,7 +56,7 @@ export const qBtnDropdownDefaults = {
   menuAnchor: 'bottom end',
   menuSelf: 'top end',
   menuOffset: '',
-  toggleAriaLabel: '',
+  toggleAriaLabel: ''
 } as const
 
 export const qBtnDropdownSchema: PropSchema[] = [
@@ -90,7 +90,12 @@ export const qBtnDropdownSchema: PropSchema[] = [
   { key: 'dense', type: 'boolean', default: false },
   { key: 'ripple', type: 'string', default: true },
   { key: 'tabindex', type: 'string', default: '' },
-  { key: 'align', type: 'select', default: 'center', options: ['left', 'right', 'center', 'around', 'between', 'evenly'] },
+  {
+    key: 'align',
+    type: 'select',
+    default: 'center',
+    options: ['left', 'right', 'center', 'around', 'between', 'evenly']
+  },
   { key: 'stack', type: 'boolean', default: false },
   { key: 'stretch', type: 'boolean', default: false },
   { key: 'loading', type: 'string', default: '' },
@@ -109,8 +114,50 @@ export const qBtnDropdownSchema: PropSchema[] = [
   { key: 'autoClose', type: 'boolean', default: false },
   { key: 'noRefocus', type: 'boolean', default: false },
   { key: 'noFocus', type: 'boolean', default: false },
-  { key: 'menuAnchor', type: 'select', default: 'bottom end', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'menuSelf', type: 'select', default: 'top end', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
+  {
+    key: 'menuAnchor',
+    type: 'select',
+    default: 'bottom end',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  {
+    key: 'menuSelf',
+    type: 'select',
+    default: 'top end',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
   { key: 'menuOffset', type: 'string', default: '' },
-  { key: 'toggleAriaLabel', type: 'string', default: '' },
+  { key: 'toggleAriaLabel', type: 'string', default: '' }
 ]

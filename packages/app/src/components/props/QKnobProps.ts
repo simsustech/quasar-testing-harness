@@ -24,7 +24,7 @@ export const qKnobDefaults = {
   showValue: false,
   tabindex: '0',
   disable: false,
-  readonly: false,
+  readonly: false
 } as const
 
 export const qKnobSchema: PropSchema[] = [
@@ -48,5 +48,5 @@ export const qKnobSchema: PropSchema[] = [
   { key: 'showValue', type: 'boolean', default: false },
   { key: 'tabindex', type: 'string', default: '0' },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'readonly', type: 'boolean', default: false },
+  { key: 'readonly', type: 'boolean', default: false }
 ]

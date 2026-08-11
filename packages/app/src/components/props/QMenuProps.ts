@@ -28,7 +28,7 @@ export const qMenuDefaults = {
   noRefocus: false,
   noFocus: false,
   maxHeight: '',
-  maxWidth: '',
+  maxWidth: ''
 } as const
 
 export const qMenuSchema: PropSchema[] = [
@@ -42,8 +42,50 @@ export const qMenuSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
   { key: 'fit', type: 'boolean', default: false },
   { key: 'cover', type: 'boolean', default: false },
-  { key: 'anchor', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'self', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
+  {
+    key: 'anchor',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  {
+    key: 'self',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
   { key: 'offset', type: 'string', default: '' },
   { key: 'scrollTarget', type: 'string', default: '' },
   { key: 'touchPosition', type: 'boolean', default: false },
@@ -56,5 +98,5 @@ export const qMenuSchema: PropSchema[] = [
   { key: 'noRefocus', type: 'boolean', default: false },
   { key: 'noFocus', type: 'boolean', default: false },
   { key: 'maxHeight', type: 'string', default: '' },
-  { key: 'maxWidth', type: 'string', default: '' },
+  { key: 'maxWidth', type: 'string', default: '' }
 ]

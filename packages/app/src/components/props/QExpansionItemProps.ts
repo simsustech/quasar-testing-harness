@@ -36,7 +36,7 @@ export const qExpansionItemDefaults = {
   group: '',
   popup: false,
   headerStyle: '',
-  headerClass: '',
+  headerClass: ''
 } as const
 
 export const qExpansionItemSchema: PropSchema[] = [
@@ -44,7 +44,11 @@ export const qExpansionItemSchema: PropSchema[] = [
   { key: 'exact', type: 'boolean', default: false },
   { key: 'replace', type: 'boolean', default: false },
   { key: 'activeClass', type: 'string', default: 'q-router-link--active' },
-  { key: 'exactActiveClass', type: 'string', default: 'q-router-link--exact-active' },
+  {
+    key: 'exactActiveClass',
+    type: 'string',
+    default: 'q-router-link--exact-active'
+  },
   { key: 'href', type: 'string', default: '' },
   { key: 'target', type: 'string', default: '' },
   { key: 'disable', type: 'boolean', default: false },
@@ -72,5 +76,5 @@ export const qExpansionItemSchema: PropSchema[] = [
   { key: 'group', type: 'string', default: '' },
   { key: 'popup', type: 'boolean', default: false },
   { key: 'headerStyle', type: 'string', default: '' },
-  { key: 'headerClass', type: 'string', default: '' },
+  { key: 'headerClass', type: 'string', default: '' }
 ]

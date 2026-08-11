@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qPageDefaults,
-  qPageSchema
-} from '../../components/props/QPageProps'
+import { qPageDefaults, qPageSchema } from '../../components/props/QPageProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -55,7 +52,10 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div class="border-grey-3" style="width: 300px; height: 200px; border: 1px solid #eee">
+      <div
+        class="border-grey-3"
+        style="width: 300px; height: 200px; border: 1px solid #eee"
+      >
         <q-layout container class="bg-white full-height full-width">
           <q-page-container>
             <q-page v-bind="boundProps">

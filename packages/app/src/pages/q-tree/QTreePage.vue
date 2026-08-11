@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qTreeDefaults,
-  qTreeSchema
-} from '../../components/props/QTreeProps'
+import { qTreeDefaults, qTreeSchema } from '../../components/props/QTreeProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
@@ -28,10 +25,7 @@ const pageDefaults = {
     {
       label: 'Tutorials',
       icon: 'i-mdi-school-outline',
-      children: [
-        { label: 'Quickstart' },
-        { label: 'Recipes' }
-      ]
+      children: [{ label: 'Quickstart' }, { label: 'Recipes' }]
     },
     { label: 'About', icon: 'i-mdi-information-outline' }
   ]

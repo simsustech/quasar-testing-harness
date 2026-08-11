@@ -56,8 +56,10 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div style="width: 300px">
-        <q-responsive v-bind="boundProps" :ratio="16/9">
-          <div class="full-width full-height flex items-center justify-center bg-primary text-white">
+        <q-responsive v-bind="boundProps" :ratio="16 / 9">
+          <div
+            class="full-width full-height flex items-center justify-center bg-primary text-white"
+          >
             16:9 container
           </div>
         </q-responsive>

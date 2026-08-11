@@ -55,9 +55,14 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-scroll-area v-bind="boundProps" style="width: 300px; height: 150px; border: 1px solid #eee">
+      <q-scroll-area
+        v-bind="boundProps"
+        style="width: 300px; height: 150px; border: 1px solid #eee"
+      >
         <div class="q-pa-sm">
-          <p v-for="i in 8" :key="i" class="q-mb-xs">Line {{ i }}: Lorem ipsum dolor sit amet.</p>
+          <p v-for="i in 8" :key="i" class="q-mb-xs">
+            Line {{ i }}: Lorem ipsum dolor sit amet.
+          </p>
         </div>
       </q-scroll-area>
     </div>

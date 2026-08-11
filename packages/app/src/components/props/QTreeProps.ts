@@ -28,7 +28,7 @@ export const qTreeDefaults = {
   filterMethod: '',
   duration: 300,
   noNodesLabel: '',
-  noResultsLabel: '',
+  noResultsLabel: ''
 } as const
 
 export const qTreeSchema: PropSchema[] = [
@@ -44,7 +44,12 @@ export const qTreeSchema: PropSchema[] = [
   { key: 'dense', type: 'boolean', default: false },
   { key: 'dark', type: 'string', default: '' },
   { key: 'icon', type: 'string', default: '' },
-  { key: 'tickStrategy', type: 'select', default: 'none', options: ['none', 'strict', 'leaf', 'leaf-filtered'] },
+  {
+    key: 'tickStrategy',
+    type: 'select',
+    default: 'none',
+    options: ['none', 'strict', 'leaf', 'leaf-filtered']
+  },
   { key: 'ticked', type: 'string', default: '' },
   { key: 'expanded', type: 'string', default: '' },
   { key: 'selected', type: 'string', default: '' },
@@ -56,5 +61,5 @@ export const qTreeSchema: PropSchema[] = [
   { key: 'filterMethod', type: 'string', default: '' },
   { key: 'duration', type: 'number', default: 300 },
   { key: 'noNodesLabel', type: 'string', default: '' },
-  { key: 'noResultsLabel', type: 'string', default: '' },
+  { key: 'noResultsLabel', type: 'string', default: '' }
 ]

@@ -19,7 +19,7 @@ export const qCircularProgressDefaults = {
   showValue: false,
   reverse: false,
   instantFeedback: false,
-  animationSpeed: '600',
+  animationSpeed: '600'
 } as const
 
 export const qCircularProgressSchema: PropSchema[] = [
@@ -38,5 +38,5 @@ export const qCircularProgressSchema: PropSchema[] = [
   { key: 'showValue', type: 'boolean', default: false },
   { key: 'reverse', type: 'boolean', default: false },
   { key: 'instantFeedback', type: 'boolean', default: false },
-  { key: 'animationSpeed', type: 'string', default: '600' },
+  { key: 'animationSpeed', type: 'string', default: '600' }
 ]

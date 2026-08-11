@@ -12,7 +12,7 @@ export const qBtnGroupDefaults = {
   square: false,
   push: false,
   stretch: false,
-  glossy: false,
+  glossy: false
 } as const
 
 export const qBtnGroupSchema: PropSchema[] = [
@@ -24,5 +24,5 @@ export const qBtnGroupSchema: PropSchema[] = [
   { key: 'square', type: 'boolean', default: false },
   { key: 'push', type: 'boolean', default: false },
   { key: 'stretch', type: 'boolean', default: false },
-  { key: 'glossy', type: 'boolean', default: false },
+  { key: 'glossy', type: 'boolean', default: false }
 ]

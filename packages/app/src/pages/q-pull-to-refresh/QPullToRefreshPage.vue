@@ -55,7 +55,10 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-pull-to-refresh v-bind="boundProps" style="width: 300px; height: 150px; border: 1px solid #eee">
+      <q-pull-to-refresh
+        v-bind="boundProps"
+        style="width: 300px; height: 150px; border: 1px solid #eee"
+      >
         <div class="q-pa-md text-center">Pull down to refresh</div>
       </q-pull-to-refresh>
     </div>

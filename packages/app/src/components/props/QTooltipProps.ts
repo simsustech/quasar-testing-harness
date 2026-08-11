@@ -14,11 +14,11 @@ export const qTooltipDefaults = {
   maxWidth: '',
   anchor: 'bottom middle',
   self: 'top middle',
-  offset: [14,14],
+  offset: [14, 14],
   scrollTarget: '',
   delay: 0,
   hideDelay: 0,
-  persistent: false,
+  persistent: false
 } as const
 
 export const qTooltipSchema: PropSchema[] = [
@@ -30,11 +30,53 @@ export const qTooltipSchema: PropSchema[] = [
   { key: 'modelValue', type: 'string', default: '' },
   { key: 'maxHeight', type: 'string', default: '' },
   { key: 'maxWidth', type: 'string', default: '' },
-  { key: 'anchor', type: 'select', default: 'bottom middle', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'self', type: 'select', default: 'top middle', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'offset', type: 'string', default: [14,14] },
+  {
+    key: 'anchor',
+    type: 'select',
+    default: 'bottom middle',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  {
+    key: 'self',
+    type: 'select',
+    default: 'top middle',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  { key: 'offset', type: 'string', default: [14, 14] },
   { key: 'scrollTarget', type: 'string', default: '' },
   { key: 'delay', type: 'number', default: 0 },
   { key: 'hideDelay', type: 'number', default: 0 },
-  { key: 'persistent', type: 'boolean', default: false },
+  { key: 'persistent', type: 'boolean', default: false }
 ]

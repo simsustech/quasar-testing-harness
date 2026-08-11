@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qMenuDefaults,
-  qMenuSchema
-} from '../../components/props/QMenuProps'
+import { qMenuDefaults, qMenuSchema } from '../../components/props/QMenuProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {

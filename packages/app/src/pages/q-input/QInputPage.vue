@@ -72,7 +72,11 @@ const onUpdate = (next: Record<string, unknown>) => {
       data-testid="component-preview"
       :style="previewStyle"
     >
-      <q-input v-bind="boundProps" label="Full name" hint="Enter your full name" />
+      <q-input
+        v-bind="boundProps"
+        label="Full name"
+        hint="Enter your full name"
+      />
     </div>
 
     <ControlPanel

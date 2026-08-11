@@ -55,7 +55,12 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-uploader v-bind="boundProps" url="#" label="Upload files" style="width: 300px" />
+      <q-uploader
+        v-bind="boundProps"
+        url="#"
+        label="Upload files"
+        style="width: 300px"
+      />
     </div>
 
     <ControlPanel

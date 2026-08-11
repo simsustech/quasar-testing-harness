@@ -23,7 +23,7 @@ export const qDialogDefaults = {
   noRefocus: false,
   noFocus: false,
   noShake: false,
-  allowFocusOutside: false,
+  allowFocusOutside: false
 } as const
 
 export const qDialogSchema: PropSchema[] = [
@@ -41,10 +41,15 @@ export const qDialogSchema: PropSchema[] = [
   { key: 'maximized', type: 'boolean', default: false },
   { key: 'fullWidth', type: 'boolean', default: false },
   { key: 'fullHeight', type: 'boolean', default: false },
-  { key: 'position', type: 'select', default: 'standard', options: ['standard', 'top', 'right', 'bottom', 'left'] },
+  {
+    key: 'position',
+    type: 'select',
+    default: 'standard',
+    options: ['standard', 'top', 'right', 'bottom', 'left']
+  },
   { key: 'square', type: 'boolean', default: false },
   { key: 'noRefocus', type: 'boolean', default: false },
   { key: 'noFocus', type: 'boolean', default: false },
   { key: 'noShake', type: 'boolean', default: false },
-  { key: 'allowFocusOutside', type: 'boolean', default: false },
+  { key: 'allowFocusOutside', type: 'boolean', default: false }
 ]

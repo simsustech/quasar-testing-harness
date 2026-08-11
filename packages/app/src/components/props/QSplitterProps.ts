@@ -15,7 +15,7 @@ export const qSplitterDefaults = {
   afterClass: '',
   separatorClass: '',
   separatorStyle: '',
-  dark: '',
+  dark: ''
 } as const
 
 export const qSplitterSchema: PropSchema[] = [
@@ -30,5 +30,5 @@ export const qSplitterSchema: PropSchema[] = [
   { key: 'afterClass', type: 'string', default: '' },
   { key: 'separatorClass', type: 'string', default: '' },
   { key: 'separatorStyle', type: 'string', default: '' },
-  { key: 'dark', type: 'string', default: '' },
+  { key: 'dark', type: 'string', default: '' }
 ]

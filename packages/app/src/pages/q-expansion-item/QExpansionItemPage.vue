@@ -66,7 +66,8 @@ const onUpdate = (next: Record<string, unknown>) => {
       <q-expansion-item v-bind="boundProps">
         <q-card>
           <q-card-section>
-            This is the expanded content of the expansion item. It reveals additional detail when opened.
+            This is the expanded content of the expansion item. It reveals
+            additional detail when opened.
           </q-card-section>
         </q-card>
       </q-expansion-item>

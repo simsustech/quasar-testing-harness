@@ -28,7 +28,7 @@ export const qBtnToggleDefaults = {
   disable: false,
   stack: false,
   stretch: false,
-  clearable: false,
+  clearable: false
 } as const
 
 export const qBtnToggleSchema: PropSchema[] = [
@@ -56,5 +56,5 @@ export const qBtnToggleSchema: PropSchema[] = [
   { key: 'disable', type: 'boolean', default: false },
   { key: 'stack', type: 'boolean', default: false },
   { key: 'stretch', type: 'boolean', default: false },
-  { key: 'clearable', type: 'boolean', default: false },
+  { key: 'clearable', type: 'boolean', default: false }
 ]

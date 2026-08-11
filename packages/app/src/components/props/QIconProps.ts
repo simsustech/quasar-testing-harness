@@ -9,7 +9,7 @@ export const qIconDefaults = {
   name: '',
   color: '',
   left: false,
-  right: false,
+  right: false
 } as const
 
 export const qIconSchema: PropSchema[] = [
@@ -18,5 +18,5 @@ export const qIconSchema: PropSchema[] = [
   { key: 'name', type: 'string', default: '' },
   { key: 'color', type: 'string', default: '' },
   { key: 'left', type: 'boolean', default: false },
-  { key: 'right', type: 'boolean', default: false },
+  { key: 'right', type: 'boolean', default: false }
 ]

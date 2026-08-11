@@ -61,8 +61,12 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-tab-panels v-bind="boundProps">
-        <q-tab-panel name="overview">High-level summary of the product.</q-tab-panel>
-        <q-tab-panel name="details">Detailed specifications and metadata.</q-tab-panel>
+        <q-tab-panel name="overview"
+          >High-level summary of the product.</q-tab-panel
+        >
+        <q-tab-panel name="details"
+          >Detailed specifications and metadata.</q-tab-panel
+        >
         <q-tab-panel name="reviews">What customers are saying.</q-tab-panel>
       </q-tab-panels>
     </div>

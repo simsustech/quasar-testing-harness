@@ -23,7 +23,7 @@ export const qCheckboxDefaults = {
   dark: '',
   dense: false,
   disable: false,
-  tabindex: '',
+  tabindex: ''
 } as const
 
 export const qCheckboxSchema: PropSchema[] = [
@@ -46,5 +46,5 @@ export const qCheckboxSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
   { key: 'dense', type: 'boolean', default: false },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'tabindex', type: 'string', default: '' },
+  { key: 'tabindex', type: 'string', default: '' }
 ]

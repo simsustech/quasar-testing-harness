@@ -9,7 +9,7 @@ export const qPullToRefreshDefaults = {
   icon: '',
   noMouse: false,
   disable: false,
-  scrollTarget: '',
+  scrollTarget: ''
 } as const
 
 export const qPullToRefreshSchema: PropSchema[] = [
@@ -18,5 +18,5 @@ export const qPullToRefreshSchema: PropSchema[] = [
   { key: 'icon', type: 'string', default: '' },
   { key: 'noMouse', type: 'boolean', default: false },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'scrollTarget', type: 'string', default: '' },
+  { key: 'scrollTarget', type: 'string', default: '' }
 ]

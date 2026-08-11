@@ -25,7 +25,7 @@ export const qToggleDefaults = {
   disable: false,
   tabindex: '',
   icon: '',
-  iconColor: '',
+  iconColor: ''
 } as const
 
 export const qToggleSchema: PropSchema[] = [
@@ -50,5 +50,5 @@ export const qToggleSchema: PropSchema[] = [
   { key: 'disable', type: 'boolean', default: false },
   { key: 'tabindex', type: 'string', default: '' },
   { key: 'icon', type: 'string', default: '' },
-  { key: 'iconColor', type: 'string', default: '' },
+  { key: 'iconColor', type: 'string', default: '' }
 ]

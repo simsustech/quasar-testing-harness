@@ -32,7 +32,7 @@ export const qUploaderDefaults = {
   hideUploadBtn: false,
   thumbnailFit: 'cover',
   disable: false,
-  readonly: false,
+  readonly: false
 } as const
 
 export const qUploaderSchema: PropSchema[] = [
@@ -47,7 +47,12 @@ export const qUploaderSchema: PropSchema[] = [
   { key: 'batch', type: 'string', default: '' },
   { key: 'multiple', type: 'boolean', default: false },
   { key: 'accept', type: 'string', default: '' },
-  { key: 'capture', type: 'select', default: '', options: ['user', 'environment'] },
+  {
+    key: 'capture',
+    type: 'select',
+    default: '',
+    options: ['user', 'environment']
+  },
   { key: 'maxFileSize', type: 'string', default: '' },
   { key: 'maxTotalSize', type: 'string', default: '' },
   { key: 'maxFiles', type: 'string', default: '' },
@@ -64,5 +69,5 @@ export const qUploaderSchema: PropSchema[] = [
   { key: 'hideUploadBtn', type: 'boolean', default: false },
   { key: 'thumbnailFit', type: 'string', default: 'cover' },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'readonly', type: 'boolean', default: false },
+  { key: 'readonly', type: 'boolean', default: false }
 ]

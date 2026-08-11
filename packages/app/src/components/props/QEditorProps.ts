@@ -18,7 +18,11 @@ export const qEditorDefaults = {
   height: '',
   definitions: '',
   fonts: '',
-  toolbar: [["left","center","right","justify"],["bold","italic","underline","strike"],["undo","redo"]],
+  toolbar: [
+    ['left', 'center', 'right', 'justify'],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['undo', 'redo']
+  ],
   toolbarColor: '',
   toolbarTextColor: '',
   toolbarToggleColor: 'primary',
@@ -29,7 +33,7 @@ export const qEditorDefaults = {
   paragraphTag: 'div',
   contentStyle: '',
   contentClass: '',
-  placeholder: '',
+  placeholder: ''
 } as const
 
 export const qEditorSchema: PropSchema[] = [
@@ -47,7 +51,15 @@ export const qEditorSchema: PropSchema[] = [
   { key: 'height', type: 'string', default: '' },
   { key: 'definitions', type: 'string', default: '' },
   { key: 'fonts', type: 'string', default: '' },
-  { key: 'toolbar', type: 'string', default: [["left","center","right","justify"],["bold","italic","underline","strike"],["undo","redo"]] },
+  {
+    key: 'toolbar',
+    type: 'string',
+    default: [
+      ['left', 'center', 'right', 'justify'],
+      ['bold', 'italic', 'underline', 'strike'],
+      ['undo', 'redo']
+    ]
+  },
   { key: 'toolbarColor', type: 'string', default: '' },
   { key: 'toolbarTextColor', type: 'string', default: '' },
   { key: 'toolbarToggleColor', type: 'string', default: 'primary' },
@@ -55,8 +67,13 @@ export const qEditorSchema: PropSchema[] = [
   { key: 'toolbarOutline', type: 'boolean', default: false },
   { key: 'toolbarPush', type: 'boolean', default: false },
   { key: 'toolbarRounded', type: 'boolean', default: false },
-  { key: 'paragraphTag', type: 'select', default: 'div', options: ['div', 'p'] },
+  {
+    key: 'paragraphTag',
+    type: 'select',
+    default: 'div',
+    options: ['div', 'p']
+  },
   { key: 'contentStyle', type: 'string', default: '' },
   { key: 'contentClass', type: 'string', default: '' },
-  { key: 'placeholder', type: 'string', default: '' },
+  { key: 'placeholder', type: 'string', default: '' }
 ]

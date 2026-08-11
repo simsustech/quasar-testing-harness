@@ -62,8 +62,23 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div style="width: 100%; max-width: 400px">
-        <q-popup-edit v-bind="boundProps" title="Edit note" label-set="Save" auto-save>
-          <div style="padding: 8px 12px; border: 1px solid #c0c0c0; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: space-between">
+        <q-popup-edit
+          v-bind="boundProps"
+          title="Edit note"
+          label-set="Save"
+          auto-save
+        >
+          <div
+            style="
+              padding: 8px 12px;
+              border: 1px solid #c0c0c0;
+              border-radius: 4px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
             <span>{{ props.modelValue || 'Click to edit' }}</span>
             <q-icon name="i-mdi-pencil" size="16px" color="grey" />
           </div>

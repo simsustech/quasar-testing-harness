@@ -4,9 +4,9 @@
 import type { PropSchema } from '../../types/props'
 
 export const qToolbarDefaults = {
-  inset: false,
+  inset: false
 } as const
 
 export const qToolbarSchema: PropSchema[] = [
-  { key: 'inset', type: 'boolean', default: false },
+  { key: 'inset', type: 'boolean', default: false }
 ]

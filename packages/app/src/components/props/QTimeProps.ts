@@ -25,7 +25,7 @@ export const qTimeDefaults = {
   minuteOptions: '',
   secondOptions: '',
   withSeconds: false,
-  nowBtn: false,
+  nowBtn: false
 } as const
 
 export const qTimeSchema: PropSchema[] = [
@@ -33,7 +33,12 @@ export const qTimeSchema: PropSchema[] = [
   { key: 'landscape', type: 'boolean', default: false },
   { key: 'mask', type: 'string', default: 'HH:mm' },
   { key: 'locale', type: 'string', default: '' },
-  { key: 'calendar', type: 'select', default: 'gregorian', options: ['gregorian', 'persian'] },
+  {
+    key: 'calendar',
+    type: 'select',
+    default: 'gregorian',
+    options: ['gregorian', 'persian']
+  },
   { key: 'color', type: 'string', default: '' },
   { key: 'textColor', type: 'string', default: '' },
   { key: 'dark', type: 'string', default: '' },
@@ -50,5 +55,5 @@ export const qTimeSchema: PropSchema[] = [
   { key: 'minuteOptions', type: 'string', default: '' },
   { key: 'secondOptions', type: 'string', default: '' },
   { key: 'withSeconds', type: 'boolean', default: false },
-  { key: 'nowBtn', type: 'boolean', default: false },
+  { key: 'nowBtn', type: 'boolean', default: false }
 ]

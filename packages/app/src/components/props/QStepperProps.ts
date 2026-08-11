@@ -30,7 +30,7 @@ export const qStepperDefaults = {
   activeColor: '',
   errorIcon: '',
   errorColor: '',
-  headerClass: '',
+  headerClass: ''
 } as const
 
 export const qStepperSchema: PropSchema[] = [
@@ -60,5 +60,5 @@ export const qStepperSchema: PropSchema[] = [
   { key: 'activeColor', type: 'string', default: '' },
   { key: 'errorIcon', type: 'string', default: '' },
   { key: 'errorColor', type: 'string', default: '' },
-  { key: 'headerClass', type: 'string', default: '' },
+  { key: 'headerClass', type: 'string', default: '' }
 ]

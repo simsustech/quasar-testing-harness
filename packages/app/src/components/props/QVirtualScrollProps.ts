@@ -16,7 +16,7 @@ export const qVirtualScrollDefaults = {
   items: [],
   itemsSize: 0,
   itemsFn: '',
-  scrollTarget: '',
+  scrollTarget: ''
 } as const
 
 export const qVirtualScrollSchema: PropSchema[] = [
@@ -32,5 +32,5 @@ export const qVirtualScrollSchema: PropSchema[] = [
   { key: 'items', type: 'string', default: [] },
   { key: 'itemsSize', type: 'number', default: 0 },
   { key: 'itemsFn', type: 'string', default: '' },
-  { key: 'scrollTarget', type: 'string', default: '' },
+  { key: 'scrollTarget', type: 'string', default: '' }
 ]

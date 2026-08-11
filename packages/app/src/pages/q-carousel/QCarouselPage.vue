@@ -20,7 +20,7 @@ const pageDefaults = {
   navigation: false,
   swipeable: true,
   animated: true,
-  thumbnails: true,
+  thumbnails: true
 } as const
 
 const slide = ref('1')
@@ -68,15 +68,40 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-carousel v-model="slide" v-bind="boundProps" style="width: 100%; aspect-ratio: 16/9">
-        <q-carousel-slide name="1" :img-src="'https://cdn.quasar.dev/img/mountains.jpg'" class="row items-center justify-center">
-          <img src="https://cdn.quasar.dev/img/mountains.jpg" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+      <q-carousel
+        v-model="slide"
+        v-bind="boundProps"
+        style="width: 100%; aspect-ratio: 16/9"
+      >
+        <q-carousel-slide
+          name="1"
+          :img-src="'https://cdn.quasar.dev/img/mountains.jpg'"
+          class="row items-center justify-center"
+        >
+          <img
+            src="https://cdn.quasar.dev/img/mountains.jpg"
+            style="max-width: 100%; max-height: 100%; object-fit: contain"
+          />
         </q-carousel-slide>
-        <q-carousel-slide name="2" :img-src="'https://cdn.quasar.dev/img/quasar.jpg'" class="row items-center justify-center">
-          <img src="https://cdn.quasar.dev/img/quasar.jpg" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+        <q-carousel-slide
+          name="2"
+          :img-src="'https://cdn.quasar.dev/img/quasar.jpg'"
+          class="row items-center justify-center"
+        >
+          <img
+            src="https://cdn.quasar.dev/img/quasar.jpg"
+            style="max-width: 100%; max-height: 100%; object-fit: contain"
+          />
         </q-carousel-slide>
-        <q-carousel-slide name="3" :img-src="'https://cdn.quasar.dev/img/cat.jpg'" class="row items-center justify-center">
-          <img src="https://cdn.quasar.dev/img/cat.jpg" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+        <q-carousel-slide
+          name="3"
+          :img-src="'https://cdn.quasar.dev/img/cat.jpg'"
+          class="row items-center justify-center"
+        >
+          <img
+            src="https://cdn.quasar.dev/img/cat.jpg"
+            style="max-width: 100%; max-height: 100%; object-fit: contain"
+          />
         </q-carousel-slide>
       </q-carousel>
     </div>

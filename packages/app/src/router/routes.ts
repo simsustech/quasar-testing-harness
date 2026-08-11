@@ -19,7 +19,8 @@ const componentRoutes: RouteRecordRaw[] = components.map((c) => {
     name: c.slug,
     component: (loader
       ? () => loader()
-      : () => import('../pages/NotImplementedPage.vue')) as RouteRecordRaw['component'],
+      : () =>
+          import('../pages/NotImplementedPage.vue')) as RouteRecordRaw['component'],
     meta: { componentName: c.name, milestone: c.milestone }
   }
 })
@@ -29,11 +30,15 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('../layouts/MainLayout.vue'),
     children: [
-      { path: '', name: 'index', component: () => import('../pages/IndexPage.vue') },
+      {
+        path: '',
+        name: 'index',
+        component: () => import('../pages/IndexPage.vue')
+      },
       {
         path: 'review',
         name: 'review',
-        component: () => import('../pages/review/ReviewPage.vue'),
+        component: () => import('../pages/review/ReviewPage.vue')
       },
       {
         path: 'composites',

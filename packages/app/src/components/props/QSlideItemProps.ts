@@ -8,7 +8,7 @@ export const qSlideItemDefaults = {
   rightColor: '',
   topColor: '',
   bottomColor: '',
-  dark: '',
+  dark: ''
 } as const
 
 export const qSlideItemSchema: PropSchema[] = [
@@ -16,5 +16,5 @@ export const qSlideItemSchema: PropSchema[] = [
   { key: 'rightColor', type: 'string', default: '' },
   { key: 'topColor', type: 'string', default: '' },
   { key: 'bottomColor', type: 'string', default: '' },
-  { key: 'dark', type: 'string', default: '' },
+  { key: 'dark', type: 'string', default: '' }
 ]

@@ -60,7 +60,9 @@ const filteredComponents = computed(() => {
     if (selectedStyles.value.length === 0) return false
     if (selectedDevices.value.length === 0) return false
     return g.screenshots.some(
-      (s) => selectedStyles.value.includes(s.style) && selectedDevices.value.includes(s.device)
+      (s) =>
+        selectedStyles.value.includes(s.style) &&
+        selectedDevices.value.includes(s.device)
     )
   })
 })
@@ -71,7 +73,9 @@ const currentScreenshots = computed(() => {
   const group = m.groups.find((g) => g.component === selectedComponent.value)
   if (!group) return []
   return group.screenshots.filter(
-    (s) => selectedStyles.value.includes(s.style) && selectedDevices.value.includes(s.device)
+    (s) =>
+      selectedStyles.value.includes(s.style) &&
+      selectedDevices.value.includes(s.device)
   )
 })
 
@@ -123,35 +127,52 @@ const toggleDevice = (device: string) => {
           <q-item-section>
             <q-item-label class="text-caption">{{ g.component }}</q-item-label>
             <q-item-label caption class="text-caption">
-              {{ g.screenshots.filter((s) => selectedStyles.includes(s.style)).length }} shots
+              {{
+                g.screenshots.filter((s) => selectedStyles.includes(s.style))
+                  .length
+              }}
+              shots
             </q-item-label>
           </q-item-section>
         </q-item>
         <q-item v-if="filteredComponents.length === 0" disable>
-          <q-item-section class="text-grey-5 text-center">No components match</q-item-section>
+          <q-item-section class="text-grey-5 text-center"
+            >No components match</q-item-section
+          >
         </q-item>
       </q-list>
     </q-drawer>
 
     <q-page-container>
       <div class="q-pa-sm">
-        <div class="row items-center q-mb-sm q-gutter-xs" style="min-height: 40px">
+        <div
+          class="row items-center q-mb-sm q-gutter-xs"
+          style="min-height: 40px"
+        >
           <q-btn
-            flat round dense icon="i-mdi-menu"
+            flat
+            round
+            dense
+            icon="i-mdi-menu"
             data-testid="drawer-toggle"
             @click="drawerOpen = !drawerOpen"
             size="sm"
           />
-          <div class="text-subtitle2 text-grey-8 q-mr-sm">Screenshot Review</div>
+          <div class="text-subtitle2 text-grey-8 q-mr-sm">
+            Screenshot Review
+          </div>
           <div class="row items-center q-gutter-xs">
             <q-chip
               v-for="s in allStyles"
               :key="s"
               :color="selectedStyles.includes(s) ? 'primary' : 'grey-3'"
               :text-color="selectedStyles.includes(s) ? 'white' : 'grey-7'"
-              size="sm" dense clickable
+              size="sm"
+              dense
+              clickable
               @click="toggleStyle(s)"
-            >{{ s }}</q-chip>
+              >{{ s }}</q-chip
+            >
           </div>
           <div class="row items-center q-gutter-xs q-ml-sm">
             <q-chip
@@ -159,66 +180,112 @@ const toggleDevice = (device: string) => {
               :key="d"
               :color="selectedDevices.includes(d) ? 'orange' : 'grey-3'"
               :text-color="selectedDevices.includes(d) ? 'white' : 'grey-7'"
-              size="sm" dense clickable
+              size="sm"
+              dense
+              clickable
               @click="toggleDevice(d)"
-            >{{ d }}</q-chip>
+              >{{ d }}</q-chip
+            >
           </div>
           <q-space />
           <q-input
-            v-model="searchQuery" placeholder="Search..." dense outlined clearable
+            v-model="searchQuery"
+            placeholder="Search..."
+            dense
+            outlined
+            clearable
             style="min-width: 140px; max-width: 220px"
           >
             <template v-slot:prepend><q-icon name="i-mdi-magnify" /></template>
           </q-input>
         </div>
 
-        <div v-if="loading" class="column items-center justify-center" style="height: 60vh">
+        <div
+          v-if="loading"
+          class="column items-center justify-center"
+          style="height: 60vh"
+        >
           <q-spinner color="primary" size="3em" />
           <div class="q-mt-sm text-grey-7">Loading screenshots...</div>
         </div>
-        <div v-else-if="error" class="column items-center justify-center" style="height: 60vh">
+        <div
+          v-else-if="error"
+          class="column items-center justify-center"
+          style="height: 60vh"
+        >
           <q-icon name="i-mdi-alert-circle" color="orange" size="3em" />
           <div class="q-mt-sm text-grey-7">{{ error }}</div>
         </div>
 
-        <div v-else-if="currentScreenshots.length === 0" class="column items-center justify-center text-grey-5" style="height: 60vh">
+        <div
+          v-else-if="currentScreenshots.length === 0"
+          class="column items-center justify-center text-grey-5"
+          style="height: 60vh"
+        >
           Select a component to view screenshots
         </div>
 
-        <div v-else class="column" style="min-height: 400px; height: calc(100vh - 200px)">
+        <div
+          v-else
+          class="column"
+          style="min-height: 400px; height: calc(100vh - 200px)"
+        >
           <q-carousel
             v-model="slideIndex"
-            swipeable animated arrows
-            navigation navigation-position="bottom"
+            swipeable
+            animated
+            arrows
+            navigation
+            navigation-position="bottom"
             style="flex: 1; min-height: 0"
           >
             <q-carousel-slide
               v-for="(shot, i) in currentScreenshots"
-              :key="i" :name="i"
+              :key="i"
+              :name="i"
               class="column items-center justify-center"
             >
               <q-img
                 :src="shot.image"
                 fit="contain"
                 style="max-height: 100%; max-width: 100%"
-                spinner-color="primary" loading="lazy"
+                spinner-color="primary"
+                loading="lazy"
               />
             </q-carousel-slide>
           </q-carousel>
 
-          <div class="row items-center q-mt-xs q-gutter-x-xs q-px-sm" style="min-height: 32px">
+          <div
+            class="row items-center q-mt-xs q-gutter-x-xs q-px-sm"
+            style="min-height: 32px"
+          >
             <q-badge
-              :color="currentScreenshots[slideIndex]?.style === 'md3' ? 'primary' : currentScreenshots[slideIndex]?.style === 'md2' ? 'secondary' : 'grey-7'"
-            >{{ currentScreenshots[slideIndex]?.style }}</q-badge>
+              :color="
+                currentScreenshots[slideIndex]?.style === 'md3'
+                  ? 'primary'
+                  : currentScreenshots[slideIndex]?.style === 'md2'
+                    ? 'secondary'
+                    : 'grey-7'
+              "
+              >{{ currentScreenshots[slideIndex]?.style }}</q-badge
+            >
             <q-badge color="orange" outline>
               {{ currentScreenshots[slideIndex]?.device }}
             </q-badge>
-            <span class="text-caption text-weight-medium">{{ currentScreenshots[slideIndex]?.label }}</span>
+            <span class="text-caption text-weight-medium">{{
+              currentScreenshots[slideIndex]?.label
+            }}</span>
             <q-space />
-            <router-link v-if="currentScreenshots[slideIndex]?.url"
-              :to="currentScreenshots[slideIndex]!.url!" class="text-caption" target="_blank"
-            >View in Playground &rarr;</router-link>
-            <span class="text-grey-6 text-caption q-ml-sm">{{ slideIndex + 1 }} / {{ currentScreenshots.length }}</span>
+            <router-link
+              v-if="currentScreenshots[slideIndex]?.url"
+              :to="currentScreenshots[slideIndex]!.url!"
+              class="text-caption"
+              target="_blank"
+              >View in Playground &rarr;</router-link
+            >
+            <span class="text-grey-6 text-caption q-ml-sm"
+              >{{ slideIndex + 1 }} / {{ currentScreenshots.length }}</span
+            >
           </div>
         </div>
       </div>

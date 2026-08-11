@@ -100,7 +100,8 @@ export function useQueryProps<T extends Record<string, unknown>>(
   syncFromUrl(route.query)
   watch(
     () => route.query,
-    (q) => syncFromUrl(q as Record<string, string | string[] | null | undefined>)
+    (q) =>
+      syncFromUrl(q as Record<string, string | string[] | null | undefined>)
   )
 
   const setProp = <K extends keyof T>(key: K, value: T[K]) => {

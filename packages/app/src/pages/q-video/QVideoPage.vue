@@ -61,8 +61,8 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div style="width: 100%; max-width: 560px; margin: 0 auto;">
-        <q-video v-bind="boundProps" style="padding-bottom: 56.25%;" />
+      <div style="width: 100%; max-width: 560px; margin: 0 auto">
+        <q-video v-bind="boundProps" style="padding-bottom: 56.25%" />
       </div>
     </div>
 

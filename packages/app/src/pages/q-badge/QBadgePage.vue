@@ -61,7 +61,8 @@ const onUpdate = (next: Record<string, unknown>) => {
         align-items: center;
         justify-content: center;
         min-height: 120px;
-      ">
+      "
+    >
       <q-badge v-bind="boundProps" />
     </div>
 

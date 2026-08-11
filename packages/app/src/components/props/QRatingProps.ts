@@ -18,7 +18,7 @@ export const qRatingDefaults = {
   noDimming: false,
   noReset: false,
   readonly: false,
-  disable: false,
+  disable: false
 } as const
 
 export const qRatingSchema: PropSchema[] = [
@@ -36,5 +36,5 @@ export const qRatingSchema: PropSchema[] = [
   { key: 'noDimming', type: 'boolean', default: false },
   { key: 'noReset', type: 'boolean', default: false },
   { key: 'readonly', type: 'boolean', default: false },
-  { key: 'disable', type: 'boolean', default: false },
+  { key: 'disable', type: 'boolean', default: false }
 ]

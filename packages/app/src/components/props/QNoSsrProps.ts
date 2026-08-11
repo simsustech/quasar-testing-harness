@@ -5,10 +5,10 @@ import type { PropSchema } from '../../types/props'
 
 export const qNoSsrDefaults = {
   tag: 'div',
-  placeholder: '',
+  placeholder: ''
 } as const
 
 export const qNoSsrSchema: PropSchema[] = [
   { key: 'tag', type: 'string', default: 'div' },
-  { key: 'placeholder', type: 'string', default: '' },
+  { key: 'placeholder', type: 'string', default: '' }
 ]

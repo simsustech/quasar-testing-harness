@@ -6,10 +6,7 @@
         data-testid="app-toolbar"
       >
         <q-toolbar-title style="font-size: 14px; font-weight: 500">
-          <router-link
-            to="/"
-            style="color: inherit; text-decoration: none"
-          >
+          <router-link to="/" style="color: inherit; text-decoration: none">
             Quasar Component Playground
           </router-link>
         </q-toolbar-title>
@@ -55,5 +52,8 @@ import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
 const route = useRoute()
-watch(() => route.query.dark, (v) => $q.dark.set(v === "true"))
+watch(
+  () => route.query.dark,
+  (v) => $q.dark.set(v === 'true')
+)
 </script>

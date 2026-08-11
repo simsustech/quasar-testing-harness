@@ -39,7 +39,7 @@ export const qSliderDefaults = {
   readonly: false,
   tabindex: '',
   modelValue: '',
-  labelValue: '',
+  labelValue: ''
 } as const
 
 export const qSliderSchema: PropSchema[] = [
@@ -71,12 +71,16 @@ export const qSliderSchema: PropSchema[] = [
   { key: 'trackSize', type: 'string', default: '4px' },
   { key: 'thumbSize', type: 'string', default: '20px' },
   { key: 'thumbColor', type: 'string', default: '' },
-  { key: 'thumbPath', type: 'string', default: 'M 4, 10 a 6,6 0 1,0 12,0 a 6,6 0 1,0 -12,0' },
+  {
+    key: 'thumbPath',
+    type: 'string',
+    default: 'M 4, 10 a 6,6 0 1,0 12,0 a 6,6 0 1,0 -12,0'
+  },
   { key: 'dark', type: 'string', default: '' },
   { key: 'dense', type: 'boolean', default: false },
   { key: 'disable', type: 'boolean', default: false },
   { key: 'readonly', type: 'boolean', default: false },
   { key: 'tabindex', type: 'string', default: '' },
   { key: 'modelValue', type: 'string', default: '' },
-  { key: 'labelValue', type: 'string', default: '' },
+  { key: 'labelValue', type: 'string', default: '' }
 ]

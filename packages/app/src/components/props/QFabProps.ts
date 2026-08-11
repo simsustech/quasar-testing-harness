@@ -28,11 +28,16 @@ export const qFabDefaults = {
   hideIcon: false,
   direction: 'right',
   verticalActionsAlign: 'center',
-  persistent: false,
+  persistent: false
 } as const
 
 export const qFabSchema: PropSchema[] = [
-  { key: 'type', type: 'select', default: 'a', options: ['a', 'submit', 'button', 'reset'] },
+  {
+    key: 'type',
+    type: 'select',
+    default: 'a',
+    options: ['a', 'submit', 'button', 'reset']
+  },
   { key: 'outline', type: 'boolean', default: false },
   { key: 'push', type: 'boolean', default: false },
   { key: 'flat', type: 'boolean', default: false },
@@ -43,7 +48,12 @@ export const qFabSchema: PropSchema[] = [
   { key: 'glossy', type: 'boolean', default: false },
   { key: 'externalLabel', type: 'boolean', default: false },
   { key: 'label', type: 'string', default: '' },
-  { key: 'labelPosition', type: 'select', default: 'right', options: ['top', 'right', 'bottom', 'left'] },
+  {
+    key: 'labelPosition',
+    type: 'select',
+    default: 'right',
+    options: ['top', 'right', 'bottom', 'left']
+  },
   { key: 'hideLabel', type: 'string', default: '' },
   { key: 'labelClass', type: 'string', default: '' },
   { key: 'labelStyle', type: 'string', default: '' },
@@ -54,7 +64,17 @@ export const qFabSchema: PropSchema[] = [
   { key: 'icon', type: 'string', default: '' },
   { key: 'activeIcon', type: 'string', default: '' },
   { key: 'hideIcon', type: 'boolean', default: false },
-  { key: 'direction', type: 'select', default: 'right', options: ['up', 'right', 'down', 'left'] },
-  { key: 'verticalActionsAlign', type: 'select', default: 'center', options: ['left', 'center', 'right'] },
-  { key: 'persistent', type: 'boolean', default: false },
+  {
+    key: 'direction',
+    type: 'select',
+    default: 'right',
+    options: ['up', 'right', 'down', 'left']
+  },
+  {
+    key: 'verticalActionsAlign',
+    type: 'select',
+    default: 'center',
+    options: ['left', 'center', 'right']
+  },
+  { key: 'persistent', type: 'boolean', default: false }
 ]

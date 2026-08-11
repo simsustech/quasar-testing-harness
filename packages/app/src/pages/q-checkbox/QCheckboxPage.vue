@@ -19,7 +19,9 @@ const pageDefaults = {
   label: 'I agree to the terms'
 } as const
 
-const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<
+  Record<string, unknown>
+>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 

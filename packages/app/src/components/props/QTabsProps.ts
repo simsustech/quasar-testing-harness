@@ -24,7 +24,7 @@ export const qTabsDefaults = {
   narrowIndicator: false,
   inlineLabel: false,
   noCaps: false,
-  dense: false,
+  dense: false
 } as const
 
 export const qTabsSchema: PropSchema[] = [
@@ -32,7 +32,12 @@ export const qTabsSchema: PropSchema[] = [
   { key: 'vertical', type: 'boolean', default: false },
   { key: 'outsideArrows', type: 'boolean', default: false },
   { key: 'mobileArrows', type: 'boolean', default: false },
-  { key: 'align', type: 'select', default: 'center', options: ['left', 'center', 'right', 'justify'] },
+  {
+    key: 'align',
+    type: 'select',
+    default: 'center',
+    options: ['left', 'center', 'right', 'justify']
+  },
   { key: 'breakpoint', type: 'string', default: '600' },
   { key: 'activeColor', type: 'string', default: '' },
   { key: 'activeBgColor', type: 'string', default: '' },
@@ -48,5 +53,5 @@ export const qTabsSchema: PropSchema[] = [
   { key: 'narrowIndicator', type: 'boolean', default: false },
   { key: 'inlineLabel', type: 'boolean', default: false },
   { key: 'noCaps', type: 'boolean', default: false },
-  { key: 'dense', type: 'boolean', default: false },
+  { key: 'dense', type: 'boolean', default: false }
 ]

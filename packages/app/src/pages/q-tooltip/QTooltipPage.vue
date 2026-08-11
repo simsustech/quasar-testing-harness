@@ -20,7 +20,9 @@ const pageDefaults = {
   self: '',
   offset: ''
 } as const
-const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<
+  Record<string, unknown>
+>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 const vmodel = bindModel('modelValue')
@@ -63,7 +65,12 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-btn label="Hover me" color="primary">
-        <q-tooltip v-model="vmodel" v-bind="boundProps" anchor="top middle" self="bottom middle">
+        <q-tooltip
+          v-model="vmodel"
+          v-bind="boundProps"
+          anchor="top middle"
+          self="bottom middle"
+        >
           This is a tooltip with useful information.
         </q-tooltip>
       </q-btn>

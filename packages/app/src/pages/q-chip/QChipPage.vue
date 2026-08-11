@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qChipDefaults,
-  qChipSchema
-} from '../../components/props/QChipProps'
+import { qChipDefaults, qChipSchema } from '../../components/props/QChipProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 /** Empty-string the props where App.vue's per-style setDefaultProps wins. */

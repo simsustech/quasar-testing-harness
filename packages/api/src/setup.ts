@@ -3,9 +3,8 @@ import { fileURLToPath } from 'node:url'
 
 // Import the SSR plugin from the built app package.
 // The app must be built first with: vitrify build -m ssr
-const { fastifySsrPlugin } = await import(
-  '@quasar-testing-harness/app/fastify-ssr-plugin'
-)
+const { fastifySsrPlugin } =
+  await import('@quasar-testing-harness/app/fastify-ssr-plugin')
 
 const { hooks } = await import('@quasar-testing-harness/app/hooks')
 

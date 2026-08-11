@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qIconDefaults,
-  qIconSchema
-} from '../../components/props/QIconProps'
+import { qIconDefaults, qIconSchema } from '../../components/props/QIconProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {

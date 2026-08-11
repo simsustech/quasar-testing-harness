@@ -55,7 +55,11 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-splitter v-bind="boundProps" style="height: 200px; width: 400px" unit="px">
+      <q-splitter
+        v-bind="boundProps"
+        style="height: 200px; width: 400px"
+        unit="px"
+      >
         <template v-slot:before>
           <div class="q-pa-sm column items-center justify-center full-height">
             <q-icon name="i-mdi-view-dashboard" size="32px" />

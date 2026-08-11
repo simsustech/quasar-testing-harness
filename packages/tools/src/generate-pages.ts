@@ -14,12 +14,7 @@
  *   pnpm --filter @quasar-testing-harness/tools generate:pages
  *   pnpm --filter @quasar-testing-harness/tools generate:pages -- --only QBtn,QInput
  */
-import {
-  readFileSync,
-  writeFileSync,
-  mkdirSync,
-  existsSync
-} from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 

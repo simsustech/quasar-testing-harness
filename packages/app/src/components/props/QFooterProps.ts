@@ -8,7 +8,7 @@ export const qFooterDefaults = {
   reveal: false,
   bordered: false,
   elevated: false,
-  heightHint: '50',
+  heightHint: '50'
 } as const
 
 export const qFooterSchema: PropSchema[] = [
@@ -16,5 +16,5 @@ export const qFooterSchema: PropSchema[] = [
   { key: 'reveal', type: 'boolean', default: false },
   { key: 'bordered', type: 'boolean', default: false },
   { key: 'elevated', type: 'boolean', default: false },
-  { key: 'heightHint', type: 'string', default: '50' },
+  { key: 'heightHint', type: 'string', default: '50' }
 ]

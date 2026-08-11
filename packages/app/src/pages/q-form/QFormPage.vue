@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qFormDefaults,
-  qFormSchema
-} from '../../components/props/QFormProps'
+import { qFormDefaults, qFormSchema } from '../../components/props/QFormProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -57,7 +54,12 @@ const onUpdate = (next: Record<string, unknown>) => {
     >
       <q-form v-bind="boundProps" class="q-gutter-md" style="width: 300px">
         <q-input label="Email" hint="Enter your email" filled />
-        <q-input label="Password" type="password" hint="Enter your password" filled />
+        <q-input
+          label="Password"
+          type="password"
+          hint="Enter your password"
+          filled
+        />
         <q-btn label="Submit" color="primary" />
       </q-form>
     </div>

@@ -34,7 +34,7 @@ export const qDateDefaults = {
   minimal: false,
   multiple: false,
   range: false,
-  emitImmediately: false,
+  emitImmediately: false
 } as const
 
 export const qDateSchema: PropSchema[] = [
@@ -42,7 +42,12 @@ export const qDateSchema: PropSchema[] = [
   { key: 'landscape', type: 'boolean', default: false },
   { key: 'mask', type: 'string', default: 'YYYY/MM/DD' },
   { key: 'locale', type: 'string', default: '' },
-  { key: 'calendar', type: 'select', default: 'gregorian', options: ['gregorian', 'persian'] },
+  {
+    key: 'calendar',
+    type: 'select',
+    default: 'gregorian',
+    options: ['gregorian', 'persian']
+  },
   { key: 'color', type: 'string', default: '' },
   { key: 'textColor', type: 'string', default: '' },
   { key: 'dark', type: 'string', default: '' },
@@ -55,7 +60,12 @@ export const qDateSchema: PropSchema[] = [
   { key: 'title', type: 'string', default: '' },
   { key: 'subtitle', type: 'string', default: '' },
   { key: 'defaultYearMonth', type: 'string', default: '' },
-  { key: 'defaultView', type: 'select', default: 'Calendar', options: ['Calendar', 'Months', 'Years'] },
+  {
+    key: 'defaultView',
+    type: 'select',
+    default: 'Calendar',
+    options: ['Calendar', 'Months', 'Years']
+  },
   { key: 'yearsInMonthView', type: 'boolean', default: false },
   { key: 'events', type: 'string', default: '' },
   { key: 'eventColor', type: 'string', default: '' },
@@ -68,5 +78,5 @@ export const qDateSchema: PropSchema[] = [
   { key: 'minimal', type: 'boolean', default: false },
   { key: 'multiple', type: 'boolean', default: false },
   { key: 'range', type: 'boolean', default: false },
-  { key: 'emitImmediately', type: 'boolean', default: false },
+  { key: 'emitImmediately', type: 'boolean', default: false }
 ]

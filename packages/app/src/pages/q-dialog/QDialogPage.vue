@@ -20,7 +20,9 @@ const pageDefaults = {
   noEscDismiss: ''
 } as const
 
-const { props, setProp, reset, bindModel } = useQueryProps<Record<string, unknown>>({
+const { props, setProp, reset, bindModel } = useQueryProps<
+  Record<string, unknown>
+>({
   defaults: pageDefaults as unknown as Record<string, unknown>
 })
 

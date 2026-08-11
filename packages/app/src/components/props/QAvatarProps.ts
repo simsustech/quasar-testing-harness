@@ -10,7 +10,7 @@ export const qAvatarDefaults = {
   textColor: '',
   icon: '',
   square: false,
-  rounded: false,
+  rounded: false
 } as const
 
 export const qAvatarSchema: PropSchema[] = [
@@ -20,5 +20,5 @@ export const qAvatarSchema: PropSchema[] = [
   { key: 'textColor', type: 'string', default: '' },
   { key: 'icon', type: 'string', default: '' },
   { key: 'square', type: 'boolean', default: false },
-  { key: 'rounded', type: 'boolean', default: false },
+  { key: 'rounded', type: 'boolean', default: false }
 ]

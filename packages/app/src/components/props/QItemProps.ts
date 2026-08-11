@@ -20,7 +20,7 @@ export const qItemDefaults = {
   tabindex: '',
   tag: 'div',
   manualFocus: false,
-  focused: false,
+  focused: false
 } as const
 
 export const qItemSchema: PropSchema[] = [
@@ -28,7 +28,11 @@ export const qItemSchema: PropSchema[] = [
   { key: 'exact', type: 'boolean', default: false },
   { key: 'replace', type: 'boolean', default: false },
   { key: 'activeClass', type: 'string', default: 'q-router-link--active' },
-  { key: 'exactActiveClass', type: 'string', default: 'q-router-link--exact-active' },
+  {
+    key: 'exactActiveClass',
+    type: 'string',
+    default: 'q-router-link--exact-active'
+  },
   { key: 'href', type: 'string', default: '' },
   { key: 'target', type: 'string', default: '' },
   { key: 'disable', type: 'boolean', default: false },
@@ -40,5 +44,5 @@ export const qItemSchema: PropSchema[] = [
   { key: 'tabindex', type: 'string', default: '' },
   { key: 'tag', type: 'string', default: 'div' },
   { key: 'manualFocus', type: 'boolean', default: false },
-  { key: 'focused', type: 'boolean', default: false },
+  { key: 'focused', type: 'boolean', default: false }
 ]

@@ -17,7 +17,7 @@ export const qRadioDefaults = {
   dark: '',
   dense: false,
   disable: false,
-  tabindex: '',
+  tabindex: ''
 } as const
 
 export const qRadioSchema: PropSchema[] = [
@@ -34,5 +34,5 @@ export const qRadioSchema: PropSchema[] = [
   { key: 'dark', type: 'string', default: '' },
   { key: 'dense', type: 'boolean', default: false },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'tabindex', type: 'string', default: '' },
+  { key: 'tabindex', type: 'string', default: '' }
 ]

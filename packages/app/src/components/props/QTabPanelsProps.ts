@@ -16,7 +16,7 @@ export const qTabPanelsDefaults = {
   transitionPrev: '',
   transitionNext: '',
   transitionDuration: '300',
-  dark: '',
+  dark: ''
 } as const
 
 export const qTabPanelsSchema: PropSchema[] = [
@@ -32,5 +32,5 @@ export const qTabPanelsSchema: PropSchema[] = [
   { key: 'transitionPrev', type: 'string', default: '' },
   { key: 'transitionNext', type: 'string', default: '' },
   { key: 'transitionDuration', type: 'string', default: '300' },
-  { key: 'dark', type: 'string', default: '' },
+  { key: 'dark', type: 'string', default: '' }
 ]

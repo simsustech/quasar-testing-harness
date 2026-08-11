@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qTabsDefaults,
-  qTabsSchema
-} from '../../components/props/QTabsProps'
+import { qTabsDefaults, qTabsSchema } from '../../components/props/QTabsProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const pageDefaults = {
@@ -61,9 +58,21 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-tabs v-bind="boundProps">
-        <q-tab name="overview" label="Overview" icon="i-mdi-view-dashboard-outline" />
-        <q-tab name="details" label="Details" icon="i-mdi-information-outline" />
-        <q-tab name="reviews" label="Reviews" icon="i-mdi-comment-text-outline" />
+        <q-tab
+          name="overview"
+          label="Overview"
+          icon="i-mdi-view-dashboard-outline"
+        />
+        <q-tab
+          name="details"
+          label="Details"
+          icon="i-mdi-information-outline"
+        />
+        <q-tab
+          name="reviews"
+          label="Reviews"
+          icon="i-mdi-comment-text-outline"
+        />
       </q-tabs>
     </div>
 

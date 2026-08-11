@@ -7,10 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue'
 import ControlPanel from '../../components/ControlPanel.vue'
-import {
-  qBarDefaults,
-  qBarSchema
-} from '../../components/props/QBarProps'
+import { qBarDefaults, qBarSchema } from '../../components/props/QBarProps'
 import { useQueryProps } from '../../composables/useQueryProps'
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({

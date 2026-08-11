@@ -64,11 +64,11 @@ export const qTableDefaults = {
   filter: '',
   filterMethod: '',
   pagination: '',
-  rowsPerPageOptions: [5,7,10,15,20,25,50,0],
+  rowsPerPageOptions: [5, 7, 10, 15, 20, 25, 50, 0],
   selection: 'none',
   selected: [],
   expanded: '',
-  sortMethod: '',
+  sortMethod: ''
 } as const
 
 export const qTableSchema: PropSchema[] = [
@@ -106,10 +106,20 @@ export const qTableSchema: PropSchema[] = [
   { key: 'flat', type: 'boolean', default: false },
   { key: 'bordered', type: 'boolean', default: false },
   { key: 'square', type: 'boolean', default: false },
-  { key: 'separator', type: 'select', default: 'horizontal', options: ['horizontal', 'vertical', 'cell', 'none'] },
+  {
+    key: 'separator',
+    type: 'select',
+    default: 'horizontal',
+    options: ['horizontal', 'vertical', 'cell', 'none']
+  },
   { key: 'wrapCells', type: 'boolean', default: false },
   { key: 'binaryStateSort', type: 'boolean', default: false },
-  { key: 'columnSortOrder', type: 'select', default: 'ad', options: ['ad', 'da'] },
+  {
+    key: 'columnSortOrder',
+    type: 'select',
+    default: 'ad',
+    options: ['ad', 'da']
+  },
   { key: 'noDataLabel', type: 'string', default: '' },
   { key: 'noResultsLabel', type: 'string', default: '' },
   { key: 'loadingLabel', type: 'string', default: '' },
@@ -132,9 +142,18 @@ export const qTableSchema: PropSchema[] = [
   { key: 'filter', type: 'string', default: '' },
   { key: 'filterMethod', type: 'string', default: '' },
   { key: 'pagination', type: 'string', default: '' },
-  { key: 'rowsPerPageOptions', type: 'string', default: [5,7,10,15,20,25,50,0] },
-  { key: 'selection', type: 'select', default: 'none', options: ['single', 'multiple', 'none'] },
+  {
+    key: 'rowsPerPageOptions',
+    type: 'string',
+    default: [5, 7, 10, 15, 20, 25, 50, 0]
+  },
+  {
+    key: 'selection',
+    type: 'select',
+    default: 'none',
+    options: ['single', 'multiple', 'none']
+  },
   { key: 'selected', type: 'string', default: [] },
   { key: 'expanded', type: 'string', default: '' },
-  { key: 'sortMethod', type: 'string', default: '' },
+  { key: 'sortMethod', type: 'string', default: '' }
 ]

@@ -10,7 +10,7 @@ export const qMarkupTableDefaults = {
   bordered: false,
   square: false,
   separator: 'horizontal',
-  wrapCells: false,
+  wrapCells: false
 } as const
 
 export const qMarkupTableSchema: PropSchema[] = [
@@ -19,6 +19,11 @@ export const qMarkupTableSchema: PropSchema[] = [
   { key: 'flat', type: 'boolean', default: false },
   { key: 'bordered', type: 'boolean', default: false },
   { key: 'square', type: 'boolean', default: false },
-  { key: 'separator', type: 'select', default: 'horizontal', options: ['horizontal', 'vertical', 'cell', 'none'] },
-  { key: 'wrapCells', type: 'boolean', default: false },
+  {
+    key: 'separator',
+    type: 'select',
+    default: 'horizontal',
+    options: ['horizontal', 'vertical', 'cell', 'none']
+  },
+  { key: 'wrapCells', type: 'boolean', default: false }
 ]

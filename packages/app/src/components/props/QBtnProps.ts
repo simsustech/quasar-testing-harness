@@ -37,7 +37,7 @@ export const qBtnDefaults = {
   disable: false,
   round: false,
   percentage: 0,
-  darkPercentage: false,
+  darkPercentage: false
 } as const
 
 export const qBtnSchema: PropSchema[] = [
@@ -67,12 +67,17 @@ export const qBtnSchema: PropSchema[] = [
   { key: 'dense', type: 'boolean', default: false },
   { key: 'ripple', type: 'string', default: true },
   { key: 'tabindex', type: 'string', default: '' },
-  { key: 'align', type: 'select', default: 'center', options: ['left', 'right', 'center', 'around', 'between', 'evenly'] },
+  {
+    key: 'align',
+    type: 'select',
+    default: 'center',
+    options: ['left', 'right', 'center', 'around', 'between', 'evenly']
+  },
   { key: 'stack', type: 'boolean', default: false },
   { key: 'stretch', type: 'boolean', default: false },
   { key: 'loading', type: 'string', default: '' },
   { key: 'disable', type: 'boolean', default: false },
   { key: 'round', type: 'boolean', default: false },
   { key: 'percentage', type: 'number', default: 0 },
-  { key: 'darkPercentage', type: 'boolean', default: false },
+  { key: 'darkPercentage', type: 'boolean', default: false }
 ]

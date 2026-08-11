@@ -21,7 +21,7 @@ export const qDrawerDefaults = {
   showIfAbove: false,
   noSwipeOpen: false,
   noSwipeClose: false,
-  noSwipeBackdrop: false,
+  noSwipeBackdrop: false
 } as const
 
 export const qDrawerSchema: PropSchema[] = [
@@ -35,12 +35,17 @@ export const qDrawerSchema: PropSchema[] = [
   { key: 'noMiniAnimation', type: 'boolean', default: false },
   { key: 'dark', type: 'string', default: '' },
   { key: 'breakpoint', type: 'number', default: 1023 },
-  { key: 'behavior', type: 'select', default: 'default', options: ['default', 'desktop', 'mobile'] },
+  {
+    key: 'behavior',
+    type: 'select',
+    default: 'default',
+    options: ['default', 'desktop', 'mobile']
+  },
   { key: 'bordered', type: 'boolean', default: false },
   { key: 'elevated', type: 'boolean', default: false },
   { key: 'persistent', type: 'boolean', default: false },
   { key: 'showIfAbove', type: 'boolean', default: false },
   { key: 'noSwipeOpen', type: 'boolean', default: false },
   { key: 'noSwipeClose', type: 'boolean', default: false },
-  { key: 'noSwipeBackdrop', type: 'boolean', default: false },
+  { key: 'noSwipeBackdrop', type: 'boolean', default: false }
 ]

@@ -19,7 +19,10 @@ const isUnstyled = computed(() => route.query.style === 'unstyled')
 const bannerStyle = computed(() =>
   isUnstyled.value
     ? {}
-    : { background: 'var(--light-primary-container)', color: 'var(--light-on-primary-container)' }
+    : {
+        background: 'var(--light-primary-container)',
+        color: 'var(--light-on-primary-container)'
+      }
 )
 
 const pageDefaults = {

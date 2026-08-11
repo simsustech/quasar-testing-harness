@@ -32,7 +32,7 @@ export const qCarouselDefaults = {
   navigationPosition: '',
   navigationIcon: '',
   navigationActiveIcon: '',
-  thumbnails: false,
+  thumbnails: false
 } as const
 
 export const qCarouselSchema: PropSchema[] = [
@@ -55,14 +55,24 @@ export const qCarouselSchema: PropSchema[] = [
   { key: 'padding', type: 'boolean', default: false },
   { key: 'controlColor', type: 'string', default: '' },
   { key: 'controlTextColor', type: 'string', default: '' },
-  { key: 'controlType', type: 'select', default: 'flat', options: ['regular', 'flat', 'outline', 'push', 'unelevated'] },
+  {
+    key: 'controlType',
+    type: 'select',
+    default: 'flat',
+    options: ['regular', 'flat', 'outline', 'push', 'unelevated']
+  },
   { key: 'autoplay', type: 'string', default: '' },
   { key: 'arrows', type: 'boolean', default: false },
   { key: 'prevIcon', type: 'string', default: '' },
   { key: 'nextIcon', type: 'string', default: '' },
   { key: 'navigation', type: 'boolean', default: false },
-  { key: 'navigationPosition', type: 'select', default: '', options: ['top', 'right', 'bottom', 'left'] },
+  {
+    key: 'navigationPosition',
+    type: 'select',
+    default: '',
+    options: ['top', 'right', 'bottom', 'left']
+  },
   { key: 'navigationIcon', type: 'string', default: '' },
   { key: 'navigationActiveIcon', type: 'string', default: '' },
-  { key: 'thumbnails', type: 'boolean', default: false },
+  { key: 'thumbnails', type: 'boolean', default: false }
 ]

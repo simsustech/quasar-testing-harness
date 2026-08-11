@@ -12,7 +12,7 @@ export const qIntersectionDefaults = {
   threshold: '',
   transition: '',
   transitionDuration: '300',
-  disable: false,
+  disable: false
 } as const
 
 export const qIntersectionSchema: PropSchema[] = [
@@ -24,5 +24,5 @@ export const qIntersectionSchema: PropSchema[] = [
   { key: 'threshold', type: 'string', default: '' },
   { key: 'transition', type: 'string', default: '' },
   { key: 'transitionDuration', type: 'string', default: '300' },
-  { key: 'disable', type: 'boolean', default: false },
+  { key: 'disable', type: 'boolean', default: false }
 ]

@@ -17,9 +17,7 @@ import { useQueryProps } from '../../composables/useQueryProps'
 const route = useRoute()
 const isUnstyled = computed(() => route.query.style === 'unstyled')
 const headerStyle = computed(() =>
-  isUnstyled.value
-    ? {}
-    : { background: 'var(--light-primary)', color: 'white' }
+  isUnstyled.value ? {} : { background: 'var(--light-primary)', color: 'white' }
 )
 
 const { props, setProp, reset } = useQueryProps<Record<string, unknown>>({
@@ -64,7 +62,10 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 280px;
       "
     >
-      <q-layout v-bind="boundProps" style="width: 100%; height: 200px; border-radius: 4px; overflow: hidden">
+      <q-layout
+        v-bind="boundProps"
+        style="width: 100%; height: 200px; border-radius: 4px; overflow: hidden"
+      >
         <q-header :style="headerStyle">
           <q-toolbar>
             <q-toolbar-title>Header</q-toolbar-title>

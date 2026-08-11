@@ -5,10 +5,10 @@ import type { PropSchema } from '../../types/props'
 
 export const qLayoutDefaults = {
   view: 'hhh lpr fff',
-  container: false,
+  container: false
 } as const
 
 export const qLayoutSchema: PropSchema[] = [
   { key: 'view', type: 'string', default: 'hhh lpr fff' },
-  { key: 'container', type: 'boolean', default: false },
+  { key: 'container', type: 'boolean', default: false }
 ]

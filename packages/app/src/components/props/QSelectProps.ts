@@ -88,7 +88,7 @@ export const qSelectDefaults = {
   transitionShow: 'fade',
   transitionHide: 'fade',
   transitionDuration: '300',
-  behavior: 'default',
+  behavior: 'default'
 } as const
 
 export const qSelectSchema: PropSchema[] = [
@@ -107,7 +107,12 @@ export const qSelectSchema: PropSchema[] = [
   { key: 'noErrorIcon', type: 'boolean', default: false },
   { key: 'rules', type: 'string', default: '' },
   { key: 'reactiveRules', type: 'boolean', default: false },
-  { key: 'lazyRules', type: 'select', default: false, options: ['true', 'false', 'ondemand'] },
+  {
+    key: 'lazyRules',
+    type: 'select',
+    default: false,
+    options: ['true', 'false', 'ondemand']
+  },
   { key: 'label', type: 'string', default: '' },
   { key: 'stackLabel', type: 'boolean', default: false },
   { key: 'hint', type: 'string', default: '' },
@@ -154,8 +159,50 @@ export const qSelectSchema: PropSchema[] = [
   { key: 'optionsHtml', type: 'boolean', default: false },
   { key: 'optionsCover', type: 'boolean', default: false },
   { key: 'menuShrink', type: 'boolean', default: false },
-  { key: 'menuAnchor', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
-  { key: 'menuSelf', type: 'select', default: '', options: ['top left', 'top middle', 'top right', 'top start', 'top end', 'center left', 'center middle', 'center right', 'center start', 'center end', 'bottom left', 'bottom middle', 'bottom right', 'bottom start', 'bottom end'] },
+  {
+    key: 'menuAnchor',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
+  {
+    key: 'menuSelf',
+    type: 'select',
+    default: '',
+    options: [
+      'top left',
+      'top middle',
+      'top right',
+      'top start',
+      'top end',
+      'center left',
+      'center middle',
+      'center right',
+      'center start',
+      'center end',
+      'bottom left',
+      'bottom middle',
+      'bottom right',
+      'bottom start',
+      'bottom end'
+    ]
+  },
   { key: 'menuOffset', type: 'string', default: '' },
   { key: 'popupContentClass', type: 'string', default: '' },
   { key: 'popupContentStyle', type: 'string', default: '' },
@@ -164,7 +211,12 @@ export const qSelectSchema: PropSchema[] = [
   { key: 'useInput', type: 'boolean', default: false },
   { key: 'maxlength', type: 'string', default: '' },
   { key: 'fillInput', type: 'boolean', default: false },
-  { key: 'newValueMode', type: 'select', default: '', options: ['add', 'add-unique', 'toggle'] },
+  {
+    key: 'newValueMode',
+    type: 'select',
+    default: '',
+    options: ['add', 'add-unique', 'toggle']
+  },
   { key: 'mapOptions', type: 'boolean', default: false },
   { key: 'disableTabSelection', type: 'boolean', default: false },
   { key: 'emitValue', type: 'boolean', default: false },
@@ -176,5 +228,10 @@ export const qSelectSchema: PropSchema[] = [
   { key: 'transitionShow', type: 'string', default: 'fade' },
   { key: 'transitionHide', type: 'string', default: 'fade' },
   { key: 'transitionDuration', type: 'string', default: '300' },
-  { key: 'behavior', type: 'select', default: 'default', options: ['default', 'menu', 'dialog'] },
+  {
+    key: 'behavior',
+    type: 'select',
+    default: 'default',
+    options: ['default', 'menu', 'dialog']
+  }
 ]

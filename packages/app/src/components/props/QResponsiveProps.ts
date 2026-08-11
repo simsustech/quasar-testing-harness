@@ -4,9 +4,9 @@
 import type { PropSchema } from '../../types/props'
 
 export const qResponsiveDefaults = {
-  ratio: '',
+  ratio: ''
 } as const
 
 export const qResponsiveSchema: PropSchema[] = [
-  { key: 'ratio', type: 'string', default: '' },
+  { key: 'ratio', type: 'string', default: '' }
 ]

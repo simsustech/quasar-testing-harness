@@ -56,13 +56,25 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <q-timeline v-bind="boundProps" color="primary">
-        <q-timeline-entry title="Task #1" subtitle="2024-01-01" icon="i-mdi-check-circle">
+        <q-timeline-entry
+          title="Task #1"
+          subtitle="2024-01-01"
+          icon="i-mdi-check-circle"
+        >
           <div>First task completed</div>
         </q-timeline-entry>
-        <q-timeline-entry title="Task #2" subtitle="2024-01-02" icon="i-mdi-information">
+        <q-timeline-entry
+          title="Task #2"
+          subtitle="2024-01-02"
+          icon="i-mdi-information"
+        >
           <div>Second task in progress</div>
         </q-timeline-entry>
-        <q-timeline-entry title="Task #3" subtitle="2024-01-03" icon="i-mdi-alert">
+        <q-timeline-entry
+          title="Task #3"
+          subtitle="2024-01-03"
+          icon="i-mdi-alert"
+        >
           <div>Third task pending</div>
         </q-timeline-entry>
       </q-timeline>

@@ -40,10 +40,7 @@
         </q-item-section>
         <q-item-section>
           <q-item-label style="font-weight: 500">{{ opt.label }}</q-item-label>
-          <q-item-label
-            caption
-            style="font-size: 11px; line-height: 1.3"
-          >
+          <q-item-label caption style="font-size: 11px; line-height: 1.3">
             {{ opt.description }}
           </q-item-label>
         </q-item-section>

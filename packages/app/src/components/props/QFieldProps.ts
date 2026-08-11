@@ -41,7 +41,7 @@ export const qFieldDefaults = {
   autofocus: false,
   for: '',
   maxlength: '',
-  tag: 'label',
+  tag: 'label'
 } as const
 
 export const qFieldSchema: PropSchema[] = [
@@ -51,7 +51,12 @@ export const qFieldSchema: PropSchema[] = [
   { key: 'noErrorIcon', type: 'boolean', default: false },
   { key: 'rules', type: 'string', default: '' },
   { key: 'reactiveRules', type: 'boolean', default: false },
-  { key: 'lazyRules', type: 'select', default: false, options: ['true', 'false', 'ondemand'] },
+  {
+    key: 'lazyRules',
+    type: 'select',
+    default: false,
+    options: ['true', 'false', 'ondemand']
+  },
   { key: 'label', type: 'string', default: '' },
   { key: 'stackLabel', type: 'boolean', default: false },
   { key: 'hint', type: 'string', default: '' },
@@ -82,5 +87,5 @@ export const qFieldSchema: PropSchema[] = [
   { key: 'autofocus', type: 'boolean', default: false },
   { key: 'for', type: 'string', default: '' },
   { key: 'maxlength', type: 'string', default: '' },
-  { key: 'tag', type: 'string', default: 'label' },
+  { key: 'tag', type: 'string', default: 'label' }
 ]

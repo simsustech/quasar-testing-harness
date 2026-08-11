@@ -35,15 +35,13 @@ export const STYLES: readonly StyleOption[] = [
     slug: 'md2',
     label: 'Material Design 2',
     bodyClass: 'quasar-style-md2',
-    description:
-      'Default Quasar look (sharp corners, outlined inputs).'
+    description: 'Default Quasar look (sharp corners, outlined inputs).'
   },
   {
     slug: 'unstyled',
     label: 'Unstyled',
     bodyClass: 'quasar-style-unstyled',
-    description:
-      'No preset CSS — Quasar ships its HTML defaults only.'
+    description: 'No preset CSS — Quasar ships its HTML defaults only.'
   }
 ] as const
 

@@ -61,9 +61,26 @@ const onUpdate = (next: Record<string, unknown>) => {
       "
     >
       <div style="width: 300px">
-        <q-skeleton v-bind="boundProps" type="rect" width="300px" height="48px" style="background: #e0e0e0;" />
-        <q-skeleton v-bind="boundProps" type="text" width="200px" height="16px" style="margin-top: 8px; background: #e0e0e0;" />
-        <q-skeleton v-bind="boundProps" type="circle" size="48px" style="margin-top: 8px; background: #e0e0e0;" />
+        <q-skeleton
+          v-bind="boundProps"
+          type="rect"
+          width="300px"
+          height="48px"
+          style="background: #e0e0e0"
+        />
+        <q-skeleton
+          v-bind="boundProps"
+          type="text"
+          width="200px"
+          height="16px"
+          style="margin-top: 8px; background: #e0e0e0"
+        />
+        <q-skeleton
+          v-bind="boundProps"
+          type="circle"
+          size="48px"
+          style="margin-top: 8px; background: #e0e0e0"
+        />
       </div>
     </div>
 

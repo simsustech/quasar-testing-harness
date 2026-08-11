@@ -38,7 +38,7 @@ export const qRangeDefaults = {
   disable: false,
   readonly: false,
   tabindex: '',
-  modelValue: {"min":null,"max":null},
+  modelValue: { min: null, max: null },
   dragRange: false,
   dragOnlyRange: false,
   leftLabelColor: '',
@@ -48,7 +48,7 @@ export const qRangeDefaults = {
   leftLabelValue: '',
   rightLabelValue: '',
   leftThumbColor: '',
-  rightThumbColor: '',
+  rightThumbColor: ''
 } as const
 
 export const qRangeSchema: PropSchema[] = [
@@ -80,13 +80,17 @@ export const qRangeSchema: PropSchema[] = [
   { key: 'trackSize', type: 'string', default: '4px' },
   { key: 'thumbSize', type: 'string', default: '20px' },
   { key: 'thumbColor', type: 'string', default: '' },
-  { key: 'thumbPath', type: 'string', default: 'M 4, 10 a 6,6 0 1,0 12,0 a 6,6 0 1,0 -12,0' },
+  {
+    key: 'thumbPath',
+    type: 'string',
+    default: 'M 4, 10 a 6,6 0 1,0 12,0 a 6,6 0 1,0 -12,0'
+  },
   { key: 'dark', type: 'string', default: '' },
   { key: 'dense', type: 'boolean', default: false },
   { key: 'disable', type: 'boolean', default: false },
   { key: 'readonly', type: 'boolean', default: false },
   { key: 'tabindex', type: 'string', default: '' },
-  { key: 'modelValue', type: 'string', default: {"min":null,"max":null} },
+  { key: 'modelValue', type: 'string', default: { min: null, max: null } },
   { key: 'dragRange', type: 'boolean', default: false },
   { key: 'dragOnlyRange', type: 'boolean', default: false },
   { key: 'leftLabelColor', type: 'string', default: '' },
@@ -96,5 +100,5 @@ export const qRangeSchema: PropSchema[] = [
   { key: 'leftLabelValue', type: 'string', default: '' },
   { key: 'rightLabelValue', type: 'string', default: '' },
   { key: 'leftThumbColor', type: 'string', default: '' },
-  { key: 'rightThumbColor', type: 'string', default: '' },
+  { key: 'rightThumbColor', type: 'string', default: '' }
 ]

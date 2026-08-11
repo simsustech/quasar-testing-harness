@@ -59,7 +59,9 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div class="text-grey-7">QVirtualScroll requires a non-empty items array to render.</div>
+      <div class="text-grey-7">
+        QVirtualScroll requires a non-empty items array to render.
+      </div>
     </div>
 
     <ControlPanel

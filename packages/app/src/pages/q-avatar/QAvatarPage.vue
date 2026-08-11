@@ -63,7 +63,9 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <q-avatar v-bind="boundProps"><span style="line-height: 1">JD</span></q-avatar>
+      <q-avatar v-bind="boundProps"
+        ><span style="line-height: 1">JD</span></q-avatar
+      >
     </div>
 
     <ControlPanel

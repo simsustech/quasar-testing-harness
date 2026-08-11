@@ -12,7 +12,7 @@ export const qBadgeDefaults = {
   label: '',
   align: '',
   outline: false,
-  rounded: false,
+  rounded: false
 } as const
 
 export const qBadgeSchema: PropSchema[] = [
@@ -22,7 +22,12 @@ export const qBadgeSchema: PropSchema[] = [
   { key: 'transparent', type: 'boolean', default: false },
   { key: 'multiLine', type: 'boolean', default: false },
   { key: 'label', type: 'string', default: '' },
-  { key: 'align', type: 'select', default: '', options: ['top', 'middle', 'bottom'] },
+  {
+    key: 'align',
+    type: 'select',
+    default: '',
+    options: ['top', 'middle', 'bottom']
+  },
   { key: 'outline', type: 'boolean', default: false },
-  { key: 'rounded', type: 'boolean', default: false },
+  { key: 'rounded', type: 'boolean', default: false }
 ]

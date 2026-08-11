@@ -55,7 +55,14 @@ const onUpdate = (next: Record<string, unknown>) => {
         min-height: 120px;
       "
     >
-      <div style="position: relative; width: 200px; height: 100px; border: 1px solid #eee">
+      <div
+        style="
+          position: relative;
+          width: 200px;
+          height: 100px;
+          border: 1px solid #eee;
+        "
+      >
         <q-inner-loading v-bind="boundProps" showing label="Loading..." />
         <div class="q-pa-md text-center">Content behind loading overlay</div>
       </div>

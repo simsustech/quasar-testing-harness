@@ -23,7 +23,7 @@ export const qChipDefaults = {
   ripple: true,
   removeAriaLabel: '',
   tabindex: '',
-  disable: false,
+  disable: false
 } as const
 
 export const qChipSchema: PropSchema[] = [
@@ -46,5 +46,5 @@ export const qChipSchema: PropSchema[] = [
   { key: 'ripple', type: 'string', default: true },
   { key: 'removeAriaLabel', type: 'string', default: '' },
   { key: 'tabindex', type: 'string', default: '' },
-  { key: 'disable', type: 'boolean', default: false },
+  { key: 'disable', type: 'boolean', default: false }
 ]

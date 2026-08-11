@@ -9,7 +9,7 @@ export const qInfiniteScrollDefaults = {
   initialIndex: 0,
   scrollTarget: '',
   disable: false,
-  reverse: false,
+  reverse: false
 } as const
 
 export const qInfiniteScrollSchema: PropSchema[] = [
@@ -18,5 +18,5 @@ export const qInfiniteScrollSchema: PropSchema[] = [
   { key: 'initialIndex', type: 'number', default: 0 },
   { key: 'scrollTarget', type: 'string', default: '' },
   { key: 'disable', type: 'boolean', default: false },
-  { key: 'reverse', type: 'boolean', default: false },
+  { key: 'reverse', type: 'boolean', default: false }
 ]

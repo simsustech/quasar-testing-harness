@@ -54,14 +54,19 @@ export const qFileDefaults = {
   counterLabel: '',
   tabindex: '0',
   inputClass: '',
-  inputStyle: '',
+  inputStyle: ''
 } as const
 
 export const qFileSchema: PropSchema[] = [
   { key: 'name', type: 'string', default: '' },
   { key: 'multiple', type: 'boolean', default: false },
   { key: 'accept', type: 'string', default: '' },
-  { key: 'capture', type: 'select', default: '', options: ['user', 'environment'] },
+  {
+    key: 'capture',
+    type: 'select',
+    default: '',
+    options: ['user', 'environment']
+  },
   { key: 'maxFileSize', type: 'string', default: '' },
   { key: 'maxTotalSize', type: 'string', default: '' },
   { key: 'maxFiles', type: 'string', default: '' },
@@ -72,7 +77,12 @@ export const qFileSchema: PropSchema[] = [
   { key: 'noErrorIcon', type: 'boolean', default: false },
   { key: 'rules', type: 'string', default: '' },
   { key: 'reactiveRules', type: 'boolean', default: false },
-  { key: 'lazyRules', type: 'select', default: false, options: ['true', 'false', 'ondemand'] },
+  {
+    key: 'lazyRules',
+    type: 'select',
+    default: false,
+    options: ['true', 'false', 'ondemand']
+  },
   { key: 'label', type: 'string', default: '' },
   { key: 'stackLabel', type: 'boolean', default: false },
   { key: 'hint', type: 'string', default: '' },
@@ -108,5 +118,5 @@ export const qFileSchema: PropSchema[] = [
   { key: 'counterLabel', type: 'string', default: '' },
   { key: 'tabindex', type: 'string', default: '0' },
   { key: 'inputClass', type: 'string', default: '' },
-  { key: 'inputStyle', type: 'string', default: '' },
+  { key: 'inputStyle', type: 'string', default: '' }
 ]

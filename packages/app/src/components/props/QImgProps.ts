@@ -29,7 +29,7 @@ export const qImgDefaults = {
   spinnerSize: '',
   noSpinner: false,
   noNativeMenu: false,
-  noTransition: false,
+  noTransition: false
 } as const
 
 export const qImgSchema: PropSchema[] = [
@@ -42,13 +42,52 @@ export const qImgSchema: PropSchema[] = [
   { key: 'initialRatio', type: 'string', default: '1.7778' },
   { key: 'width', type: 'string', default: '' },
   { key: 'height', type: 'string', default: '' },
-  { key: 'loading', type: 'select', default: 'lazy', options: ['lazy', 'eager'] },
+  {
+    key: 'loading',
+    type: 'select',
+    default: 'lazy',
+    options: ['lazy', 'eager']
+  },
   { key: 'loadingShowDelay', type: 'string', default: '0' },
-  { key: 'crossorigin', type: 'select', default: '', options: ['anonymous', 'use-credentials'] },
-  { key: 'decoding', type: 'select', default: '', options: ['sync', 'async', 'auto'] },
-  { key: 'referrerpolicy', type: 'select', default: '', options: ['no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] },
-  { key: 'fetchpriority', type: 'select', default: 'auto', options: ['high', 'low', 'auto'] },
-  { key: 'fit', type: 'select', default: 'cover', options: ['cover', 'fill', 'contain', 'none', 'scale-down'] },
+  {
+    key: 'crossorigin',
+    type: 'select',
+    default: '',
+    options: ['anonymous', 'use-credentials']
+  },
+  {
+    key: 'decoding',
+    type: 'select',
+    default: '',
+    options: ['sync', 'async', 'auto']
+  },
+  {
+    key: 'referrerpolicy',
+    type: 'select',
+    default: '',
+    options: [
+      'no-referrer',
+      'no-referrer-when-downgrade',
+      'origin',
+      'origin-when-cross-origin',
+      'same-origin',
+      'strict-origin',
+      'strict-origin-when-cross-origin',
+      'unsafe-url'
+    ]
+  },
+  {
+    key: 'fetchpriority',
+    type: 'select',
+    default: 'auto',
+    options: ['high', 'low', 'auto']
+  },
+  {
+    key: 'fit',
+    type: 'select',
+    default: 'cover',
+    options: ['cover', 'fill', 'contain', 'none', 'scale-down']
+  },
   { key: 'position', type: 'string', default: '50% 50%' },
   { key: 'alt', type: 'string', default: '' },
   { key: 'draggable', type: 'boolean', default: false },
@@ -58,5 +97,5 @@ export const qImgSchema: PropSchema[] = [
   { key: 'spinnerSize', type: 'string', default: '' },
   { key: 'noSpinner', type: 'boolean', default: false },
   { key: 'noNativeMenu', type: 'boolean', default: false },
-  { key: 'noTransition', type: 'boolean', default: false },
+  { key: 'noTransition', type: 'boolean', default: false }
 ]

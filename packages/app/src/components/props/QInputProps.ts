@@ -51,7 +51,7 @@ export const qInputDefaults = {
   maxlength: '',
   autogrow: false,
   inputClass: '',
-  inputStyle: '',
+  inputStyle: ''
 } as const
 
 export const qInputSchema: PropSchema[] = [
@@ -66,7 +66,12 @@ export const qInputSchema: PropSchema[] = [
   { key: 'noErrorIcon', type: 'boolean', default: false },
   { key: 'rules', type: 'string', default: '' },
   { key: 'reactiveRules', type: 'boolean', default: false },
-  { key: 'lazyRules', type: 'select', default: false, options: ['true', 'false', 'ondemand'] },
+  {
+    key: 'lazyRules',
+    type: 'select',
+    default: false,
+    options: ['true', 'false', 'ondemand']
+  },
   { key: 'label', type: 'string', default: '' },
   { key: 'stackLabel', type: 'boolean', default: false },
   { key: 'hint', type: 'string', default: '' },
@@ -97,10 +102,28 @@ export const qInputSchema: PropSchema[] = [
   { key: 'autofocus', type: 'boolean', default: false },
   { key: 'for', type: 'string', default: '' },
   { key: 'shadowText', type: 'string', default: '' },
-  { key: 'type', type: 'select', default: 'text', options: ['text', 'password', 'textarea', 'email', 'search', 'tel', 'file', 'number', 'url', 'time', 'date', 'datetime-local'] },
+  {
+    key: 'type',
+    type: 'select',
+    default: 'text',
+    options: [
+      'text',
+      'password',
+      'textarea',
+      'email',
+      'search',
+      'tel',
+      'file',
+      'number',
+      'url',
+      'time',
+      'date',
+      'datetime-local'
+    ]
+  },
   { key: 'debounce', type: 'string', default: '' },
   { key: 'maxlength', type: 'string', default: '' },
   { key: 'autogrow', type: 'boolean', default: false },
   { key: 'inputClass', type: 'string', default: '' },
-  { key: 'inputStyle', type: 'string', default: '' },
+  { key: 'inputStyle', type: 'string', default: '' }
 ]

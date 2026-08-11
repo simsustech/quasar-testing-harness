@@ -9,7 +9,13 @@
  * Usage:
  *   pnpm --filter @quasar-testing-harness/tools generate:screenshots
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs'
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  readdirSync,
+  existsSync
+} from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -49,18 +55,22 @@ function generateManifest(): void {
     const styleDir = join(SCREENSHOTS_DIR, style)
     if (!existsSync(styleDir)) continue
 
-    const deviceDirs = readdirSync(styleDir, { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+    const deviceDirs = readdirSync(styleDir, { withFileTypes: true }).filter(
+      (d) => d.isDirectory()
+    )
 
     for (const deviceDir of deviceDirs) {
       const device = deviceDir.name
       const devicePath = join(styleDir, device)
-      const componentDirs = readdirSync(devicePath, { withFileTypes: true })
-        .filter((d) => d.isDirectory())
+      const componentDirs = readdirSync(devicePath, {
+        withFileTypes: true
+      }).filter((d) => d.isDirectory())
 
       for (const comp of componentDirs) {
         const componentDir = join(devicePath, comp.name)
-        const files = readdirSync(componentDir).filter((f) => f.endsWith('.png'))
+        const files = readdirSync(componentDir).filter((f) =>
+          f.endsWith('.png')
+        )
 
         let group = groups.find((g) => g.component === comp.name)
         if (!group) {
@@ -84,7 +94,9 @@ function generateManifest(): void {
                   url = data.url
                 }
               }
-            } catch { /* skip invalid JSON */ }
+            } catch {
+              /* skip invalid JSON */
+            }
           }
 
           group.screenshots.push({
@@ -92,7 +104,7 @@ function generateManifest(): void {
             label,
             style,
             device,
-            url,
+            url
           })
         }
       }
@@ -102,10 +114,13 @@ function generateManifest(): void {
   writeManifest(groups, groups.length)
 }
 
-function writeManifest(groups: ScreenshotGroup[], componentCount?: number): void {
+function writeManifest(
+  groups: ScreenshotGroup[],
+  componentCount?: number
+): void {
   const manifest = {
     generatedAt: new Date().toISOString(),
-    groups,
+    groups
   }
 
   const outPath = join(SCREENSHOTS_DIR, 'manifest.json')

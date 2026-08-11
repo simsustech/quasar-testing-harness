@@ -18,5 +18,8 @@
     "lint": "echo 'no lint configured'",
     "format:check": "oxfmt --check .",
     "format:write": "oxfmt --write ."
+  },
+  "devDependencies": {
+    "oxfmt": "^0.63.0"
   }
 }

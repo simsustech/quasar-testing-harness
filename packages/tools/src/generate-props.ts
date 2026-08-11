@@ -13,7 +13,13 @@
  *   pnpm --filter @quasar-testing-harness/tools generate:props
  *   pnpm --filter @quasar-testing-harness/tools generate:props -- --only QBtn,QInput
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs'
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  readdirSync,
+  existsSync
+} from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -72,7 +78,9 @@ function mapType(prop: QuasarProp): PropType {
 }
 
 /** Clean up Quasar's quoted default like "'button'" → "button" */
-function cleanDefault(raw: unknown): string | number | boolean | unknown[] | Record<string, unknown> {
+function cleanDefault(
+  raw: unknown
+): string | number | boolean | unknown[] | Record<string, unknown> {
   if (raw === null || raw === undefined) return ''
   if (typeof raw === 'boolean' || typeof raw === 'number') return raw
   if (typeof raw === 'string') {
@@ -102,13 +110,17 @@ function cleanDefault(raw: unknown): string | number | boolean | unknown[] | Rec
           const fixed = s.replace(/'/g, '"')
           const parsed = JSON.parse(fixed)
           if (Array.isArray(parsed) || typeof parsed === 'object') return parsed
-        } catch { /* fall through */ }
+        } catch {
+          /* fall through */
+        }
         // Try wrapping keys in quotes for JS objects like "{ min: null, max: null }"
         try {
           const quoted = s.replace(/(\w+):/g, '"$1":')
           const parsed = JSON.parse(quoted)
           if (Array.isArray(parsed) || typeof parsed === 'object') return parsed
-        } catch { /* return as string below */ }
+        } catch {
+          /* return as string below */
+        }
       }
     }
     return s
@@ -124,7 +136,10 @@ function camelCase(s: string): string {
 /** Strip quotes from values entries like "'button'" → "button" */
 function cleanValue(v: string): string {
   let s = v.trim()
-  if ((s.startsWith("'") && s.endsWith("'")) || (s.startsWith('"') && s.endsWith('"'))) {
+  if (
+    (s.startsWith("'") && s.endsWith("'")) ||
+    (s.startsWith('"') && s.endsWith('"'))
+  ) {
     s = s.slice(1, -1)
   }
   return s
@@ -195,7 +210,9 @@ function renderPropsFile(componentName: string, entries: PropEntry[]): string {
   const lines: string[] = []
   const varName = componentName[0].toLowerCase() + componentName.slice(1)
   lines.push(`// AUTO-GENERATED from Quasar docs JSON. Do not edit by hand.`)
-  lines.push(`// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props`)
+  lines.push(
+    `// Regenerate with: pnpm --filter @quasar-testing-harness/tools generate:props`
+  )
   lines.push('')
   lines.push(`import type { PropSchema } from '../../types/props'`)
   lines.push('')
@@ -210,7 +227,9 @@ function renderPropsFile(componentName: string, entries: PropEntry[]): string {
   for (const e of entries) {
     const lit = defaultToLiteral(e.default)
     if (e.type === 'select' && e.options) {
-      lines.push(`  { key: '${e.key}', type: 'select', default: ${lit}, options: [${e.options.map((o) => `'${o}'`).join(', ')}] },`)
+      lines.push(
+        `  { key: '${e.key}', type: 'select', default: ${lit}, options: [${e.options.map((o) => `'${o}'`).join(', ')}] },`
+      )
     } else {
       lines.push(`  { key: '${e.key}', type: '${e.type}', default: ${lit} },`)
     }

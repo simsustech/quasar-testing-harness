@@ -52,9 +52,27 @@ const onUpdate = (next: Record<string, unknown>) => {
         align-items: center;
       "
     >
-      <div style="background: #1976d2; color: #fff; padding: 8px 12px; border-radius: 4px">Left</div>
+      <div
+        style="
+          background: #1976d2;
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 4px;
+        "
+      >
+        Left
+      </div>
       <q-space />
-      <div style="background: #388e3c; color: #fff; padding: 8px 12px; border-radius: 4px">Right</div>
+      <div
+        style="
+          background: #388e3c;
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 4px;
+        "
+      >
+        Right
+      </div>
     </div>
 
     <ControlPanel

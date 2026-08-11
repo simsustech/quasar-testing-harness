@@ -61,7 +61,10 @@ const onUpdate = (next: Record<string, unknown>) => {
     >
       <q-breadcrumbs v-bind="boundProps">
         <q-breadcrumbs-el label="Home" icon="i-mdi-home" />
-        <q-breadcrumbs-el label="Products" icon="i-mdi-package-variant-closed" />
+        <q-breadcrumbs-el
+          label="Products"
+          icon="i-mdi-package-variant-closed"
+        />
         <q-breadcrumbs-el label="Shoes" />
       </q-breadcrumbs>
     </div>
