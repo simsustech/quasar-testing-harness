@@ -13,3 +13,6 @@ tests/output/
 test-results
 playwright-report
 **/.pnpm-store/
+
+# Handoff artifact
+HANDOFF.md
