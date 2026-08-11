@@ -19,17 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: pnpm/setup@v1
         with:
-          node-version: 22
-          cache: pnpm
+          version: 11
+          runtime: node@22
+          cache: true
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build:app:ssg
 
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: packages/app/dist/static
 
