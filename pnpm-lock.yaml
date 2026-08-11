@@ -54,8 +54,8 @@ importers:
         specifier: ^0.63.0
         version: 0.63.0
       vitrify:
-        specifier: 0.26.13
-        version: 0.26.13(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0)
+        specifier: 0.26.14
+        version: 0.26.14(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0)
 
   packages/app:
     dependencies:
@@ -118,8 +118,8 @@ importers:
         specifier: 8.2.1
         version: 8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0)
       vitrify:
-        specifier: 0.26.13
-        version: 0.26.13(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0)
+        specifier: 0.26.14
+        version: 0.26.14(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0)
       vue:
         specifier: 3.5.41
         version: 3.5.41(typescript@7.0.2)
@@ -4352,8 +4352,8 @@ packages:
       jsdom:
         optional: true
 
-  vitrify@0.26.13:
-    resolution: {integrity: sha512-f6ydC1Z+L7Os0FSfsTTabAsiydkqDP7QpINZW+Wswu4mRv7z7ze8tY87mnR7cEcHZNTK/rXx/hKftGQ+yztf0Q==}
+  vitrify@0.26.14:
+    resolution: {integrity: sha512-rOJHDzdZMHCd0Jb5Mqe9Ey9DJkq03yKooPunm5rwECBdmPk04mkEh8+tZFo00m+Uz+lT96i2HWMK67PsSQJ/Ow==}
     engines: {node: '>=24.0.0'}
     hasBin: true
     peerDependencies:
@@ -8730,7 +8730,7 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  vitrify@0.26.13(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0):
+  vitrify@0.26.14(@fastify/static@10.1.3)(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@types/node@26.2.0)(animate.css@4.1.1)(esbuild@0.28.2)(fastify@5.11.3)(jiti@2.7.0)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(quasar@2.24.0)(rollup@4.62.4)(terser@5.49.2)(tsx@4.23.12)(typescript@7.0.2)(vue-router@5.2.0(@pinia/colada@1.4.2(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2)))(@vue/compiler-sfc@3.5.41)(esbuild@0.28.2)(pinia@4.0.2(@vue/devtools-api@8.2.1)(typescript@7.0.2)(vue@3.5.41(typescript@7.0.2)))(rolldown@1.2.3)(rollup@4.62.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@7.0.2)))(vue@3.5.41(typescript@7.0.2))(workbox-build@7.4.1)(yaml@2.9.0):
     dependencies:
       '@fastify/middie': 9.3.3
       '@fastify/one-line-logger': 2.2.0

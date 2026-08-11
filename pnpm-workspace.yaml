@@ -20,4 +20,3 @@ minimumReleaseAgeExclude:
 allowBuilds:
   '@parcel/watcher': false
   esbuild: false
-

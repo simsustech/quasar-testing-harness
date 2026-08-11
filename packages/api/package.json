@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "oxfmt": "^0.63.0",
-    "vitrify": "0.26.13"
+    "vitrify": "0.26.14"
   }
 }
