@@ -2,19 +2,27 @@ import type { Page } from '@playwright/test'
 import path from 'node:path'
 import fs from 'node:fs'
 
-const SHOTS = path.join(process.cwd(), 'packages', 'app', 'public', 'screenshots')
+const SHOTS = path.join(
+  process.cwd(),
+  'packages',
+  'app',
+  'public',
+  'screenshots'
+)
 
 export const DEVICES = [
   { slug: 'sm', width: 375, height: 667 },
   { slug: 'md', width: 768, height: 1024 },
-  { slug: 'lg', width: 1440, height: 900 },
+  { slug: 'lg', width: 1440, height: 900 }
 ] as const
 
 export const styleFromPage = async (page: Page): Promise<string> => {
   try {
     const s = new URL(page.url()).searchParams.get('style')
     if (s === 'md2' || s === 'md3' || s === 'unstyled') return s
-  } catch { /* */ }
+  } catch {
+    /* */
+  }
   return 'md3'
 }
 
@@ -49,8 +57,14 @@ export const shot = async (
   targetTestId = 'component-preview'
 ) => {
   const isDark = page.url().includes('dark=true')
-  const file = shotPath(component, label, styleSlug ?? (await styleFromPage(page)), deviceSlug, isDark ? 'dark' : 'light')
-await page.getByTestId(targetTestId).screenshot({ path: file })
+  const file = shotPath(
+    component,
+    label,
+    styleSlug ?? (await styleFromPage(page)),
+    deviceSlug,
+    isDark ? 'dark' : 'light'
+  )
+  await page.getByTestId(targetTestId).screenshot({ path: file })
   return file
 }
 export const computedRgba = async (
@@ -86,7 +100,13 @@ export const dumpDiagnostics = async (
 ) => {
   const slug = styleSlug ?? (await styleFromPage(page))
   const isDark = page.url().includes('dark=true')
-  const file = shotPath(component, label, slug, deviceSlug, isDark ? 'dark' : 'light').replace(/\.png$/, '.json')
+  const file = shotPath(
+    component,
+    label,
+    slug,
+    deviceSlug,
+    isDark ? 'dark' : 'light'
+  ).replace(/\.png$/, '.json')
   const data = await page.evaluate(() => {
     const root = document.querySelector(
       '[data-testid="component-preview"]'

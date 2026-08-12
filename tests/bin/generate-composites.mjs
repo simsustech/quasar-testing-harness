@@ -18,11 +18,15 @@ const DOCS_EXAMPLES = join(ROOT, '..', 'quasar', 'docs', 'src', 'examples')
 // Scan docs for every example file with 2+ Quasar component tags
 function scanExamples() {
   const categories = readdirSync(DOCS_EXAMPLES, { withFileTypes: true })
-    .filter(d => d.isDirectory()).map(d => d.name)
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
 
   const allQTags = new Set(
-    categories.map(c => {
-      const slug = c.replace(/^Q/, '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+    categories.map((c) => {
+      const slug = c
+        .replace(/^Q/, '')
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase()
       return `q-${slug}`
     })
   )
@@ -30,15 +34,24 @@ function scanExamples() {
   const found = []
   for (const category of categories) {
     const dir = join(DOCS_EXAMPLES, category)
-    for (const file of readdirSync(dir).filter(f => f.endsWith('.vue'))) {
+    for (const file of readdirSync(dir).filter((f) => f.endsWith('.vue'))) {
       const content = readFileSync(join(dir, file), 'utf-8')
       const m = content.match(/<template>([\s\S]*?)<\/template>/)
       if (!m) continue
-      const tags = [...new Set([...m[1].matchAll(/<(q-[a-z][^ >/]*)/g)].map(x => x[1]))]
-      const self = `q-${category.replace(/^Q/, '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`
-      const others = tags.filter(t => t !== self && allQTags.has(t))
+      const tags = [
+        ...new Set([...m[1].matchAll(/<(q-[a-z][^ >/]*)/g)].map((x) => x[1]))
+      ]
+      const self = `q-${category
+        .replace(/^Q/, '')
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase()}`
+      const others = tags.filter((t) => t !== self && allQTags.has(t))
       if (others.length >= 2) {
-        found.push({ file: `${category}/${file}`, primary: self, secondary: others })
+        found.push({
+          file: `${category}/${file}`,
+          primary: self,
+          secondary: others
+        })
       }
     }
   }
@@ -46,7 +59,7 @@ function scanExamples() {
 }
 
 // Escape for JS template string
-const esc = (s, dq) => dq ? s.replace(/"/g, '\\"') : s.replace(/'/g, "\\'")
+const esc = (s, dq) => (dq ? s.replace(/"/g, '\\"') : s.replace(/'/g, "\\'"))
 
 // Clean, self-contained snippets for the most important composite patterns
 // Top 25 most-used composite patterns from Quasar docs
@@ -100,18 +113,56 @@ const SNIPPETS = {
   'q-linearprogress+q-badge': `<div><q-linear-progress v-model="pv" color="primary"/><q-badge color="primary">65%</q-badge></div>`,
   'q-circularprogress+q-icon': `<q-circular-progress v-model="cp" size="60px" color="primary"><q-icon name="check" size="24px"/></q-circular-progress>`,
   'q-checkbox+q-item': `<q-list><q-item><q-item-section avatar><q-checkbox v-model="cb"/></q-item-section><q-item-section><q-item-label>Remember</q-item-label></q-item-section></q-item></q-list>`,
-  'q-stepper+q-btn': `<q-stepper v-model="st" style="max-width:400px"><q-step :name="1" title="Step 1">Content</q-step><q-step :name="2" title="Step 2">Content</q-step><template v-slot:navigation><q-btn flat label="Next" color="primary"/></template></q-stepper>`,
+  'q-stepper+q-btn': `<q-stepper v-model="st" style="max-width:400px"><q-step :name="1" title="Step 1">Content</q-step><q-step :name="2" title="Step 2">Content</q-step><template v-slot:navigation><q-btn flat label="Next" color="primary"/></template></q-stepper>`
 }
 
 const patterns = Object.entries(SNIPPETS).map(([key, snippet]) => {
   const parts = key.split('+')
-  return { name: parts.map(p => p.replace(/^q-/, 'Q').replace(/-([a-z])/g, (_,c)=>c.toUpperCase())).join(' + '), snippet }
+  return {
+    name: parts
+      .map((p) =>
+        p.replace(/^q-/, 'Q').replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+      )
+      .join(' + '),
+    snippet
+  }
 })
 
 // Generate Vue SFC
-const hasDialogs = patterns.some(p => p.snippet.includes('d1=') || p.snippet.includes('d2='))
-const refVars = ['s1', 'r', 't', 'c1', 'r1', 'dr', 'n', 'u', 'e', 'sel', 'f', 'k', 'sv', 'rv', 'tv', 'ev', 'dv', 'cv', 'pv', 'cp', 'cb', 'st', 'em']
-const setupVars = refVars.map(v => `      ${v}: ref(${v === 'sel' ? "[]" : v === 'rv' ? "{min:25,max:75}" : v === 'st' ? '1' : v === 'f' ? 'null' : v === 'k' || v === 'cp' || v === 'sv' || v === 'pv' ? '65' : v === 'tv' || v === 'dv' ? "'t1'" : v === 'cv' ? "'#6750a4'" : v === 'ev' ? "'<p>Text</p>'" : v === 'em' ? "''" : "false"})`).join(',\n')
+const hasDialogs = patterns.some(
+  (p) => p.snippet.includes('d1=') || p.snippet.includes('d2=')
+)
+const refVars = [
+  's1',
+  'r',
+  't',
+  'c1',
+  'r1',
+  'dr',
+  'n',
+  'u',
+  'e',
+  'sel',
+  'f',
+  'k',
+  'sv',
+  'rv',
+  'tv',
+  'ev',
+  'dv',
+  'cv',
+  'pv',
+  'cp',
+  'cb',
+  'st',
+  'em'
+]
+const setupVars = refVars
+  .map(
+    (v) =>
+      `      ${v}: ref(${v === 'sel' ? '[]' : v === 'rv' ? '{min:25,max:75}' : v === 'st' ? '1' : v === 'f' ? 'null' : v === 'k' || v === 'cp' || v === 'sv' || v === 'pv' ? '65' : v === 'tv' || v === 'dv' ? "'t1'" : v === 'cv' ? "'#6750a4'" : v === 'ev' ? "'<p>Text</p>'" : v === 'em' ? "''" : 'false'})`
+  )
+  .join(',\n')
 
 const vueContent = `<script lang="ts">
 import { ref } from 'vue'
@@ -129,12 +180,16 @@ ${setupVars}
 <template>
   <q-page padding class="q-gutter-y-lg">
     <p>${patterns.length} composite patterns from Quasar docs.</p>
-    ${patterns.map((p, i) => `
+    ${patterns
+      .map(
+        (p, i) => `
     <q-separator/>
     <section data-testid="composite-${i + 1}">
       <div class="text-subtitle1 q-mb-sm">${p.name}</div>
       <div class="q-pa-sm">${p.snippet}</div>
-    </section>`).join('')}
+    </section>`
+      )
+      .join('')}
   </q-page>
 </template>
 `
@@ -145,10 +200,14 @@ const testContent = `import { test, expect } from '@playwright/test'
 const STYLES = ['md3', 'md2', 'unstyled'] as const
 
 const PATTERNS = {
-${patterns.map((p, i) => {
-  const tags = [...new Set([...p.snippet.matchAll(/<(q-[a-z][^ >/]*)/g)].map(m => m[1]))]
-  return `  'composite-${i + 1}': ${JSON.stringify({ name: p.name, tags })}`
-}).join(',\n')}
+${patterns
+  .map((p, i) => {
+    const tags = [
+      ...new Set([...p.snippet.matchAll(/<(q-[a-z][^ >/]*)/g)].map((m) => m[1]))
+    ]
+    return `  'composite-${i + 1}': ${JSON.stringify({ name: p.name, tags })}`
+  })
+  .join(',\n')}
 }
 
 for (const [id, info] of Object.entries(PATTERNS)) {
@@ -170,11 +229,21 @@ for (const [id, info] of Object.entries(PATTERNS)) {
 `
 
 // Write
-const pagePath = join(ROOT, 'packages', 'app', 'src', 'pages', 'composites', 'CompositesPage.vue')
+const pagePath = join(
+  ROOT,
+  'packages',
+  'app',
+  'src',
+  'pages',
+  'composites',
+  'CompositesPage.vue'
+)
 const testPath = join(ROOT, 'tests', 'composites.spec.ts')
 mkdirSync(dirname(pagePath), { recursive: true })
 writeFileSync(pagePath, vueContent)
 writeFileSync(testPath, testContent)
 console.log(`Wrote ${patterns.length} composite patterns`)
 console.log(`Page: ${pagePath} (${vueContent.split('\n').length} lines)`)
-console.log(`Tests: ${testPath} (${testContent.split('\n').length} lines, ${patterns.length * 3} test cases)`)
+console.log(
+  `Tests: ${testPath} (${testContent.split('\n').length} lines, ${patterns.length * 3} test cases)`
+)

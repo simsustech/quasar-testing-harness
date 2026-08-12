@@ -24,10 +24,7 @@ const REPORT_PATH = path.join(
 
 // Per-component recipe: which props + interactions to try so we
 // trigger as many runtime state classes as possible.
-const RECIPES: Record<
-  string,
-  { props?: string }
-> = {
+const RECIPES: Record<string, { props?: string }> = {
   'q-btn': {
     props:
       'label=Click&color=primary&rounded=true&dense=true&disable=true&loading=true&outline=true&flat=true&push=true'
@@ -44,8 +41,7 @@ const RECIPES: Record<
   },
   'q-bar': { props: 'dense=true&dark=true' },
   'q-breadcrumbs': {
-    props:
-      'gutter=lg&align=center&separatorColor=primary&activeColor=secondary'
+    props: 'gutter=lg&align=center&separatorColor=primary&activeColor=secondary'
   },
   'q-btn-dropdown': {
     props: 'label=Menu&color=primary&split=true&dense=true'
@@ -113,8 +109,7 @@ const RECIPES: Record<
   },
   'q-intersection': {},
   'q-knob': {
-    props:
-      'modelValue=65&min=0&max=100&color=secondary&disable=true&size=lg'
+    props: 'modelValue=65&min=0&max=100&color=secondary&disable=true&size=lg'
   },
   'q-layout': { props: 'view=hHh lpR fFf' },
   'q-linear-progress': {
@@ -176,20 +171,16 @@ const RECIPES: Record<
   },
   'q-tab-panels': { props: 'modelValue=tab1' },
   'q-table': {
-    props:
-      'flat=true&bordered=true&square=true&dark=true&dense=true&grid=true'
+    props: 'flat=true&bordered=true&square=true&dark=true&dense=true&grid=true'
   },
   'q-tabs': {
-    props:
-      'dense=true&noCaps=true&color=secondary&dark=true&vertical=true'
+    props: 'dense=true&noCaps=true&color=secondary&dark=true&vertical=true'
   },
   'q-time': {
-    props:
-      'modelValue=12:30&landscape=true&dark=true&flat=true&bordered=true'
+    props: 'modelValue=12:30&landscape=true&dark=true&flat=true&bordered=true'
   },
   'q-timeline': {
-    props:
-      'comfortable=true&loose=true&side=left&color=secondary&dark=true'
+    props: 'comfortable=true&loose=true&side=left&color=secondary&dark=true'
   },
   'q-toggle': {
     props:
@@ -251,10 +242,7 @@ async function collectCssClasses(page: Page): Promise<string[]> {
           const rule = sheet.cssRules[j]
           if ('selectorText' in rule) {
             const text = (rule as CSSStyleRule).selectorText
-            const cleaned = text.replace(
-              /:{1,2}[a-zA-Z-]+(?:\([^)]*\))?/g,
-              ''
-            )
+            const cleaned = text.replace(/:{1,2}[a-zA-Z-]+(?:\([^)]*\))?/g, '')
             let m: RegExpExecArray | null
             while ((m = CLASS_RE.exec(cleaned)) !== null) {
               cssClasses.add(m[1])
@@ -288,22 +276,17 @@ test.describe('Quasar runtime class coverage', () => {
 
     test(`collect classes from /${slug}`, async ({ page }) => {
       test.setTimeout(60_000)
-      const qs = [
-        recipe.props ?? '',
-        'style=md3',
-      ]
-        .filter(Boolean)
-        .join('&')
+      const qs = [recipe.props ?? '', 'style=md3'].filter(Boolean).join('&')
 
       try {
         await page.goto(`/${slug}?${qs}`, {
           waitUntil: 'domcontentloaded',
-          timeout: 30_000,
+          timeout: 30_000
         })
 
-        await expect(
-          page.getByTestId('component-preview'),
-        ).toBeVisible({ timeout: 15_000 })
+        await expect(page.getByTestId('component-preview')).toBeVisible({
+          timeout: 15_000
+        })
 
         await page.waitForTimeout(300)
 
@@ -314,9 +297,7 @@ test.describe('Quasar runtime class coverage', () => {
         for (const cls of c) cssClasses.add(cls)
       } catch (err) {
         skipped++
-        console.warn(
-          `  ⚠  Skipped /${slug}: ${String(err).slice(0, 180)}`
-        )
+        console.warn(`  ⚠  Skipped /${slug}: ${String(err).slice(0, 180)}`)
       }
     })
   }
@@ -337,7 +318,7 @@ test.describe('Quasar runtime class coverage', () => {
       'q-notifications',
       'q-body--',
       'q-bottom-sheet',
-      'q-message',
+      'q-message'
     ]
 
     const QUASAR_UTILITY = [
@@ -349,7 +330,7 @@ test.describe('Quasar runtime class coverage', () => {
       'q-dark',
       'q-link',
       'q-link--focusable',
-      'q-placeholder',
+      'q-placeholder'
     ]
 
     const isQuasarClass = (cls: string) => {
@@ -382,10 +363,10 @@ test.describe('Quasar runtime class coverage', () => {
         totalCssClasses: cssSet.size,
         quasarClassesMissingCss: missing.length,
         quasarClassesInCssNotInDom: unusedInDom.length,
-        skippedPages: skipped,
+        skippedPages: skipped
       },
       missingFromCss: missing,
-      inCssButNotDom: unusedInDom,
+      inCssButNotDom: unusedInDom
     }
 
     fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true })
@@ -407,37 +388,27 @@ test.describe('Quasar runtime class coverage', () => {
       `  In CSS but not in DOM:     ${String(unusedInDom.length).padStart(5)}`
     )
     if (skipped > 0) {
-      console.log(
-        `  Skipped pages:             ${String(skipped).padStart(5)}`
-      )
+      console.log(`  Skipped pages:             ${String(skipped).padStart(5)}`)
     }
 
     if (missing.length > 0) {
-      console.log(
-        '\n--- Classes in DOM but MISSING from CSS ---'
-      )
+      console.log('\n--- Classes in DOM but MISSING from CSS ---')
       for (const cls of missing) {
         console.log(`  ${cls}`)
       }
     }
 
     if (unusedInDom.length > 0) {
-      console.log(
-        '\n--- Classes in CSS but NOT found in any visited DOM ---'
-      )
+      console.log('\n--- Classes in CSS but NOT found in any visited DOM ---')
       for (const cls of unusedInDom.slice(0, 40)) {
         console.log(`  ${cls}`)
       }
       if (unusedInDom.length > 40) {
-        console.log(
-          `  ... and ${unusedInDom.length - 40} more`
-        )
+        console.log(`  ... and ${unusedInDom.length - 40} more`)
       }
     }
 
-    console.log(
-      `\n  Full report written to ${REPORT_PATH}`
-    )
+    console.log(`\n  Full report written to ${REPORT_PATH}`)
     console.log('========================================\n')
 
     // Informational — always passes

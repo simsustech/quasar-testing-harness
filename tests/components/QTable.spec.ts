@@ -9,9 +9,15 @@ test.describe('QTable', () => {
   for (const style of STYLES) {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
-      await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
-      await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
+      await expect(page.locator('.control-panel')).toBeVisible({
+        timeout: 10_000
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 45_000
+      })
+      await expect(page.locator('.q-table__card')).toBeAttached({
+        timeout: 10_000
+      })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -37,18 +43,26 @@ test.describe('QTable — prop variations', () => {
     { label: 'grid', query: 'grid=true' },
     { label: 'separator-vertical', query: 'separator=vertical' },
     { label: 'separator-cell', query: 'separator=cell' },
-    { label: 'separator-none', query: 'separator=none' },
+    { label: 'separator-none', query: 'separator=none' }
   ]
 
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
-      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'domcontentloaded' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, {
+        waitUntil: 'domcontentloaded'
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 45_000
+      })
 
       if (isGrid(v.query)) {
-        await expect(page.locator('.q-table--grid')).toBeAttached({ timeout: 10_000 })
+        await expect(page.locator('.q-table--grid')).toBeAttached({
+          timeout: 10_000
+        })
       } else {
-        await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
+        await expect(page.locator('.q-table__card')).toBeAttached({
+          timeout: 10_000
+        })
       }
 
       await page.waitForTimeout(300)
@@ -62,10 +76,16 @@ test.describe('QTable — prop variations', () => {
 test.describe('QTable — MD3 text color conformance', () => {
   test('card wrapper has explicit text color', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
-    await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({
+      timeout: 45_000
+    })
+    await expect(page.locator('.q-table__card')).toBeAttached({
+      timeout: 10_000
+    })
     const color = await page.evaluate(() => {
-      const card = document.querySelector('.q-table__card') as HTMLElement | null
+      const card = document.querySelector(
+        '.q-table__card'
+      ) as HTMLElement | null
       if (!card) return null
       return window.getComputedStyle(card).color
     })
@@ -74,11 +94,19 @@ test.describe('QTable — MD3 text color conformance', () => {
   })
 
   test('dark mode — card wrapper has visible text color', async ({ page }) => {
-    await page.goto(`/${SLUG}?style=md3&dark=true`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
-    await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
+    await page.goto(`/${SLUG}?style=md3&dark=true`, {
+      waitUntil: 'networkidle'
+    })
+    await expect(page.getByTestId('component-preview')).toBeVisible({
+      timeout: 45_000
+    })
+    await expect(page.locator('.q-table__card')).toBeAttached({
+      timeout: 10_000
+    })
     const color = await page.evaluate(() => {
-      const card = document.querySelector('.q-table__card') as HTMLElement | null
+      const card = document.querySelector(
+        '.q-table__card'
+      ) as HTMLElement | null
       if (!card) return null
       return window.getComputedStyle(card).color
     })

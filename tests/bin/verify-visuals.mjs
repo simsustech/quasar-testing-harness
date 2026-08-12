@@ -17,7 +17,15 @@ import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const SHOTS = join(__dirname, '..', '..', 'packages', 'app', 'public', 'screenshots')
+const SHOTS = join(
+  __dirname,
+  '..',
+  '..',
+  'packages',
+  'app',
+  'public',
+  'screenshots'
+)
 
 // MD3 spec values
 const MD3 = {
@@ -34,19 +42,19 @@ const MD3 = {
     'on-surface': 'rgb(28, 27, 30)',
     'on-surface-variant': 'rgb(73, 69, 78)',
     outline: 'rgb(122, 117, 127)',
-    'outline-variant': 'rgb(202, 196, 207)',
+    'outline-variant': 'rgb(202, 196, 207)'
   },
   shape: {
     'extra-small': '4px',
     small: '8px',
     medium: '12px',
     large: '16px',
-    'extra-large': '28px',
+    'extra-large': '28px'
   }
 }
 
-const STYLE = process.argv[1]?.includes('--style=') 
-  ? process.argv[1].split('--style=')[1] 
+const STYLE = process.argv[1]?.includes('--style=')
+  ? process.argv[1].split('--style=')[1]
   : process.argv[2]?.replace('--style=', '') || 'md3'
 
 function shapeVarToPx(varName) {
@@ -55,7 +63,7 @@ function shapeVarToPx(varName) {
     '--shape-corner-small': '8px',
     '--shape-corner-medium': '12px',
     '--shape-corner-large': '16px',
-    '--shape-corner-extra-large': '28px',
+    '--shape-corner-extra-large': '28px'
   }
   return map[varName] || varName
 }
@@ -67,13 +75,13 @@ function shapeVarToPx(varName) {
 function oklabToSRGB(L, a, b) {
   const l_ = L + 0.3963377774 * a + 0.2158037573 * b
   const m_ = L - 0.1055613458 * a - 0.0638541728 * b
-  const s_ = L - 0.0894841775 * a - 1.2914855480 * b
+  const s_ = L - 0.0894841775 * a - 1.291485548 * b
   const l = l_ ** 3
   const m = m_ ** 3
   const s = s_ ** 3
   const r = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s
   const g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s
-  const b_ = -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s
+  const b_ = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s
   const gamma = (c) =>
     c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055
   return [gamma(r), gamma(g), gamma(b_)].map((v) =>
@@ -89,9 +97,14 @@ function parseColor(css) {
   if (typeof css !== 'string') return null
   const s = css.trim().toLowerCase()
   if (
-    s === '' || s === 'transparent' || s === 'currentcolor' ||
-    s === 'inherit' || s === 'initial' || s === 'unset'
-  ) return null
+    s === '' ||
+    s === 'transparent' ||
+    s === 'currentcolor' ||
+    s === 'inherit' ||
+    s === 'initial' ||
+    s === 'unset'
+  )
+    return null
 
   // #rgb / #rgba / #rrggbb / #rrggbbaa
   let m = s.match(/^#([0-9a-f]{3,8})$/)
@@ -103,21 +116,32 @@ function parseColor(css) {
     return [
       parseInt(h.slice(0, 2), 16),
       parseInt(h.slice(2, 4), 16),
-      parseInt(h.slice(4, 6), 16),
+      parseInt(h.slice(4, 6), 16)
     ]
   }
 
   // rgb()/rgba() — comma or space-separated, numbers or percentages
-  m = s.match(/^rgba?\((\d{1,3}%?)[,\s]+(\d{1,3}%?)[,\s]+(\d{1,3}%?)(?:\s*[,/]\s*([\d.]+%?))?\s*\)$/)
+  m = s.match(
+    /^rgba?\((\d{1,3}%?)[,\s]+(\d{1,3}%?)[,\s]+(\d{1,3}%?)(?:\s*[,/]\s*([\d.]+%?))?\s*\)$/
+  )
   if (m) {
-    const to255 = (v) => (v.endsWith('%') ? Math.round((parseFloat(v) / 100) * 255) : parseInt(v, 10))
-    const a = m[4] ? (m[4].endsWith('%') ? parseFloat(m[4]) / 100 : parseFloat(m[4])) : 1
+    const to255 = (v) =>
+      v.endsWith('%')
+        ? Math.round((parseFloat(v) / 100) * 255)
+        : parseInt(v, 10)
+    const a = m[4]
+      ? m[4].endsWith('%')
+        ? parseFloat(m[4]) / 100
+        : parseFloat(m[4])
+      : 1
     if (a === 0) return null
     return [to255(m[1]), to255(m[2]), to255(m[3])]
   }
 
   // oklab(L a b [/ alpha])
-  m = s.match(/^oklab\(([\d.]+)\s+([-+\d.]+)\s+([-+\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/)
+  m = s.match(
+    /^oklab\(([\d.]+)\s+([-+\d.]+)\s+([-+\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/
+  )
   if (m) {
     const a = m[4] ? parseFloat(m[4]) : 1
     if (a === 0) return null
@@ -125,7 +149,9 @@ function parseColor(css) {
   }
 
   // oklch(L C H [/ alpha]) — L in 0..1, C in 0..~0.4, H in degrees
-  m = s.match(/^oklch\(([\d.]+)\s+([\d.]+)\s+([-+\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/)
+  m = s.match(
+    /^oklch\(([\d.]+)\s+([\d.]+)\s+([-+\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/
+  )
   if (m) {
     const a = m[4] ? parseFloat(m[4]) : 1
     if (a === 0) return null
@@ -149,7 +175,12 @@ function checkJSON(filepath) {
   const json = JSON.parse(readFileSync(filepath, 'utf-8'))
   const issues = []
   const componentDir = basename(dirname(filepath))
-  const info = { file: basename(filepath), component: componentDir, passed: 0, failed: 0 }
+  const info = {
+    file: basename(filepath),
+    component: componentDir,
+    passed: 0,
+    failed: 0
+  }
 
   // Find the main rendered element in the preview
   const root = json.root
@@ -158,11 +189,19 @@ function checkJSON(filepath) {
 
   // 1. Check all CSS variables resolve to expected theme tokens
   const expectedLightVars = [
-    '--light-primary', '--light-on-primary', '--light-secondary',
-    '--light-surface', '--light-surface-dim', '--light-surface-container-low',
-    '--light-surface-container', '--light-surface-container-high', '--light-surface-container-highest',
-    '--light-on-surface', '--light-on-surface-variant',
-    '--light-outline', '--light-outline-variant',
+    '--light-primary',
+    '--light-on-primary',
+    '--light-secondary',
+    '--light-surface',
+    '--light-surface-dim',
+    '--light-surface-container-low',
+    '--light-surface-container',
+    '--light-surface-container-high',
+    '--light-surface-container-highest',
+    '--light-on-surface',
+    '--light-on-surface-variant',
+    '--light-outline',
+    '--light-outline-variant'
   ]
   for (const v of expectedLightVars) {
     if (vars[v] === undefined) {
@@ -177,12 +216,22 @@ function checkJSON(filepath) {
   // These are the tokens that MUST exist for proper MD3 rendering, per spec.
   // Shape tokens are only emitted on-demand, so we don't flag missing ones.
   const requiredTokens = [
-    '--light-primary', '--light-on-primary', '--light-secondary',
-    '--light-surface', '--light-on-surface', '--light-on-surface-variant',
-    '--light-outline', '--light-outline-variant',
-    '--dark-primary', '--dark-on-primary', '--dark-secondary',
-    '--dark-surface', '--dark-on-surface', '--dark-on-surface-variant',
-    '--dark-outline', '--dark-outline-variant',
+    '--light-primary',
+    '--light-on-primary',
+    '--light-secondary',
+    '--light-surface',
+    '--light-on-surface',
+    '--light-on-surface-variant',
+    '--light-outline',
+    '--light-outline-variant',
+    '--dark-primary',
+    '--dark-on-primary',
+    '--dark-secondary',
+    '--dark-surface',
+    '--dark-on-surface',
+    '--dark-on-surface-variant',
+    '--dark-outline',
+    '--dark-outline-variant'
   ]
   for (const v of requiredTokens) {
     if (vars[v] === undefined) {
@@ -193,20 +242,29 @@ function checkJSON(filepath) {
     }
   }
 
-// 3. For interactive elements, check basic MD3 values
+  // 3. For interactive elements, check basic MD3 values
   if (interactive) {
     // Primary-colored elements should have primary bg and on-primary text
-    if (colorsEqual(interactive.backgroundColor, MD3.colors.primary) && interactive.color) {
+    if (
+      colorsEqual(interactive.backgroundColor, MD3.colors.primary) &&
+      interactive.color
+    ) {
       if (!colorsEqual(interactive.color, MD3.colors['on-primary'])) {
         // Correct for: outline/flat buttons (transparent bg), icon children (inherit bg but show icon color),
         // chip-remove buttons (icon button inside chip inherits chip bg, icon color is primary)
         const className = (interactive.className || '').toLowerCase()
-        const isIcon = interactive.tag === 'I' || className.includes('icon') || className.includes('q-chip__icon')
-        const isOutline = className.includes('outline') || className.includes('flat')
+        const isIcon =
+          interactive.tag === 'I' ||
+          className.includes('icon') ||
+          className.includes('q-chip__icon')
+        const isOutline =
+          className.includes('outline') || className.includes('flat')
         if (isIcon || isOutline) {
           info.passed++
         } else {
-          issues.push(`  ⚠  Primary bg but text is ${interactive.color} (expected ${MD3.colors['on-primary']}) on <${interactive.tag} class="${interactive.className}">`)
+          issues.push(
+            `  ⚠  Primary bg but text is ${interactive.color} (expected ${MD3.colors['on-primary']}) on <${interactive.tag} class="${interactive.className}">`
+          )
           info.failed++
         }
       } else {
@@ -215,7 +273,7 @@ function checkJSON(filepath) {
     }
   }
 
-// Check border-radius matches MD3 shape tokens (accept compound values)
+  // Check border-radius matches MD3 shape tokens (accept compound values)
   if (interactive.borderRadius) {
     const values = interactive.borderRadius.split(' ').filter(Boolean)
     const validShapes = Object.values(MD3.shape)
@@ -250,9 +308,13 @@ let componentsChecked = 0
 let componentsWithIssues = 0
 
 const results = []
-for (const component of readdirSync(styleDir, { withFileTypes: true }).filter(d => d.isDirectory())) {
+for (const component of readdirSync(styleDir, { withFileTypes: true }).filter(
+  (d) => d.isDirectory()
+)) {
   const compDir = join(styleDir, component.name)
-  const jsonFiles = readdirSync(compDir).filter(f => f.endsWith('.json') && !f.includes('__style-'))
+  const jsonFiles = readdirSync(compDir).filter(
+    (f) => f.endsWith('.json') && !f.includes('__style-')
+  )
 
   for (const jf of jsonFiles) {
     const result = checkJSON(join(compDir, jf))
@@ -276,10 +338,13 @@ if (failedChecks > 0) {
   for (const r of results) {
     if (r.issues.length > 0) {
       console.log(`\n${r.component}/${r.file}:`)
-      r.issues.forEach(i => console.log(i))
+      r.issues.forEach((i) => console.log(i))
     }
   }
 }
 
 // Quick summary
-console.log('\nVerification:', failedChecks === 0 ? '✅ ALL PASS' : '❌ ISSUES FOUND')
+console.log(
+  '\nVerification:',
+  failedChecks === 0 ? '✅ ALL PASS' : '❌ ISSUES FOUND'
+)

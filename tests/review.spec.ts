@@ -9,9 +9,13 @@ test.describe('Review page — /review', () => {
     expect(count).toBeGreaterThan(0)
   })
 
-  test('clicking a component shows screenshots in the carousel', async ({ page }) => {
+  test('clicking a component shows screenshots in the carousel', async ({
+    page
+  }) => {
     await page.goto('/review', { waitUntil: 'networkidle' })
-    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({
+      timeout: 15_000
+    })
 
     await page.locator('.q-drawer .q-item').first().dispatchEvent('click')
 
@@ -27,10 +31,14 @@ test.describe('Review page — /review', () => {
 
   test('carousel navigation arrows work', async ({ page }) => {
     await page.goto('/review', { waitUntil: 'networkidle' })
-    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({
+      timeout: 15_000
+    })
 
     await page.locator('.q-drawer .q-item').first().dispatchEvent('click')
-    await expect(page.locator('.q-carousel__slide')).toBeVisible({ timeout: 5_000 })
+    await expect(page.locator('.q-carousel__slide')).toBeVisible({
+      timeout: 5_000
+    })
 
     const slides = page.locator('.q-carousel__slide')
     const count = await slides.count()
@@ -50,7 +58,9 @@ test.describe('Review page — /review', () => {
 
   test('style chips filter the component list', async ({ page }) => {
     await page.goto('/review', { waitUntil: 'networkidle' })
-    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({
+      timeout: 15_000
+    })
 
     const chips = page.locator('.q-chip')
     const chipCount = await chips.count()
@@ -66,7 +76,9 @@ test.describe('Review page — /review', () => {
 
   test('search input filters the component list', async ({ page }) => {
     await page.goto('/review', { waitUntil: 'networkidle' })
-    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('.q-drawer .q-item').first()).toBeVisible({
+      timeout: 15_000
+    })
 
     const initialCount = await page.locator('.q-drawer .q-item').count()
     expect(initialCount).toBeGreaterThan(0)

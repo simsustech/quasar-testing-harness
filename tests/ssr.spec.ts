@@ -15,13 +15,21 @@ test.describe('SSR dev server', () => {
   test.beforeAll(async () => {
     test.setTimeout(120_000)
 
-    server = spawn('npx', ['vitrify', 'dev', '-m', 'fastify', '--port', String(SSR_PORT)], {
-      cwd: API_DIR,
-      stdio: ['ignore', 'pipe', 'pipe']
-    })
+    server = spawn(
+      'npx',
+      ['vitrify', 'dev', '-m', 'fastify', '--port', String(SSR_PORT)],
+      {
+        cwd: API_DIR,
+        stdio: ['ignore', 'pipe', 'pipe']
+      }
+    )
 
-    server.stdout.on('data', (d) => { output += d.toString() })
-    server.stderr.on('data', (d) => { output += d.toString() })
+    server.stdout.on('data', (d) => {
+      output += d.toString()
+    })
+    server.stderr.on('data', (d) => {
+      output += d.toString()
+    })
 
     for (let i = 0; i < 90; i++) {
       if (output.includes(`Server listening at http://127.0.0.1:${SSR_PORT}`)) {

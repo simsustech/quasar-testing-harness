@@ -1,17 +1,27 @@
-import { chromium } from 'playwright';
+import { chromium } from 'playwright'
 
-const components = ['q-btn', 'q-card', 'q-drawer', 'q-header', 'q-img', 'q-chip'];
-const styles = ['md3', 'md2', 'unstyled'];
+const components = [
+  'q-btn',
+  'q-card',
+  'q-drawer',
+  'q-header',
+  'q-img',
+  'q-chip'
+]
+const styles = ['md3', 'md2', 'unstyled']
 
 async function checkComponent(page, component, style) {
-  await page.goto(`http://localhost:3000/${component}?style=${style}`, { waitUntil: 'networkidle', timeout: 15000 });
-  await page.waitForSelector(`.${component}`, { timeout: 8000 });
+  await page.goto(`http://localhost:3000/${component}?style=${style}`, {
+    waitUntil: 'networkidle',
+    timeout: 15000
+  })
+  await page.waitForSelector(`.${component}`, { timeout: 8000 })
 
   const results = await page.evaluate((comp) => {
-    const el = document.querySelector('.' + comp);
-    if (!el) return { error: 'element not found' };
+    const el = document.querySelector('.' + comp)
+    if (!el) return { error: 'element not found' }
 
-    const cs = getComputedStyle(el);
+    const cs = getComputedStyle(el)
 
     return {
       class: el.className.substring(0, 120),
@@ -34,57 +44,57 @@ async function checkComponent(page, component, style) {
       left: cs.left,
       right: cs.right,
       bottom: cs.bottom,
-      transform: cs.transform,
-    };
-  }, component);
+      transform: cs.transform
+    }
+  }, component)
 
   // Get all CSS rules for this component
   const cssRules = await page.evaluate((comp) => {
-    const rules = [];
+    const rules = []
     for (const sheet of document.styleSheets) {
       try {
         for (const rule of sheet.cssRules || []) {
           if (rule instanceof CSSStyleRule) {
-            const sel = rule.selectorText;
+            const sel = rule.selectorText
             if (sel.includes('.' + comp)) {
-              const bg = rule.style.backgroundColor;
-              const clr = rule.style.color;
+              const bg = rule.style.backgroundColor
+              const clr = rule.style.color
               if (bg || clr) {
                 rules.push({
                   selector: sel.substring(0, 100),
                   bg: bg,
                   color: clr
-                });
+                })
               }
             }
           }
         }
-      } catch(e) {}
+      } catch (e) {}
     }
-    return rules;
-  }, component);
+    return rules
+  }, component)
 
-  return { computed: results, cssRules };
+  return { computed: results, cssRules }
 }
 
-(async () => {
-  const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+;(async () => {
+  const browser = await chromium.launch()
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
 
-  const findings = {};
+  const findings = {}
 
   for (const comp of components) {
-    findings[comp] = {};
+    findings[comp] = {}
     for (const style of styles) {
-      console.log(`Checking ${comp} @ ${style}...`);
+      console.log(`Checking ${comp} @ ${style}...`)
       try {
-        findings[comp][style] = await checkComponent(page, comp, style);
-      } catch(e) {
-        findings[comp][style] = { error: e.message };
+        findings[comp][style] = await checkComponent(page, comp, style)
+      } catch (e) {
+        findings[comp][style] = { error: e.message }
       }
     }
   }
 
-  console.log(JSON.stringify(findings, null, 2));
-  await browser.close();
-})();
+  console.log(JSON.stringify(findings, null, 2))
+  await browser.close()
+})()

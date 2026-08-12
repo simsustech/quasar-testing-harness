@@ -6,16 +6,16 @@ const components = [
   { name: 'QDrawer', selector: '.q-drawer' },
   { name: 'QHeader', selector: '.q-header' },
   { name: 'QImg', selector: '.q-img' },
-  { name: 'QChip', selector: '.q-chip' },
+  { name: 'QChip', selector: '.q-chip' }
 ]
 const styles = ['md3', 'md2', 'unstyled']
 
 for (const comp of components) {
   for (const style of styles) {
     test(`${comp.name} @ ${style}`, async ({ page }) => {
-const slug = `q-${comp.name.slice(1).toLowerCase()}`
+      const slug = `q-${comp.name.slice(1).toLowerCase()}`
       await page.goto(`/${slug}?style=${style}`, {
-        timeout: 15000,
+        timeout: 15000
       })
       const el = page.locator(comp.selector).first()
       await expect(el).toBeVisible({ timeout: 8000 })

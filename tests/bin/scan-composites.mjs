@@ -16,7 +16,15 @@ const ROOT = join(__dirname, '..', '..')
 
 // Paths
 const DOCS_EXAMPLES = join(ROOT, '..', 'quasar', 'docs', 'src', 'examples')
-const COMPOSITES_PAGE = join(ROOT, 'packages', 'app', 'src', 'pages', 'composites', 'CompositesPage.vue')
+const COMPOSITES_PAGE = join(
+  ROOT,
+  'packages',
+  'app',
+  'src',
+  'pages',
+  'composites',
+  'CompositesPage.vue'
+)
 const COMPOSITES_TEST = join(ROOT, 'tests', 'composites.spec.ts')
 
 // --- 1. Read what's already tested ---
@@ -35,29 +43,42 @@ function readTestedPatterns() {
 // --- 2. Scan docs examples ---
 function scanDocsExamples() {
   const categories = readdirSync(DOCS_EXAMPLES, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name)
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
 
   // Quasar component tag names (lowercase)
-  const qTags = new Set(categories.map(c => `q-${c.replace(/^Q/, '').toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`))
+  const qTags = new Set(
+    categories.map(
+      (c) =>
+        `q-${c
+          .replace(/^Q/, '')
+          .toLowerCase()
+          .replace(/([a-z])([A-Z])/g, '$1-$2')
+          .toLowerCase()}`
+    )
+  )
 
   const composites = [] // { primary, secondary, file, components[] }
 
   for (const category of categories) {
     const dir = join(DOCS_EXAMPLES, category)
-    const files = readdirSync(dir).filter(f => f.endsWith('.vue'))
+    const files = readdirSync(dir).filter((f) => f.endsWith('.vue'))
 
     for (const file of files) {
       const content = readFileSync(join(dir, file), 'utf-8')
-      const tags = [...content.matchAll(/<(q-[a-z][^ >/]*)/g)].map(m => m[1])
+      const tags = [...content.matchAll(/<(q-[a-z][^ >/]*)/g)].map((m) => m[1])
       const unique = [...new Set(tags)]
 
       // Skip if only 1 component tag
       if (unique.length < 2) continue
 
       // Component name of this category (e.g. QBtn -> q-btn)
-      const primary = `q-${category.replace(/^Q/, '').toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`
-      const others = unique.filter(t => t !== primary && qTags.has(t))
+      const primary = `q-${category
+        .replace(/^Q/, '')
+        .toLowerCase()
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase()}`
+      const others = unique.filter((t) => t !== primary && qTags.has(t))
 
       if (others.length > 0) {
         composites.push({
@@ -91,7 +112,10 @@ function groupByPair(composites) {
 }
 
 function slug(name) {
-  return name.replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+  return name
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
 }
 
 // --- Main ---
@@ -102,20 +126,26 @@ const pairs = groupByPair(all)
 console.log('=== Composite patterns found in Quasar docs ===')
 console.log(`Total unique composite pairs: ${pairs.length}\n`)
 
-const relevant = pairs.filter(p => p.secondary.length >= 2)
+const relevant = pairs.filter((p) => p.secondary.length >= 2)
 console.log('=== Patterns with 2+ secondary components (most valuable) ===')
 for (const p of relevant) {
   const desc = `${p.primary} + ${p.secondary.join(', ')}`
-  const testedStr = [...tested].find(t => t.toLowerCase().includes(p.primary.replace('q-', ''))) ? '✓' : '✗'
+  const testedStr = [...tested].find((t) =>
+    t.toLowerCase().includes(p.primary.replace('q-', ''))
+  )
+    ? '✓'
+    : '✗'
   console.log(`  ${testedStr} ${desc}`)
-  console.log(`     Files: ${p.files.slice(0, 3).join(', ')}${p.files.length > 3 ? ` (+${p.files.length - 3} more)` : ''}`)
+  console.log(
+    `     Files: ${p.files.slice(0, 3).join(', ')}${p.files.length > 3 ? ` (+${p.files.length - 3} more)` : ''}`
+  )
 }
 console.log()
 
 // Untested pairs (with 2+ secondary)
-const untested = relevant.filter(p => {
+const untested = relevant.filter((p) => {
   const desc = p.primary.replace('q-', '')
-  return ![...tested].some(t => t.toLowerCase().includes(desc))
+  return ![...tested].some((t) => t.toLowerCase().includes(desc))
 })
 
 console.log(`=== Untested composite patterns (${untested.length}) ===`)
@@ -134,10 +164,14 @@ for (const c of all) {
   }
 }
 for (const pair of [...componentPairs].sort()) {
-  const testedStr = [...tested].some(t => {
+  const testedStr = [...tested].some((t) => {
     const parts = pair.split(' + ')
-    return t.toLowerCase().includes(parts[0].replace('q-', '')) &&
-           t.toLowerCase().includes(parts[1].replace('q-', ''))
-  }) ? '✓' : '✗'
+    return (
+      t.toLowerCase().includes(parts[0].replace('q-', '')) &&
+      t.toLowerCase().includes(parts[1].replace('q-', ''))
+    )
+  })
+    ? '✓'
+    : '✗'
   console.log(`  ${testedStr} ${pair}`)
 }

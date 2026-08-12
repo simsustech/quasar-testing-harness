@@ -10,8 +10,12 @@ test.describe('QDate', () => {
   for (const style of STYLES) {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
-      await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await expect(page.locator('.control-panel')).toBeVisible({
+        timeout: 10_000
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -26,14 +30,21 @@ test.describe('QDate — prop variations', () => {
     { label: 'landscape', query: 'modelValue=2025/06/19&landscape=true' },
     { label: 'minimal', query: 'modelValue=2025/06/19&minimal=true' },
     { label: 'dark', query: 'modelValue=2025/06/19&dark=true' },
-    { label: 'flat-bordered', query: 'modelValue=2025/06/19&flat=true&bordered=true' },
-    { label: 'color-secondary', query: 'modelValue=2025/06/19&color=secondary' },
+    {
+      label: 'flat-bordered',
+      query: 'modelValue=2025/06/19&flat=true&bordered=true'
+    },
+    { label: 'color-secondary', query: 'modelValue=2025/06/19&color=secondary' }
   ]
 
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
-      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, {
+        waitUntil: 'networkidle'
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -42,13 +53,15 @@ test.describe('QDate — prop variations', () => {
 })
 
 test.describe('QDate — dark mode', () => {
-  const darkVariants = [
-    { label: 'dark-default', query: 'dark=true' },
-  ]
+  const darkVariants = [{ label: 'dark-default', query: 'dark=true' }]
   test('dark mode screenshots at md3', async ({ page }) => {
     for (const v of darkVariants) {
-      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, {
+        waitUntil: 'networkidle'
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

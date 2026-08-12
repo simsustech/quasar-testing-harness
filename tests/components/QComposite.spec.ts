@@ -43,7 +43,7 @@ const sections = [
   'composite-table-pagination',
   'composite-carousel',
   'composite-footer-toolbar',
-  'composite-icon-badge',
+  'composite-icon-badge'
 ]
 
 // Split into batches of 6 sections to stay within timeouts
@@ -52,16 +52,23 @@ for (let i = 0; i < sections.length; i += BATCH_SIZE) {
   const batch = sections.slice(i, i + BATCH_SIZE)
   test.describe(`Composites batch ${Math.floor(i / BATCH_SIZE) + 1}`, () => {
     for (const style of STYLES) {
-      test(`screenshots ${batch.length} sections with ?style=${style}`, async ({ page }) => {
+      test(`screenshots ${batch.length} sections with ?style=${style}`, async ({
+        page
+      }) => {
         test.setTimeout(TEST_TIMEOUT)
-        await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle', timeout: 20_000 })
-        await expect(page.getByTestId('composite-btn-tooltip')).toBeVisible({ timeout: 15_000 })
+        await page.goto(`/${SLUG}?style=${style}`, {
+          waitUntil: 'networkidle',
+          timeout: 20_000
+        })
+        await expect(page.getByTestId('composite-btn-tooltip')).toBeVisible({
+          timeout: 15_000
+        })
 
         for (const section of batch) {
           await page.getByTestId(section).scrollIntoViewIfNeeded()
           await expect(page.getByTestId(section)).toBeVisible()
           await page.waitForTimeout(200)
-const png = await shot(page, SLUG, section, style, 'desktop', section)
+          const png = await shot(page, SLUG, section, style, 'desktop', section)
           expect(fs.existsSync(png)).toBe(true)
           expect(fs.statSync(png).size).toBeGreaterThan(100)
         }

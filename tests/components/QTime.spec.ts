@@ -10,8 +10,12 @@ test.describe('QTime', () => {
   for (const style of STYLES) {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
-      await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await expect(page.locator('.control-panel')).toBeVisible({
+        timeout: 10_000
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -26,13 +30,17 @@ test.describe('QTime — prop variations', () => {
     { label: 'landscape', query: 'landscape=true' },
     { label: 'dark', query: 'dark=true' },
     { label: 'flat-bordered', query: 'flat=true&bordered=true' },
-    { label: 'minimal', query: 'minimal=true' },
+    { label: 'minimal', query: 'minimal=true' }
   ]
 
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
-      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, {
+        waitUntil: 'networkidle'
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -41,13 +49,15 @@ test.describe('QTime — prop variations', () => {
 })
 
 test.describe('QTime — dark mode', () => {
-  const darkVariants = [
-    { label: 'dark-default', query: 'dark=true' },
-  ]
+  const darkVariants = [{ label: 'dark-default', query: 'dark=true' }]
   test('dark mode screenshots at md3', async ({ page }) => {
     for (const v of darkVariants) {
-      await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
+      await page.goto(`/${SLUG}?style=md3&${v.query}`, {
+        waitUntil: 'networkidle'
+      })
+      await expect(page.getByTestId('component-preview')).toBeVisible({
+        timeout: 30_000
+      })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

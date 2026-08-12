@@ -123,7 +123,7 @@ test.describe('Style switcher', () => {
       /Material Design 2/
     )
   })
-test('the persisted style survives navigation to a page without ?style=', async ({
+  test('the persisted style survives navigation to a page without ?style=', async ({
     page
   }) => {
     await page.goto('/q-btn?style=md2', { waitUntil: 'networkidle' })
