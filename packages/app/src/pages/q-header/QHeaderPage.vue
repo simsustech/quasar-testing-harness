@@ -18,6 +18,7 @@ const route = useRoute()
 const isUnstyled = computed(() => route.query.style === 'unstyled')
 const headerStyle = computed(() => ({
   position: 'relative',
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
   height: '56px',
