@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 /**
  * The three Quasar styles exposed by `unocss-preset-quasar/styles`,
@@ -8,12 +8,14 @@ import { useRoute } from 'vue-router'
  * The body class is added/removed on `<body>` whenever the active style
  * changes, so the matching scoped rules apply and the others don't.
  *
- * Switching styles triggers a `location.reload()` so the page boots
- * cleanly for the freshly selected style (per-page component props are
- * configured statically and not re-derived without a fresh mount).
- * `packages/app/index.html` ships a tiny inline script that applies the
- * `?style=` body class before first paint, so the reloaded page never
- * flashes the preset's unscoped `:root` defaults (md3) before hydration.
+ * The active style comes from the `?style=` URL param, falling back to the
+ * persisted `localStorage` choice (`quasar-style`), then `md3`. All three
+ * styles' rules ship in the bundle (scoped to `body.quasar-style-*`), so
+ * switching is instant — `setStyle()` just applies the body class and
+ * updates the URL, no reload. `packages/app/index.html` ships a tiny inline
+ * script that applies the same resolution before first paint, so fresh
+ * loads (including the SSG build's prerendered HTML) never flash the
+ * preset's unscoped `:root` defaults (md3) before hydration.
  */
 export type StyleSlug = 'md2' | 'md3' | 'unstyled'
 
@@ -48,11 +50,26 @@ export const STYLES: readonly StyleOption[] = [
 
 const DEFAULT_STYLE: StyleSlug = 'md3'
 
+/** localStorage key the inline pre-paint script in index.html also reads. */
+const STORAGE_KEY = 'quasar-style'
+
 const ALL_BODY_CLASSES = STYLES.map((s) => s.bodyClass)
 
 function parseStyleSlug(raw: unknown): StyleSlug {
   if (raw === 'md2' || raw === 'md3' || raw === 'unstyled') return raw
   return DEFAULT_STYLE
+}
+
+/** The style persisted by `setStyle`, or null when none/invalid/unavailable. */
+function readStoredStyle(): StyleSlug | null {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY)
+    return stored === 'md2' || stored === 'md3' || stored === 'unstyled'
+      ? stored
+      : null
+  } catch {
+    return null
+  }
 }
 
 /**
@@ -61,22 +78,30 @@ function parseStyleSlug(raw: unknown): StyleSlug {
  *
  * - Reads the URL on mount and on every route.query change.
  * - Sets `<body>`'s class so the matching scoped rules apply.
- * - `setStyle(slug)` writes to the URL via `router.replace` (no full
- *   navigation, just a query-string update), then reloads the page so
- *   per-component default props are re-applied for the new style.
+ * - `setStyle(slug)` persists the choice to localStorage, applies the
+ *   body class immediately and updates the URL via `router.replace` —
+ *   no navigation, no reload: switching is instant.
  */
 export function useStyle() {
   const route = useRoute()
+  const router = useRouter()
 
-  const currentSlug = ref<StyleSlug>(parseStyleSlug(route.query.style))
+  // URL param wins (shared links, tests); otherwise the persisted choice.
+  const urlSlug = parseStyleSlug(route.query.style)
+  const initialSlug: StyleSlug =
+    route.query.style === undefined || route.query.style === null
+      ? (readStoredStyle() ?? DEFAULT_STYLE)
+      : urlSlug
+
+  const currentSlug = ref<StyleSlug>(initialSlug)
 
   const current = computed(() => {
     return STYLES.find((s) => s.slug === currentSlug.value) ?? STYLES[0]
   })
 
-  // Keep the body class in sync with `currentSlug`. We do NOT reload
-  // here — reloads happen explicitly in `setStyle` so the URL is the
-  // single source of truth.
+  // Keep the body class in sync with `currentSlug` (URL changes from
+  // back/forward or programmatic navigation are handled by the watch
+  // below; the initial apply happens at setup, before first paint).
   const applyBodyClass = (slug: StyleSlug) => {
     if (typeof document === 'undefined') return
     const target = STYLES.find((s) => s.slug === slug)!.bodyClass
@@ -89,8 +114,9 @@ export function useStyle() {
   applyBodyClass(currentSlug.value)
 
   // React to URL changes from elsewhere (back/forward, programmatic
-  // navigation). We don't reload here — we assume the navigation came
-  // from `setStyle` which already reloaded.
+  // navigation). `setStyle` updates the URL via `router.replace`, which
+  // triggers this watch — the eager apply already flipped the body class,
+  // so this only reconciles `currentSlug` (and the switcher label).
   watch(
     () => route.query.style,
     (raw) => {
@@ -104,23 +130,18 @@ export function useStyle() {
 
   const setStyle = (slug: StyleSlug) => {
     if (slug === currentSlug.value) return
+    currentSlug.value = slug
     // Apply the body class eagerly so the visible style updates
-    // immediately. We use history.replaceState directly (not
-    // vue-router) so the URL is committed before we reload — vue-
-    // router's reactive update otherwise races the reload and the
-    // new module load ends up reading the old URL.
+    // immediately — the tokens are all in the bundle, so there is no
+    // reload and no flash.
     applyBodyClass(slug)
     if (typeof window !== 'undefined') {
       try {
-        const url = new URL(window.location.href)
-        url.searchParams.set('style', slug)
-        window.history.replaceState({}, '', url.toString())
+        window.localStorage.setItem(STORAGE_KEY, slug)
       } catch {
-        // URL construction cannot fail for location.href, but keep the
-        // switch working even if it ever does — the reload below reads
-        // the current URL regardless.
+        /* storage unavailable */
       }
-      window.location.reload()
+      router.replace({ query: { ...route.query, style: slug } })
     }
   }
 

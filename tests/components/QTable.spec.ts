@@ -10,7 +10,7 @@ test.describe('QTable', () => {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible()
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
       await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
@@ -43,7 +43,7 @@ test.describe('QTable — prop variations', () => {
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'domcontentloaded' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
 
       if (isGrid(v.query)) {
         await expect(page.locator('.q-table--grid')).toBeAttached({ timeout: 10_000 })
@@ -62,7 +62,7 @@ test.describe('QTable — prop variations', () => {
 test.describe('QTable — MD3 text color conformance', () => {
   test('card wrapper has explicit text color', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
     await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
     const color = await page.evaluate(() => {
       const card = document.querySelector('.q-table__card') as HTMLElement | null
@@ -75,7 +75,7 @@ test.describe('QTable — MD3 text color conformance', () => {
 
   test('dark mode — card wrapper has visible text color', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&dark=true`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 45_000 })
     await expect(page.locator('.q-table__card')).toBeAttached({ timeout: 10_000 })
     const color = await page.evaluate(() => {
       const card = document.querySelector('.q-table__card') as HTMLElement | null

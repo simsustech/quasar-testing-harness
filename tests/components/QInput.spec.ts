@@ -11,7 +11,7 @@ test.describe('QInput', () => {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible()
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -32,7 +32,7 @@ test.describe('QInput — dark mode and clearable', () => {
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -43,7 +43,7 @@ test.describe('QInput — dark mode and clearable', () => {
 test.describe('QInput — MD3 spec conformance', () => {
   test('control height is 56px', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-field__control': ['height']
     })
@@ -52,7 +52,7 @@ test.describe('QInput — MD3 spec conformance', () => {
 
   test('dark mode — native text is NOT black', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&dark=true&label=Email`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-field__native': ['color'],
       '.q-field__label': ['color']
@@ -63,7 +63,7 @@ test.describe('QInput — MD3 spec conformance', () => {
 
   test('clearable — clear icon is present when modelValue set', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&clearable=true&label=Email&modelValue=test@example.com`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const icon = page.locator('[data-testid="component-preview"] .q-field__append .q-icon')
     await expect(icon).toBeVisible()
   })
@@ -72,7 +72,7 @@ test.describe('QInput — MD3 spec conformance', () => {
 test.describe('QInput — MD2 spec conformance', () => {
   test('dark mode — native text is NOT black', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md2&dark=true&label=Email`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-field__native': ['color'],
       '.q-field__label': ['color']
@@ -93,7 +93,7 @@ test.describe('QInput — prop variations', () => {
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

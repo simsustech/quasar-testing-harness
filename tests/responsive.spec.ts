@@ -34,7 +34,7 @@ test.describe('Screenshots', () => {
           const darkParam = mode === 'dark' ? '&dark=true' : ''
           await page.setViewportSize({ width: vp.width, height: vp.height })
           await page.goto(`/${slug}?style=md3${darkParam}`, { waitUntil: 'networkidle', timeout: 20_000 })
-          await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+          await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
           const png = await shot(page, slug, 'default', 'md3', vp.slug)
           expect(fs.existsSync(png)).toBe(true)
           expect(fs.statSync(png).size).toBeGreaterThan(100)

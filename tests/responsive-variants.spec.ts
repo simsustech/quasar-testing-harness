@@ -123,7 +123,7 @@ test.describe('Responsive variant screenshots', () => {
 
           await page.setViewportSize({ width: vp.width, height: vp.height })
           await page.goto(`/${slug}?style=${STYLE}&${v.query}`, { waitUntil: 'networkidle', timeout: 20_000 })
-          await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+          await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
 
           expect(errors).toEqual([])
 

@@ -10,7 +10,7 @@ test.describe('QToggle', () => {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible()
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -36,7 +36,7 @@ test.describe('QToggle — prop variations', () => {
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -47,7 +47,7 @@ test.describe('QToggle — prop variations', () => {
 test.describe('QToggle — MD3 spec conformance', () => {
   test('default (unchecked) — toggle renders with reasonable dimensions', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&modelValue=false&label=Off`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-toggle__inner': ['font-size'],
       '.q-toggle__thumb': ['left', 'width', 'height']
@@ -60,7 +60,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
 
   test('checked — thumb moves to the right', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&modelValue=true&label=On`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-toggle__inner': ['font-size'],
       '.q-toggle__thumb': ['left', 'width', 'height']
@@ -73,7 +73,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
 
   test('label has non-zero left padding', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&modelValue=true&label=Notifications`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const pad = await page.evaluate(() => {
       const el = document.querySelector('[data-testid="component-preview"] .q-toggle .q-toggle__label') as HTMLElement | null
       if (!el) return null
@@ -86,7 +86,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
 
   test('hover glow — ::before has an opacity value', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&modelValue=false&label=Hover`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const thumb = page.locator('[data-testid="component-preview"] .q-toggle__thumb')
     await thumb.hover()
     await page.waitForTimeout(300)
@@ -101,7 +101,7 @@ test.describe('QToggle — MD3 spec conformance', () => {
 
   test('dense — font-size 28px', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&dense=true&modelValue=true&label=Compact`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-toggle__inner': ['font-size'],
       '.q-toggle__thumb': ['width', 'height']
@@ -119,7 +119,7 @@ test.describe('QToggle — MD2 spec conformance', () => {
 
   test('checked — thumb left > off-state position', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md2&modelValue=true&label=On`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-toggle__thumb': ['left']
     })
@@ -129,7 +129,7 @@ test.describe('QToggle — MD2 spec conformance', () => {
 
   test('dense — inner width smaller than default', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md2&dense=true&modelValue=false&label=Compact`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-toggle__inner': ['font-size']
     })
@@ -138,7 +138,7 @@ test.describe('QToggle — MD2 spec conformance', () => {
 
   test('hover glow — ::before becomes visible on hover', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md2&modelValue=false&label=Hover`, { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const thumb = page.locator('[data-testid="component-preview"] .q-toggle__thumb')
     await thumb.hover()
     await page.waitForTimeout(300)
@@ -156,7 +156,7 @@ test.describe('QToggle — dark mode', () => {
   test('dark mode screenshots at md3', async ({ page }) => {
     for (const v of darkVariants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

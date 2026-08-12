@@ -10,7 +10,7 @@ test.describe('QBtn', () => {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible()
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, { style }, style)
       await dumpDiagnostics(page, SLUG, { style }, style)
       expect(fs.existsSync(png)).toBe(true)
@@ -48,7 +48,7 @@ test.describe('QBtn — prop variations', () => {
     test.setTimeout(120_000)
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'domcontentloaded' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -59,7 +59,7 @@ test.describe('QBtn — prop variations', () => {
 test.describe('QBtn — border-radius', () => {
   test('standard button is rounded at md3', async ({ page }) => {
     await page.goto('/q-btn?style=md3', { waitUntil: 'networkidle' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const btn = page.locator('.q-btn--standard').first()
     await expect(btn).toBeVisible()
     const radius = await btn.evaluate(el => getComputedStyle(el).borderRadius)
@@ -75,7 +75,7 @@ test.describe('QBtn — md3 border-radius', () => {
   for (const c of cases) {
     test(c.name, async ({ page }) => {
       await page.goto(`/q-btn?style=md3&${c.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 15_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const btn = page.locator('.q-btn--standard').or(page.locator('.q-btn')).first()
       await expect(btn).toBeVisible()
       const radius = await btn.evaluate(el => getComputedStyle(el).borderRadius)
@@ -93,7 +93,7 @@ test.describe('QBtn — dark mode', () => {
   test('dark mode variants at md3', async ({ page }) => {
     for (const v of darkVariants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

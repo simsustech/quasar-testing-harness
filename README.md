@@ -98,11 +98,13 @@ How it works on the 0.5.x architecture:
   style via the `?style=` URL param (`useStyle.ts`) and `setStyle()`/
   `getActiveStyle()` from `unocss-preset-quasar/styles`. Dark mode swaps
   `--light-*` → `--dark-*` tokens via `body--dark` (`?dark=true`).
-- `packages/app/index.html` ships a tiny inline script that applies the
-  `?style=` body class before first paint. `useStyle.setStyle()` reloads
-  the page after writing `?style=`; without the script the reloaded page
-  would first paint the unscoped `:root` md3 defaults and then flip to the
-  chosen style on hydration (the md3 → md2 → md3 → md2 flash).
+- Switching styles is **instant** (no reload): all three styles' rules ship in
+  the bundle, so `setStyle()` applies the body class, persists the choice to
+  `localStorage` (`quasar-style`) and updates the URL via `router.replace`.
+- `packages/app/index.html` ships a tiny inline script that resolves the same
+  `?style=` → `localStorage` → md3 chain **before first paint**, so fresh
+  loads (including the SSG build's prerendered HTML) never flash the unscoped
+  `:root` md3 defaults before hydration/app boot.
 - Tokens are generated from `VITE_SOURCE_COLOR` (`#6750a4` in `packages/app/.env`)
   via `@poupe/material-color-utilities` and exposed as `--q-*` / `--light-*` /
   `--dark-*` variables.

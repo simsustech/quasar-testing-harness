@@ -16,9 +16,21 @@ const STYLE_CLASSES = [
   'quasar-style-unstyled'
 ]
 
+// Mirrors the inline pre-paint script in index.html: ?style= wins, then
+// the persisted localStorage choice (written by useStyle.setStyle), then md3.
 function readInitialStyle(): string {
   if (typeof window === 'undefined') return 'md3'
-  return new URLSearchParams(window.location.search).get('style') || 'md3'
+  const fromUrl = new URLSearchParams(window.location.search).get('style')
+  if (fromUrl === 'md2' || fromUrl === 'md3' || fromUrl === 'unstyled')
+    return fromUrl
+  try {
+    const stored = window.localStorage.getItem('quasar-style')
+    if (stored === 'md2' || stored === 'md3' || stored === 'unstyled')
+      return stored
+  } catch {
+    /* storage unavailable */
+  }
+  return 'md3'
 }
 
 onMounted(() => {

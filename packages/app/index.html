@@ -9,17 +9,32 @@
 
   <body>
     <script>
-      // Apply the ?style= body class before first paint. useStyle.setStyle()
-      // switches styles by writing ?style= to the URL and reloading; without
-      // this, the reloaded page would first paint with the preset's unscoped
-      // :root defaults (md3) and then flip to the chosen style on hydration
-      // (the md3 -> md2 -> md3 -> md2 flash). Only toggles the quasar-style-*
-      // classes so Quasar's own body classes (desktop, body--dark, ...) survive.
+      // Apply the quasar-style-* body class before first paint, so the
+      // prerendered HTML never paints the preset's unscoped :root defaults
+      // (md3) before hydration/app boot. Source of truth: ?style= URL param,
+      // falling back to the persisted localStorage choice (set by
+      // useStyle.setStyle), then md3. Only toggles the quasar-style-* classes
+      // so Quasar's own body classes (desktop, body--dark, ...) survive.
       ;(function () {
+        // Persisted choice (set by useStyle.setStyle) so a returning visitor
+        // gets their style on the very first paint. The URL param wins.
+        var style = null
         var m = /(?:[?&])style=(md2|md3|unstyled)(?:&|$)/.exec(
           window.location.search
         )
-        var cls = 'quasar-style-' + (m ? m[1] : 'md3')
+        if (m) {
+          style = m[1]
+        } else {
+          try {
+            var stored = window.localStorage.getItem('quasar-style')
+            if (stored === 'md2' || stored === 'md3' || stored === 'unstyled') {
+              style = stored
+            }
+          } catch {
+            /* storage unavailable (private mode / blocked) */
+          }
+        }
+        var cls = 'quasar-style-' + (style || 'md3')
         document.body.classList.remove(
           'quasar-style-md2',
           'quasar-style-md3',

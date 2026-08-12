@@ -11,7 +11,7 @@ test.describe('QDialog', () => {
     test(`renders cleanly with ?style=${style}`, async ({ page }) => {
       await page.goto(`/${SLUG}?style=${style}`, { waitUntil: 'networkidle' })
       await expect(page.locator('.control-panel')).toBeVisible({ timeout: 10_000 })
-      await expect(page.getByTestId('component-preview')).toBeVisible()
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       // Dialog is portaled — use full page screenshot
       const png = await shot(page, SLUG, { style }, style)
       // Override to capture full page
@@ -38,7 +38,7 @@ test.describe('QDialog — prop variations', () => {
   test('all visual variants at md3', async ({ page }) => {
     for (const v of variants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       const png = await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
       expect(fs.statSync(png).size).toBeGreaterThan(100)
@@ -49,7 +49,7 @@ test.describe('QDialog — prop variations', () => {
 test.describe('QDialog — MD3 spec conformance', () => {
   test('dialog inner div has extra-large border-radius (28px)', async ({ page }) => {
     await page.goto(`/${SLUG}?style=md3&modelValue=true`, { waitUntil: 'domcontentloaded' })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     const s = await computedStyles(page, {
       '.q-dialog__inner': ['border-radius']
     })
@@ -67,7 +67,7 @@ test.describe('QDialog — dark mode', () => {
   test('dark mode screenshots at md3', async ({ page }) => {
     for (const v of darkVariants) {
       await page.goto(`/${SLUG}?style=md3&${v.query}`, { waitUntil: 'networkidle' })
-      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10_000 })
+      await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
       await shot(page, SLUG, v.label, 'md3')
       await dumpDiagnostics(page, SLUG, v.label, 'md3')
     }

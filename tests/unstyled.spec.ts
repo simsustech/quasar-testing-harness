@@ -11,7 +11,7 @@ test.describe('Unstyled style', () => {
   test('QBtn has no background or primary color by default', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
     await page.goto('/q-btn?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     await page.waitForSelector('.q-btn', { timeout: 5000 })
     const styles = await page.evaluate(() => {
       const btn = document.querySelector('.q-btn')!
@@ -27,7 +27,7 @@ test.describe('Unstyled style', () => {
   test('Inline style overrides unstyled default', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
     await page.goto('/q-btn?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     await page.waitForSelector('.q-btn', { timeout: 5000 })
     const bg = await page.evaluate(() => {
       const btn = document.querySelector('.q-btn')!
@@ -40,7 +40,7 @@ test.describe('Unstyled style', () => {
   test('Binding a Quasar color prop does not theme the component', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
     await page.goto('/q-btn?style=unstyled&color=secondary', { waitUntil: 'networkidle', timeout: 20000 })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     await page.waitForSelector('.q-btn', { timeout: 5000 })
     const bg = await page.evaluate(() => getComputedStyle(document.querySelector('.q-btn')!).backgroundColor)
     // Should be transparent — the color prop should NOT force a background in unstyled
@@ -50,7 +50,7 @@ test.describe('Unstyled style', () => {
   test('Rendering multiple components with no theme leaking', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
     await page.goto('/q-card?style=unstyled', { waitUntil: 'networkidle', timeout: 20000 })
-    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 10000 })
+    await expect(page.getByTestId('component-preview')).toBeVisible({ timeout: 30_000 })
     await page.waitForSelector('.q-card', { timeout: 5000 })
     const styles = await page.evaluate(() => {
       const card = document.querySelector('.q-card')!

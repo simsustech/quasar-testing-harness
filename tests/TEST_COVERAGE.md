@@ -1,6 +1,6 @@
 # Test Coverage Overview
 
-**1281 tests** across **73 per-component spec files**, **12 top-level spec files**, and `tests/helpers.ts`.
+**1283 tests** across **73 per-component spec files**, **12 top-level spec files**, and `tests/helpers.ts`.
 
 ## Test Structure
 
@@ -8,7 +8,7 @@
 tests/
 ├── helpers.ts                          # shot(), computedRgba(), dumpDiagnostics(), computedStyles(), pseudoStyles()
 ├── functional.spec.ts                  # Interaction tests (click, toggle, dialog, menu, select)
-├── style-switcher.spec.ts              # Body-class scoping for md3/md2/unstyled; no flash on switch
+├── style-switcher.spec.ts              # Body-class style switching: instant, URL+localStorage, no flash
 ├── unstyled.spec.ts                    # Unstyled style — no preset theming leaks
 ├── review.spec.ts                       # /review gallery page
 ├── ssr.spec.ts                          # SSR dev server smoke tests
