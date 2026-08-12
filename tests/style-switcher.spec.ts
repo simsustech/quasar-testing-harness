@@ -123,6 +123,28 @@ test.describe('Style switcher', () => {
       /Material Design 2/
     )
   })
+test('the persisted style survives navigation to a page without ?style=', async ({
+    page
+  }) => {
+    await page.goto('/q-btn?style=md2', { waitUntil: 'networkidle' })
+    await expect(page.getByTestId('style-switcher-current')).toHaveText(
+      /Material Design 2/
+    )
+
+    // Client-side navigation (toolbar title link) to the homepage, which
+    // has no ?style= param. The stored choice must win over the default.
+    await page
+      .getByRole('link', { name: 'Quasar Component Playground' })
+      .click()
+    await page.waitForURL(/\/$/, { timeout: 10_000 })
+
+    await expect(page.getByTestId('style-switcher-current')).toHaveText(
+      /Material Design 2/
+    )
+    const bodyClass = await page.evaluate(() => document.body.className)
+    expect(bodyClass).toContain('quasar-style-md2')
+    expect(bodyClass).not.toContain('quasar-style-md3')
+  })
 
   test('the switcher offers all three styles', async ({ page }) => {
     await page.goto('/', { waitUntil: 'networkidle' })

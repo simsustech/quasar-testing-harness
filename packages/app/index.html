@@ -12,12 +12,14 @@
       // Apply the quasar-style-* body class before first paint, so the
       // prerendered HTML never paints the preset's unscoped :root defaults
       // (md3) before hydration/app boot. Source of truth: ?style= URL param,
-      // falling back to the persisted localStorage choice (set by
-      // useStyle.setStyle), then md3. Only toggles the quasar-style-* classes
-      // so Quasar's own body classes (desktop, body--dark, ...) survive.
+      // falling back to the persisted localStorage choice (set by useStyle
+      // via setStyle() or a ?style= param), then md3. Only toggles the
+      // quasar-style-* classes so Quasar's own body classes (desktop,
+      // body--dark, ...) survive.
       ;(function () {
-        // Persisted choice (set by useStyle.setStyle) so a returning visitor
-        // gets their style on the very first paint. The URL param wins.
+        // Persisted choice (set by useStyle — via setStyle() or a ?style=
+        // param) so a returning visitor gets their style on the very first
+        // paint. The URL param wins.
         var style = null
         var m = /(?:[?&])style=(md2|md3|unstyled)(?:&|$)/.exec(
           window.location.search

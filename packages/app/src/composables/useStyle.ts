@@ -60,15 +60,25 @@ function parseStyleSlug(raw: unknown): StyleSlug {
   return DEFAULT_STYLE
 }
 
-/** The style persisted by `setStyle`, or null when none/invalid/unavailable. */
+function isStyleSlug(v: unknown): v is StyleSlug {
+  return v === 'md2' || v === 'md3' || v === 'unstyled'
+}
+
+/** The style persisted by `setStyle` (or a ?style= param), or null when none. */
 function readStoredStyle(): StyleSlug | null {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    return stored === 'md2' || stored === 'md3' || stored === 'unstyled'
-      ? stored
-      : null
+    return isStyleSlug(stored) ? stored : null
   } catch {
     return null
+  }
+}
+
+function writeStoredStyle(slug: StyleSlug): void {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, slug)
+  } catch {
+    /* storage unavailable */
   }
 }
 
@@ -86,12 +96,17 @@ export function useStyle() {
   const route = useRoute()
   const router = useRouter()
 
-  // URL param wins (shared links, tests); otherwise the persisted choice.
-  const urlSlug = parseStyleSlug(route.query.style)
-  const initialSlug: StyleSlug =
-    route.query.style === undefined || route.query.style === null
-      ? (readStoredStyle() ?? DEFAULT_STYLE)
-      : urlSlug
+  const rawUrlStyle = route.query.style
+  const hasUrlStyle = rawUrlStyle !== undefined && rawUrlStyle !== null
+  const urlSlug = parseStyleSlug(rawUrlStyle)
+
+  // URL param wins (shared links, tests) and ALSO persists: a ?style= link
+  // keeps its style when navigating to pages without the param.
+  if (hasUrlStyle && isStyleSlug(rawUrlStyle)) writeStoredStyle(urlSlug)
+
+  const initialSlug: StyleSlug = hasUrlStyle
+    ? urlSlug
+    : (readStoredStyle() ?? DEFAULT_STYLE)
 
   const currentSlug = ref<StyleSlug>(initialSlug)
 
@@ -120,7 +135,16 @@ export function useStyle() {
   watch(
     () => route.query.style,
     (raw) => {
-      const slug = parseStyleSlug(raw)
+      // Same resolution as setup: an explicit ?style= wins (and persists);
+      // without one the stored choice applies, so navigating to a page with
+      // no ?style= does NOT revert to the default md3.
+      if (raw !== undefined && raw !== null && isStyleSlug(raw)) {
+        writeStoredStyle(raw)
+      }
+      const slug =
+        raw === undefined || raw === null
+          ? (readStoredStyle() ?? DEFAULT_STYLE)
+          : parseStyleSlug(raw)
       if (slug !== currentSlug.value) {
         currentSlug.value = slug
         applyBodyClass(slug)
@@ -136,11 +160,7 @@ export function useStyle() {
     // reload and no flash.
     applyBodyClass(slug)
     if (typeof window !== 'undefined') {
-      try {
-        window.localStorage.setItem(STORAGE_KEY, slug)
-      } catch {
-        /* storage unavailable */
-      }
+      writeStoredStyle(slug)
       router.replace({ query: { ...route.query, style: slug } })
     }
   }
