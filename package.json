@@ -20,7 +20,7 @@
     "test:ssr": "pnpm build:app:ssr && playwright test tests/ssr.spec.ts"
   },
   "dependencies": {
-    "unocss-preset-quasar": "0.5.1"
+    "unocss-preset-quasar": "0.5.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",
