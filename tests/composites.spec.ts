@@ -160,6 +160,125 @@ const patterns: Pattern[] = [
     name: 'QBtnDropdown + QList + QItem (click to open)',
     tags: ['.q-btn-dropdown'],
     click: '.q-btn-dropdown:first-of-type'
+  },
+  // Additional page patterns (previously untested)
+  {
+    id: 'composite-bar-icons',
+    name: 'QBar + QIcon + QBtn',
+    tags: ['.q-bar', '.q-icon', '.q-btn']
+  },
+  {
+    id: 'composite-carousel',
+    name: 'QCarousel + QCarouselSlide',
+    tags: ['.q-carousel', '.q-carousel__slide']
+  },
+  {
+    id: 'composite-chat-avatar',
+    name: 'QChatMessage',
+    tags: ['.q-message']
+  },
+  {
+    id: 'composite-footer-toolbar',
+    name: 'QFooter + QToolbar',
+    tags: ['.q-footer', '.q-toolbar']
+  },
+  {
+    id: 'composite-icon-badge',
+    name: 'QIcon + QBadge',
+    tags: ['.q-icon', '.q-badge']
+  },
+  {
+    id: 'composite-slider-badge',
+    name: 'QSlider',
+    tags: ['.q-slider']
+  },
+  {
+    id: 'composite-table-pagination',
+    name: 'QTable + QPagination + QInput',
+    tags: ['.q-table', '.q-input']
+  },
+  {
+    id: 'composite-toolbar-breadcrumbs',
+    name: 'QToolbar + QBreadcrumbs',
+    tags: ['.q-toolbar', '.q-breadcrumbs']
+  },
+  // New patterns from Quasar docs examples
+  {
+    id: 'composite-menu-separator',
+    name: 'QBtn + QMenu + QSeparator',
+    // Menu content teleports to the body, so only the trigger is assertable
+    // within the section.
+    tags: ['.q-btn']
+  },
+  {
+    id: 'composite-input-toggle',
+    name: 'QIcon + QInput + QToggle',
+    tags: ['.q-icon', '.q-input', '.q-toggle']
+  },
+  {
+    id: 'composite-card-skeleton',
+    name: 'QCard + QItem + QSkeleton',
+    tags: ['.q-card', '.q-item', '.q-skeleton']
+  },
+  {
+    id: 'composite-card-img',
+    name: 'QCard + QResponsive + QBtn',
+    tags: ['.q-card', '.q-responsive', '.q-btn']
+  },
+  {
+    id: 'composite-input-btn',
+    name: 'QInput + QBtn',
+    tags: ['.q-input', '.q-btn']
+  },
+  {
+    id: 'composite-date-input',
+    name: 'QInput + QDate + QPopupProxy',
+    tags: ['.q-input', '.q-icon']
+  },
+  {
+    id: 'composite-date-time',
+    name: 'QBadge + QDate + QTime',
+    tags: ['.q-badge', '.q-date', '.q-time']
+  },
+  {
+    id: 'composite-card-expansion',
+    name: 'QCard + QExpansionItem + QSeparator',
+    tags: ['.q-card', '.q-expansion-item', '.q-separator']
+  },
+  {
+    id: 'composite-form-toggle',
+    name: 'QForm + QToggle + QBtn',
+    tags: ['.q-form', '.q-toggle', '.q-btn']
+  },
+  {
+    id: 'composite-btngroup',
+    name: 'QBtnGroup + QBtn',
+    tags: ['.q-btn-group', '.q-btn']
+  },
+  {
+    id: 'composite-stepper-btn',
+    name: 'QStepper + QBtn',
+    tags: ['.q-stepper', '.q-stepper__step', '.q-btn']
+  },
+  {
+    id: 'composite-chat-input',
+    name: 'QChatMessage + QInput',
+    tags: ['.q-message', '.q-input', '.q-btn']
+  },
+  {
+    id: 'composite-rating-btn',
+    name: 'QRating + QBtn',
+    tags: ['.q-rating', '.q-btn']
+  },
+  {
+    id: 'composite-breadcrumbs-icons',
+    name: 'QBreadcrumbs + QIcon',
+    tags: ['.q-breadcrumbs', '.q-breadcrumbs__el', '.q-icon']
+  },
+  {
+    id: 'composite-timeline-avatar',
+    name: 'QTimeline + QAvatar',
+    tags: ['.q-timeline', '.q-timeline__entry', '.q-avatar']
   }
 ]
 

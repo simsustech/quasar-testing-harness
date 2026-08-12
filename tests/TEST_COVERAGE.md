@@ -1,6 +1,6 @@
 # Test Coverage Overview
 
-**1283 tests** across **73 per-component spec files**, **12 top-level spec files**, and `tests/helpers.ts`.
+**1353 tests** across **73 per-component spec files**, **12 top-level spec files**, and `tests/helpers.ts`.
 
 ## Test Structure
 

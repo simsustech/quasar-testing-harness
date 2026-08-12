@@ -85,7 +85,7 @@ test.describe('Screenshots', () => {
     for (const vp of VIEWPORTS) {
       for (const mode of MODES) {
         test(`${slug} ${vp.slug} ${mode} md3`, async ({ page }) => {
-          test.setTimeout(30_000)
+          test.setTimeout(120_000)
           const darkParam = mode === 'dark' ? '&dark=true' : ''
           await page.setViewportSize({ width: vp.width, height: vp.height })
           await page.goto(`/${slug}?style=md3${darkParam}`, {

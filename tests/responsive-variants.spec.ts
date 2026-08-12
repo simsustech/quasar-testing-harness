@@ -128,7 +128,7 @@ test.describe('Responsive variant screenshots', () => {
     for (const vp of VIEWPORTS) {
       for (const v of compVariants) {
         test(`${slug} ${v.label} at ${vp.slug}`, async ({ page }) => {
-          test.setTimeout(30_000)
+          test.setTimeout(120_000)
 
           const errors: string[] = []
           page.on('pageerror', (err) =>

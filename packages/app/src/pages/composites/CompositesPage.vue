@@ -22,7 +22,14 @@ export default {
       search: ref(''),
       slide: ref('style'),
       showDialog: ref(false),
-      d2: ref(false)
+      d2: ref(false),
+      t2: ref(true),
+      t3: ref(false),
+      dv: ref('2026/08/12'),
+      tv: ref('12:00'),
+      rt: ref(3),
+      st: ref(1),
+      msg: ref('')
     }
   }
 }
@@ -159,9 +166,7 @@ export default {
       <div class="text-subtitle1 q-mb-sm">QItem + QIcon + QToggle</div>
       <q-list
         ><q-item>
-          <q-item-section avatar
-            ><q-icon name="notifications"
-          /></q-item-section>
+          <q-item-section avatar><q-icon name="i-mdi-bell" /></q-item-section>
           <q-item-section><q-item-label>Notify</q-item-label></q-item-section>
           <q-item-section side
             ><q-toggle :model-value="true"
@@ -209,17 +214,6 @@ export default {
             <q-btn flat round dense icon="i-mdi-magnify"
           /></q-toolbar>
         </q-header>
-        <!-- QIcon + QBadge floating -->
-        <q-separator />
-        <!-- QIcon + QBadge floating -->
-        <section data-testid="composite-header-toolbar-icon-badge">
-          <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
-          <div style="position: relative; display: inline-flex">
-            <q-icon name="i-mdi-email-outline" size="32px" />
-            <q-badge floating color="red" rounded label="5" />
-          </div>
-        </section>
-        <q-separator />
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -239,17 +233,6 @@ export default {
             ><q-tab name="t1" label="Tab 1" /><q-tab name="t2" label="Tab 2"
           /></q-tabs>
         </q-header>
-        <!-- QIcon + QBadge floating -->
-        <q-separator />
-        <!-- QIcon + QBadge floating -->
-        <section data-testid="composite-header-tabs-icon-badge">
-          <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
-          <div style="position: relative; display: inline-flex">
-            <q-icon name="i-mdi-email-outline" size="32px" />
-            <q-badge floating color="red" rounded label="5" />
-          </div>
-        </section>
-        <q-separator />
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -269,27 +252,18 @@ export default {
           <q-scroll-area style="height: 100%">
             <q-list>
               <q-item clickable
-                ><q-item-section avatar><q-icon name="inbox" /></q-item-section
+                ><q-item-section avatar
+                  ><q-icon name="i-mdi-inbox" /></q-item-section
                 ><q-item-section>Inbox</q-item-section></q-item
               >
               <q-item clickable
-                ><q-item-section avatar><q-icon name="star" /></q-item-section
+                ><q-item-section avatar
+                  ><q-icon name="i-mdi-star" /></q-item-section
                 ><q-item-section>Starred</q-item-section></q-item
               >
             </q-list>
           </q-scroll-area>
         </q-drawer>
-        <!-- QIcon + QBadge floating -->
-        <q-separator />
-        <!-- QIcon + QBadge floating -->
-        <section data-testid="composite-drawer-items-icon-badge">
-          <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
-          <div style="position: relative; display: inline-flex">
-            <q-icon name="i-mdi-email-outline" size="32px" />
-            <q-badge floating color="red" rounded label="5" />
-          </div>
-        </section>
-        <q-separator />
         <q-page-container><q-page padding>Content</q-page></q-page-container>
       </q-layout>
     </section>
@@ -319,7 +293,7 @@ export default {
     <section data-testid="composite-input-icon">
       <div class="text-subtitle1 q-mb-sm">QInput + QIcon</div>
       <q-input label="User" :model-value="'john'">
-        <template v-slot:prepend><q-icon name="person" /></template>
+        <template v-slot:prepend><q-icon name="i-mdi-account" /></template>
       </q-input>
     </section>
     <q-separator />
@@ -342,7 +316,7 @@ export default {
     <section data-testid="composite-field-icon">
       <div class="text-subtitle1 q-mb-sm">QField + QIcon</div>
       <q-field label="User" stack-label>
-        <template v-slot:prepend><q-icon name="person" /></template>
+        <template v-slot:prepend><q-icon name="i-mdi-account" /></template>
         <template v-slot:control
           ><div class="self-center full-width">johndoe</div></template
         >
@@ -354,7 +328,7 @@ export default {
     <section data-testid="composite-knob-icon">
       <div class="text-subtitle1 q-mb-sm">QKnob + QIcon</div>
       <q-knob :model-value="75" size="80px" show-value color="primary">
-        <q-icon name="volume_up" class="q-knob-center" />
+        <q-icon name="i-mdi-volume-high" class="q-knob-center" />
       </q-knob>
     </section>
     <q-separator />
@@ -408,7 +382,9 @@ export default {
     <section data-testid="composite-banner-btn">
       <div class="text-subtitle1 q-mb-sm">QBanner + QBtn</div>
       <q-banner class="bg-primary text-white rounded-borders">
-        <template v-slot:avatar><q-icon name="info" color="white" /></template>
+        <template v-slot:avatar
+          ><q-icon name="i-mdi-information" color="white"
+        /></template>
         Notice
         <template v-slot:action
           ><q-btn flat color="white" label="Ok"
@@ -421,7 +397,7 @@ export default {
     <section data-testid="composite-bar-icons">
       <div class="text-subtitle1 q-mb-sm">QBar + QIcon + QBtn</div>
       <q-bar class="bg-grey-9 text-white rounded-borders">
-        <q-icon name="laptop" />
+        <q-icon name="i-mdi-laptop" />
         <div>Title</div>
         <q-space /> <q-btn dense flat icon="i-mdi-minus" /><q-btn
           dense
@@ -435,8 +411,8 @@ export default {
     <!-- 29. QChatMessage + QAvatar -->
     <section data-testid="composite-chat-avatar">
       <div class="text-subtitle1 q-mb-sm">QChatMessage</div>
-      <q-chat-message name="John" :model-value="'Hi'" sent />
-      <q-chat-message name="Jane" :model-value="'Hello'" />
+      <q-chat-message name="John" :text="['Hi']" sent />
+      <q-chat-message name="Jane" :text="['Hello']" />
     </section>
     <q-separator />
 
@@ -540,17 +516,6 @@ export default {
         style="height: 120px"
         class="rounded-borders overflow-hidden"
       >
-        <!-- QIcon + QBadge floating -->
-        <q-separator />
-        <!-- QIcon + QBadge floating -->
-        <section data-testid="composite-footer-toolbar-icon-badge">
-          <div class="text-subtitle1 q-mb-sm">QIcon + QBadge</div>
-          <div style="position: relative; display: inline-flex">
-            <q-icon name="i-mdi-email-outline" size="32px" />
-            <q-badge floating color="red" rounded label="5" />
-          </div>
-        </section>
-        <q-separator />
         <q-page-container><q-page padding>Body</q-page></q-page-container>
         <q-footer class="bg-grey-8 text-white">
           <q-toolbar><q-toolbar-title>Footer</q-toolbar-title></q-toolbar>
@@ -566,6 +531,238 @@ export default {
         <q-icon name="i-mdi-email-outline" size="32px" />
         <q-badge floating color="red" rounded label="5" />
       </div>
+    </section>
+    <q-separator />
+    <!-- QBtn + QMenu + QList + QItem + QSeparator -->
+    <section data-testid="composite-menu-separator">
+      <div class="text-subtitle1 q-mb-sm">QBtn + QMenu + QSeparator</div>
+      <q-btn label="Actions" color="primary" icon="i-mdi-chevron-down">
+        <q-menu>
+          <q-list style="min-width: 140px">
+            <q-item clickable v-close-popup
+              ><q-item-section>Edit</q-item-section></q-item
+            >
+            <q-separator />
+            <q-item clickable v-close-popup
+              ><q-item-section>Delete</q-item-section></q-item
+            >
+          </q-list>
+        </q-menu>
+      </q-btn>
+    </section>
+    <q-separator />
+
+    <!-- QIcon + QInput + QToggle -->
+    <section data-testid="composite-input-toggle">
+      <div class="text-subtitle1 q-mb-sm">QIcon + QInput + QToggle</div>
+      <div class="row items-center q-gutter-sm">
+        <q-icon name="i-mdi-bell" size="24px" />
+        <q-input label="Notify when" dense style="max-width: 160px" />
+        <q-toggle v-model="t2" />
+      </div>
+    </section>
+    <q-separator />
+
+    <!-- QCard + QItem + QSkeleton -->
+    <section data-testid="composite-card-skeleton">
+      <div class="text-subtitle1 q-mb-sm">QCard + QItem + QSkeleton</div>
+      <q-card style="max-width: 300px">
+        <q-item>
+          <q-item-section avatar
+            ><q-skeleton type="circle" size="40px"
+          /></q-item-section>
+          <q-item-section><q-skeleton type="text" /></q-item-section>
+        </q-item>
+        <q-card-section
+          ><q-skeleton type="rect" height="80px"
+        /></q-card-section>
+      </q-card>
+    </section>
+    <q-separator />
+
+    <!-- QCard + QResponsive + QIcon + QBtn -->
+    <section data-testid="composite-card-img">
+      <div class="text-subtitle1 q-mb-sm">
+        QCard + QResponsive + QIcon + QBtn
+      </div>
+      <q-card style="max-width: 220px">
+        <q-responsive :ratio="16 / 9" class="bg-primary text-white">
+          <q-icon
+            name="i-mdi-image"
+            size="48px"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            "
+          />
+        </q-responsive>
+        <q-card-section
+          ><div class="text-subtitle2">Card title</div></q-card-section
+        >
+        <q-card-actions
+          ><q-btn flat label="View" color="primary"
+        /></q-card-actions>
+      </q-card>
+    </section>
+    <q-separator />
+
+    <!-- QInput + QBtn (search bar) -->
+    <section data-testid="composite-input-btn">
+      <div class="text-subtitle1 q-mb-sm">QInput + QBtn</div>
+      <div class="row items-center q-gutter-sm" style="max-width: 320px">
+        <q-input v-model="search" label="Search" dense outlined class="col" />
+        <q-btn icon="i-mdi-magnify" color="primary" />
+      </div>
+    </section>
+    <q-separator />
+
+    <!-- QInput + QDate + QPopupProxy -->
+    <section data-testid="composite-date-input">
+      <div class="text-subtitle1 q-mb-sm">QInput + QDate + QPopupProxy</div>
+      <q-input v-model="dv" label="Pick a date" dense style="max-width: 220px">
+        <template v-slot:append>
+          <q-icon name="i-mdi-calendar" class="cursor-pointer">
+            <q-popup-proxy><q-date v-model="dv" /></q-popup-proxy>
+          </q-icon>
+        </template>
+      </q-input>
+    </section>
+    <q-separator />
+
+    <!-- QBadge + QDate + QTime -->
+    <section data-testid="composite-date-time">
+      <div class="text-subtitle1 q-mb-sm">QBadge + QDate + QTime</div>
+      <div class="row items-center q-gutter-sm">
+        <q-badge color="primary" label="Due" />
+        <q-date v-model="dv" minimal />
+        <q-time v-model="tv" minimal />
+      </div>
+    </section>
+    <q-separator />
+
+    <!-- QCard + QExpansionItem + QSeparator -->
+    <section data-testid="composite-card-expansion">
+      <div class="text-subtitle1 q-mb-sm">
+        QCard + QExpansionItem + QSeparator
+      </div>
+      <q-card style="max-width: 320px">
+        <q-card-section
+          ><div class="text-subtitle1">Account</div></q-card-section
+        >
+        <q-separator />
+        <q-expansion-item icon="i-mdi-account" label="Profile" default-opened>
+          <q-card-section>Profile settings content</q-card-section>
+        </q-expansion-item>
+        <q-separator />
+        <q-expansion-item icon="i-mdi-cog" label="Preferences">
+          <q-card-section>Preferences content</q-card-section>
+        </q-expansion-item>
+      </q-card>
+    </section>
+    <q-separator />
+
+    <!-- QForm + QToggle + QBtn -->
+    <section data-testid="composite-form-toggle">
+      <div class="text-subtitle1 q-mb-sm">QForm + QToggle + QBtn</div>
+      <q-form class="q-gutter-md" style="max-width: 300px">
+        <q-toggle v-model="t2" label="Enable notifications" />
+        <q-toggle v-model="t3" label="Dark mode" color="amber" />
+        <q-btn label="Save" type="submit" color="primary" />
+      </q-form>
+    </section>
+    <q-separator />
+
+    <!-- QBtnGroup + QBtn -->
+    <section data-testid="composite-btngroup">
+      <div class="text-subtitle1 q-mb-sm">QBtnGroup + QBtn</div>
+      <q-btn-group unelevated rounded>
+        <q-btn icon="i-mdi-format-align-left" />
+        <q-btn icon="i-mdi-format-align-center" />
+        <q-btn icon="i-mdi-format-align-right" />
+      </q-btn-group>
+    </section>
+    <q-separator />
+
+    <!-- QStepper + QBtn -->
+    <section data-testid="composite-stepper-btn">
+      <div class="text-subtitle1 q-mb-sm">QStepper + QBtn</div>
+      <q-stepper
+        v-model="st"
+        flat
+        bordered
+        style="max-width: 380px"
+        class="rounded-borders"
+      >
+        <q-step :name="1" title="Step 1" icon="i-mdi-account"
+          >Content one</q-step
+        >
+        <q-step :name="2" title="Step 2" icon="i-mdi-cog">Content two</q-step>
+        <template v-slot:navigation>
+          <q-btn flat label="Next" color="primary" />
+        </template>
+      </q-stepper>
+    </section>
+    <q-separator />
+
+    <!-- QChatMessage + QInput -->
+    <section data-testid="composite-chat-input">
+      <div class="text-subtitle1 q-mb-sm">QChatMessage + QInput</div>
+      <div style="max-width: 320px">
+        <q-chat-message name="Jane" :text="['Hello there']" />
+        <q-chat-message name="John" :text="['Hi Jane!']" sent />
+        <div class="row items-center q-gutter-sm q-mt-sm">
+          <q-input v-model="msg" label="Message" dense outlined class="col" />
+          <q-btn icon="i-mdi-send" color="primary" round dense />
+        </div>
+      </div>
+    </section>
+    <q-separator />
+
+    <!-- QRating + QBtn -->
+    <section data-testid="composite-rating-btn">
+      <div class="text-subtitle1 q-mb-sm">QRating + QBtn</div>
+      <div class="row items-center q-gutter-sm">
+        <q-rating v-model="rt" :max="5" size="24px" color="amber" />
+        <q-btn flat label="Submit review" color="primary" />
+      </div>
+    </section>
+    <q-separator />
+
+    <!-- QBreadcrumbs + QIcon -->
+    <section data-testid="composite-breadcrumbs-icons">
+      <div class="text-subtitle1 q-mb-sm">QBreadcrumbs + QIcon</div>
+      <q-breadcrumbs>
+        <q-breadcrumbs-el icon="i-mdi-home" label="Home" />
+        <q-breadcrumbs-el icon="i-mdi-folder" label="Projects" />
+        <q-breadcrumbs-el icon="i-mdi-file" label="Report" />
+      </q-breadcrumbs>
+    </section>
+    <q-separator />
+
+    <!-- QTimeline + QAvatar -->
+    <section data-testid="composite-timeline-avatar">
+      <div class="text-subtitle1 q-mb-sm">QTimeline + QAvatar</div>
+      <q-timeline color="primary" side="right">
+        <q-timeline-entry icon="i-mdi-rocket" title="Launched" subtitle="Today">
+          <div class="row items-center q-gutter-sm">
+            <q-avatar
+              color="primary"
+              text-color="white"
+              icon="i-mdi-account"
+              size="24px"
+            />
+            <div>by admin</div>
+          </div>
+        </q-timeline-entry>
+        <q-timeline-entry
+          icon="i-mdi-pencil"
+          title="Edited"
+          subtitle="Yesterday"
+          >Notes</q-timeline-entry
+        >
+      </q-timeline>
     </section>
     <q-separator />
   </q-page>
