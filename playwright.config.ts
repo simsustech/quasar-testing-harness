@@ -2,6 +2,10 @@ import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './tests',
+  // Per-component variant loops navigate + screenshot 10-15 pages per test;
+  // under parallel load those exceed the 30s default. 120s keeps the suite
+  // green (failures were all timeouts, never assertions).
+  timeout: 120_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -19,7 +23,9 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: process.env.TEST_SERVER_CMD || 'pnpm --filter @quasar-testing-harness/app dev',
+    command:
+      process.env.TEST_SERVER_CMD ||
+      'pnpm --filter @quasar-testing-harness/app dev',
     port: parseInt(process.env.TEST_SERVER_PORT || '3000'),
     timeout: 120_000,
     reuseExistingServer: true,
